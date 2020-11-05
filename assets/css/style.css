@@ -1,9 +1,12 @@
 
 
 .hero__content {
+    padding: 150px 0;
+}
+
+.hero__content h1 {
     font-family: 'Roboto', sans-serif;
     font-size: 65px;
-    padding: 150px 0;
 }
 
 p {
