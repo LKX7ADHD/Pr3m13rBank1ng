@@ -22,63 +22,66 @@ and open the template in the editor.
     <?php include "navbar.php" ?>
 
     <!-- Start of Header -->
-    <header>
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div>
-                        <h1>Get an extensive view of your cash flow.</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+    <header class="hero">
+        <div class="hero__content">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="banner__content">
+                            <h1>Get an extensive view of your cash flow.</h1>
+                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+                        </div>
+                        <div class="banner__button">
+                            <a href="#">Get Started</a>
+                        </div>
                     </div>
-                    <div>
-                        <a href="#">Get Started</a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div>
-                        <img src="#" alt="#">
+                    <div class="col-lg-6">
+                        <div>
+                            <img src="assets/img/undraw_finance_0bdk.svg" alt="SVG on Finance">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </header>
 
     <!-- End of Header -->
 
-
+    <!-- Start of Main -->
 
     <main>
-        <section>
+
+        <!-- Start of Grow Area -->
+        <section class="grow">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
-                        <div>
+                        <div class="grow__image">
                             <img src="#" alt="#">
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="content">
+                        <div class="grow__content">
                             <span>Help your Business Grow</span>
                             <h3>Created a business account for a fee-free & hassle-free</h3>
                             <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
-                            <div class="">
+                            <div class="grow__inner-content">
                                 <div class="number">
                                     <span>1</span>
                                 </div>
                                 <h4>Apply Anywhere</h4>
                                 <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                             </div>
-                            <div class="">
+                            <div class="grow__inner-content">
                                 <div class="number">
-                                    <span>1</span>
+                                    <span>2</span>
                                 </div>
                                 <h4>Apply Anywhere</h4>
                                 <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                             </div>
-                            <div class="">
+                            <div class="grow__inner-content">
                                 <div class="number">
-                                    <span>1</span>
+                                    <span>3</span>
                                 </div>
                                 <h4>Apply Anywhere</h4>
                                 <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
@@ -88,6 +91,10 @@ and open the template in the editor.
                 </div>
             </div>
         </section>
+
+        <!-- End of Grow Area -->
+
+        <!--  -->
 
         <section>
             <div class="container">
