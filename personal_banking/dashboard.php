@@ -11,8 +11,8 @@ and open the template in the editor.
     <?php include 'include.php';?>
 </head>
 <body>
-<?php
-// put your code here
-?>
+<main>
+    "hello"
+</main>
 </body>
 </html>
