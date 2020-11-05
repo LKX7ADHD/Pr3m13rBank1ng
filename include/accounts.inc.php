@@ -31,8 +31,17 @@ class User {
  * @return mysqli connection object
  */
 function getConnectionToDb() {
-    $config = parse_ini_file('../../private/db-config.ini');
-    return new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
+//    AWS METHOD - LEAVE HERE FOR EASIER MIGRATION
+//    $config = parse_ini_file('../../private/db-config.ini');
+//    return new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
+
+//    Heroku method
+    $servername = getenv('heroku_db_servername');
+    $username = getenv('heroku_db_username');
+    $password = getenv('heroku_db_password');
+    $dbname = getenv('heroku_db_dbname');
+
+    return new mysqli($servername, $username, $password, $dbname);
 }
 
 /**
@@ -53,14 +62,14 @@ function registerUser($user, $hashed_password) {
 
     if ($conn->connect_error) {
         http_response_code(500);
-        die('An unexpected error has occured. Please try again later.');
+        die('An unexpected error has occurred. Please try again later.');
     } else {
         $stmt = $conn->prepare('INSERT INTO Users (username, firstName, lastName, email, password) VALUES (?,?,?,?,?);');
         $stmt->bind_param('sssss', $user->username, $user->firstName, $user->lastName, $user->email, $hashed_password);
 
         if (!$stmt->execute()) {
             http_response_code(500);
-            die('An unexpected error has occured. Please try again later.');
+            die('An unexpected error has occurred. Please try again later.');
         }
 
         $stmt->close();
@@ -81,14 +90,14 @@ function authenticateUser($email, $password) {
 
     if ($conn->connect_error) {
         http_response_code(500);
-        die('An unexpected error has occured. Please try again later.');
+        die('An unexpected error has occurred. Please try again later.');
     } else {
         $stmt = $conn->prepare('SELECT username, firstName, lastName, password FROM Users WHERE email = ?');
         $stmt->bind_param('s', $email);
 
         if (!$stmt->execute()) {
             http_response_code(500);
-            die('An unexpected error has occured. Please try again later.');
+            die('An unexpected error has occurred. Please try again later.');
         }
 
         $result = $stmt->get_result();
@@ -130,14 +139,14 @@ function isUser($email) {
 
     if ($conn->connect_error) {
         http_response_code(500);
-        die('An unexpected error has occured. Please try again later.');
+        die('An unexpected error has occurred. Please try again later.');
     } else {
         $stmt = $conn->prepare('SELECT firstName FROM Users WHERE email = ?;');
         $stmt->bind_param('s', $email);
 
         if (!$stmt->execute()) {
             http_response_code(500);
-            die('An unexpected error has occured. Please try again later.');
+            die('An unexpected error has occurred. Please try again later.');
         }
 
         $result = $stmt->get_result();
