@@ -36,7 +36,7 @@ and open the template in the editor.
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div>
+                        <div class="banner__image image-fluid">
                             <img src="assets/img/undraw_finance_0bdk.svg" alt="SVG on Finance">
                         </div>
                     </div>
