@@ -12,6 +12,7 @@ session_start();
 
 /**
  * Class User
+ * Encapsulates user information
  */
 class User {
     public $username;
@@ -47,7 +48,7 @@ function getConnectionToDb() {
  * @param $user User the user to register
  * @param $hashed_password string the password for the user to login with, hashed
  */
-function registerMember($user, $hashed_password) {
+function registerUser($user, $hashed_password) {
     $conn = getConnectionToDb();
 
     if ($conn->connect_error) {
@@ -63,8 +64,9 @@ function registerMember($user, $hashed_password) {
         }
 
         $stmt->close();
-        $conn->close();
     }
+
+    $conn->close();
 }
 
 /**
@@ -151,8 +153,8 @@ function isUser($email) {
 }
 
 /**
- * Retrieves information about the current logged in user.
- * @return User|false User information if logged in, otherwise false
+ * Retrieves information about the current logged in user
+ * @return User|false user object if logged in, false otherwise
  */
 function getAuthenticatedUser() {
     if (isset($_SESSION['user'])) {
