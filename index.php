@@ -8,6 +8,7 @@ and open the template in the editor.
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <?php include 'include.php';?>
 </head>
 <body>
 <?php
