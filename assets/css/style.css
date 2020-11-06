@@ -160,3 +160,51 @@ img {
 	align-items: center;
 
 }
+
+.insurance-planning {
+	padding: 150px 0;
+}
+
+.insurance-planning .insurance-planning__container {
+	text-align: center;
+	margin-bottom: 4em !important;
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.insurance-planning__container h3 {
+	font-size: 40px;
+}
+
+.insurance-planning__container--left {
+	padding: 10em 3em 3em 3em;
+
+	
+	border-radius: 20px;
+}
+
+.insurance-planning__container--left::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.8;
+    background: url("../img/business_working.jpg") no-repeat center/cover rgba(82,82,102, 0.2);
+}
+
+/* .insurance-planning__container--left span {
+	margin-top: 2em;
+} */
+
+.insurance-planning__container--left h3 {
+	font-size: 28px;
+	z-index: -2;
+}
+
+.insurance-planning__container--right h3 {
+	font-size: 18px;
+}

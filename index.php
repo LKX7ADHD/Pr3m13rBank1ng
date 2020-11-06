@@ -73,7 +73,7 @@ and open the template in the editor.
                                     <h4>Open An Account In Minutes</h4>
                                     <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                                 </div>
-                                
+
                             </div>
                             <div class="grow__inner-content">
                                 <div class="number">
@@ -106,7 +106,7 @@ and open the template in the editor.
         <section class="funding">
             <div class="container">
                 <div class="row align-items-center">
-                    
+
                     <div class="col-lg-6">
                         <div class="content">
                             <span>Reliable. Effective. Efficient</span>
@@ -127,14 +127,14 @@ and open the template in the editor.
             </div>
         </section>
 
-<!-- Start Fun Facts Area -->
+        <!-- Start Testimonial Area -->
         <section class="testimonial">
             <div class="container">
                 <div class="testimonial__container">
                     <span>Why choose us</span>
                     <h2>Our bank has been providing services to its customers for almost 25 years.</h2>
                 </div>
-                
+
                 <div class="row">
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="single-fun-fact">
@@ -190,9 +190,54 @@ and open the template in the editor.
                 </div>
             </div>
         </section>
-        <!-- End Fun Facts Area -->
+        <!-- End Testimonial Area -->
 
-
+        <section class="insurance-planning">
+            <div class="container">
+                <div class="insurance-planning__container">
+                    <h3>Insurance Planning and Insurance Investment</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 insurance-planning__container--left">
+                        <span>
+                            Marketing Services
+                        </span>
+                        <h3>
+                            A Quick Peek Into the Ways of Securing Your Business
+                        </h3>
+                        <p>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.
+                        </p>
+                        <button class="btn btn-primary">
+                            Read More
+                        </button>
+                    </div>
+                    <div class="col-lg-3 insurance-planning__container--right">
+                        <span>
+                            Marketing Services
+                        </span>
+                        <h3>
+                            A Quick Peek Into the Ways of Securing Your Business
+                        </h3>
+                        <p>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.
+                        </p>
+                    </div>
+                    <div class="col-lg-3 insurance-planning__container--right">
+                        <span>
+                            Marketing Services
+                        </span>
+                        <h3>
+                            A Quick Peek Into the Ways of Securing Your Business
+                        </h3>
+                        <p>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 
     </main>
