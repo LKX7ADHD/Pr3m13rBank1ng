@@ -162,6 +162,19 @@ function isUser($email) {
 }
 
 /**
+ * Santalize user input
+ * @param $data string user input data for sanitization
+ * @return string Santalize $data
+ */
+function sanitize_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = strip_tags($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+/**
  * Retrieves information about the current logged in user
  * @return User|false user object if logged in, false otherwise
  */
