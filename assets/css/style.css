@@ -151,9 +151,12 @@ img {
 .single-fun-fact {
 	background-color: var(--main-accent-color-light);
 	padding: 4em 2em;
+	border-radius: 20px;
+
 	display: flex;
 	flex-direction: column;
 	text-align: center;
 	justify-content: center;
 	align-items: center;
+
 }
