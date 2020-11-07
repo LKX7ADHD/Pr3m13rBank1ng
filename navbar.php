@@ -20,7 +20,7 @@
             </ul>
             <form class="form-inline my-2 my-lg-0">
 
-                <button class="btn btn-success my-2 my-sm-0 py-3 px-4" type="submit">Open Bank</button>
+                <button class="btn btn-primary my-2 my-sm-0 py-3 px-4 btn--cta" type="submit">Open Bank</button>
             </form>
         </div>
     </nav>
