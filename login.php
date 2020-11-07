@@ -16,5 +16,6 @@ and open the template in the editor.
 <?php
 // put your code here
 ?>
+<?php include "footer.php"; ?>
 </body>
 </html>

@@ -451,7 +451,7 @@ and open the template in the editor.
         <!-- End Footer Area -->
 
         <!-- Start Copy Right Area -->
-        <div class="copyright-area">
+        <!--div class="copyright-area">
             <div class="container">
                 <div class="copyright-area-content">
                     <p>
@@ -460,16 +460,10 @@ and open the template in the editor.
                     </p>
                 </div>
             </div>
-        </div>
+        </div-->
         <!-- End Copy Right Area -->
-
-
-
     </main>
-
-    <footer>
-
-    </footer>
+    <?php include "footer.php"; ?>
 </body>
 
 </html>

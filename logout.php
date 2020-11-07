@@ -11,8 +11,12 @@ and open the template in the editor.
     <?php include 'include.php';?>
 </head>
 <body>
+
+<?php include "navbar.php"; ?>
 <?php
 // put your code here
 ?>
+<?php include "footer.php"; ?>
 </body>
+
 </html>
