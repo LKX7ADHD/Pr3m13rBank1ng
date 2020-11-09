@@ -13,8 +13,66 @@ session_set_cookie_params(1200, '/', $_SERVER['HTTP_HOST']);
 session_name('session');
 session_start();
 
+
 /**
- * Class User
+ * Represents monetary value
+ */
+class Currency {
+    /**
+     * @var string amount of money
+     */
+    private $value;
+
+    /**
+     * @param $value string amount of money
+     */
+    public function __construct(string $value) {
+        $this->value = trim($value);
+    }
+
+    /**
+     * @return string
+     */
+    public function getValue(): string {
+        return $this->value;
+    }
+
+    /**
+     * @param $currency Currency amount of money to add to the receiver
+     */
+    public function add(Currency $currency) {
+        $this->value = bcadd($this->value, $currency->value, 2);
+    }
+
+    /**
+     * @param Currency $currency amount of money to subtract from the receiver
+     */
+    public function subtract(Currency $currency) {
+        $this->value = bcsub($this->value, $currency->value, 2);
+    }
+
+    public function equalTo(Currency $other) {
+        return bccomp($this->value, $other->value, 2) == 0;
+    }
+
+    public function lessThan(Currency $other) {
+        return bccomp($this->value, $other->value, 2) == -1;
+    }
+
+    public function greaterThan(Currency $other) {
+        return $other->lessThan($this);
+    }
+
+    public function lessThanOrEqualTo(Currency $other) {
+        return !$other->lessThan($this);
+    }
+
+    public function greaterThanOrEqualTo(Currency $other) {
+        return !$this->lessThan($other);
+    }
+}
+
+/**
  * Encapsulates user information
  */
 class User {
@@ -22,9 +80,18 @@ class User {
     public $firstName;
     public $lastName;
     public $email;
+}
 
-    public function __construct() {
+/**
+ * Encapsulates account information
+ */
+class Account {
+    public $accountName;
+    public $user;
+    public $balance;
 
+    public function getBalanceRepresentation() {
+        return '$' . $this->balance;
     }
 }
 
@@ -47,7 +114,7 @@ function getConnectionToDb() {
 }
 
 /**
- * Attempts to register a member
+ * Attempts to register a user
  *
  * WARNING:
  * This function makes no effort to check if the input information is valid. If invalid
@@ -59,7 +126,7 @@ function getConnectionToDb() {
  * @param $user User the user to register
  * @param $hashed_password string the password for the user to login with, hashed
  */
-function registerUser($user, $hashed_password) {
+function registerUser(User $user, string $hashed_password) {
     $conn = getConnectionToDb();
 
     if ($conn->connect_error) {
@@ -86,7 +153,7 @@ function registerUser($user, $hashed_password) {
  * @param $password string password of user
  * @return bool true if user is successfully authenticated, false otherwise
  */
-function authenticateUser($email, $password) {
+function authenticateUser(string $email, string $password) {
     $authenticated = false;
     $conn = getConnectionToDb();
 
@@ -135,7 +202,7 @@ function authenticateUser($email, $password) {
  * @param $email string email to check
  * @return bool true if email is registered, false otherwise
  */
-function isEmailRegistered($email) {
+function isEmailRegistered(string $email) {
     $isRegistered = false;
     $conn = getConnectionToDb();
 
@@ -168,7 +235,7 @@ function isEmailRegistered($email) {
  * @param $username string username to check
  * @return bool true if username is registered, false otherwise
  */
-function isUsernameRegistered($username) {
+function isUsernameRegistered(string $username) {
     $isRegistered = false;
     $conn = getConnectionToDb();
 
@@ -197,19 +264,6 @@ function isUsernameRegistered($username) {
 }
 
 /**
- * Sanitise user input
- * @param $data string user input data to sanitise
- * @return string sanitised input data
- */
-function sanitiseInput($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = strip_tags($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-
-/**
  * Retrieves information about the current logged in user
  * @return User|false user object if logged in, false otherwise
  */
@@ -222,6 +276,70 @@ function getAuthenticatedUser() {
 }
 
 /**
+ * Retrieves accounts owned by the specified user
+ * @param User $user the user to retrieve accounts for
+ * @return array<Account> accounts
+ */
+function getAccounts(User $user) {
+    $accounts = array();
+    $conn = getConnectionToDb();
+
+    if ($conn->connect_error) {
+        http_response_code(500);
+        die('An unexpected error has occurred. Please try again later.');
+    } else {
+        $stmt = $conn->prepare('SELECT Accounts.accountName, Accounts.accountValue FROM Accounts INNER JOIN Users ON Accounts.UserID=Users.UserID WHERE Users.username = ?;');
+        $stmt->bind_param('s', $user->username);
+
+        if (!$stmt->execute()) {
+            http_response_code(500);
+            die('An unexpected error has occurred. Please try again later.');
+        }
+
+        $result = $stmt->get_result();
+        while ($row = $result->fetch_assoc()) {
+            $account = new Account();
+            $account->user = $user;
+            $account->accountName = $row['accountName'];
+            $account->balance = $row['accountValue'];
+
+            $accounts[] = $account;
+        }
+
+        $stmt->close();
+    }
+
+    $conn->close();
+    return $accounts;
+}
+
+/**
+ * Creates a new account
+ * @param User $user the owner of the new account
+ * @param string $accountName name of the account to be created
+ */
+function createAccount(User $user, string $accountName) {
+    $conn = getConnectionToDb();
+
+    if ($conn->connect_error) {
+        http_response_code(500);
+        die('An unexpected error has occurred. Please try again later.');
+    } else {
+        $stmt = $conn->prepare('INSERT INTO Accounts (UserID, accountName, accountValue) SELECT Users.UserID, ?, 0 FROM Users WHERE Users.username = ? LIMIT 1');
+        $stmt->bind_param('ss', $accountName, $user->username);
+
+        if (!$stmt->execute()) {
+            http_response_code(500);
+            die('An unexpected error has occurred. Please try again later.');
+        }
+
+        $stmt->close();
+    }
+
+    $conn->close();
+}
+
+/**
  * Logs out the current user
  */
 function logOut() {
@@ -229,5 +347,17 @@ function logOut() {
     session_destroy();
 }
 
+/**
+ * Sanitise user input
+ * @param $data string user input data to sanitise
+ * @return string sanitised input data
+ */
+function sanitiseInput(string $data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = strip_tags($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 
 ?>

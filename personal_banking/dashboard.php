@@ -2,8 +2,9 @@
 include_once '../include/accounts.inc.php';
 
 $user = getAuthenticatedUser();
+$accounts = getAccounts($user);
 
-if(!$user) {
+if (!$user) {
     header('Location: login.php');
     exit();
 }
@@ -27,7 +28,17 @@ and open the template in the editor.
     <h1 class="display-4">My Accounts</h1>
 </header>
 <main class="container">
-    bleh
+    <ul class="list-group">
+        <?php
+        if (count($accounts) == 0 ) {
+            echo '<p class="lead">No Accounts</p>';
+        } else {
+            foreach ($accounts as $account) {
+                echo '<li class="list-group-item"><p class="h3">' . $account->getBalanceRepresentation() . '</p>' . $account->accountName . '</li>';
+            }
+        }
+        ?>
+    </ul>
 </main>
 <?php include '../include/footer.inc.php' ?>
 </body>

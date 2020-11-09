@@ -72,6 +72,7 @@ if ($success) {
     $user->username = $formInput['username'];
 
     registerUser($user, $formInput['hashed_password']);
+    createAccount($user, 'Basic Account');
 }
 
 ?>
