@@ -11,7 +11,7 @@ and open the template in the editor.
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <?php include 'include.php'; ?>
+    <?php include 'include/imports.inc.php'; ?>
 
     <title>Pr3m13r Bank1ng | Home</title>
 
@@ -19,7 +19,7 @@ and open the template in the editor.
 
 <body>
 
-    <?php include "navbar.php" ?>
+    <?php include "include/navbar.inc.php" ?>
 
     <!-- Start of Header -->
     <header class="hero">
@@ -120,7 +120,7 @@ and open the template in the editor.
                     </div>
                     <div class="col-lg-6">
                         <div>
-                            <img src="assets\img\undraw_investment_xv9d.svg" alt="#">
+                            <img src="assets/img/undraw_investment_xv9d.svg" alt="#">
                         </div>
                     </div>
                 </div>
@@ -463,7 +463,7 @@ and open the template in the editor.
         </div-->
         <!-- End Copy Right Area -->
     </main>
-    <?php include "footer.php"; ?>
+    <?php include "include/footer.inc.php"; ?>
 </body>
 
 </html>

@@ -25,7 +25,6 @@ class User {
     }
 }
 
-
 /**
  * Attempts to connect to the database
  * @return mysqli connection object
@@ -162,11 +161,11 @@ function isUser($email) {
 }
 
 /**
- * Santalize user input
+ * Sanitise user input
  * @param $data string user input data for sanitization
- * @return string Santalize $data
+ * @return string sanitised input data
  */
-function sanitize_input($data) {
+function sanitizeInput($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = strip_tags($data);
