@@ -22,7 +22,7 @@ and open the template in the editor.
     </div>
 </header>
 <main class="container">
-    <p>If you do not have an account, please <a href="register.php">register</a>.</p>
+    <p>If you do not have an account, please <a href="register.php">open one</a>.</p>
     <form action="process_login.php" method="POST">
 
         <div class="form-group">

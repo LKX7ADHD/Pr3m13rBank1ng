@@ -86,7 +86,7 @@ if ($success) {
 <?php include "include/navbar.inc.php" ?>
 
 <header class="jumbotron text-center">
-    <h1 class="display-4">Register Account</h1>
+    <h1 class="display-4">Open Account</h1>
 </header>
 <main class="container">
     <?php

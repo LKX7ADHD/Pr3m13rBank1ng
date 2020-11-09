@@ -17,7 +17,7 @@ and open the template in the editor.
 
 <header class="jumbotron jumbotron-fluid text-center">
     <div class="container">
-        <h1 class="display-4">Register Account</h1>
+        <h1 class="display-4">Open Account</h1>
     </div>
 </header>
 <main class="container">
