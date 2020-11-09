@@ -1,12 +1,15 @@
 <?php
 
-if (empty($_SERVER['HTTPS'])) {
-    http_response_code(301);
-    header('Location: ' . 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
-    exit();
-}
+// TODO: RE-ENABLE AFTER
+//if (empty($_SERVER['HTTPS'])) {
+//    http_response_code(301);
+//    header('Location: ' . 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+//    exit();
+//}
+//session_set_cookie_params(1200, '/', $_SERVER['HTTP_HOST'], true, true);
 
-session_set_cookie_params(1200, '/', $_SERVER['HTTP_HOST'], true, true);
+// Using unsecure cookies during development
+session_set_cookie_params(1200, '/', $_SERVER['HTTP_HOST']);
 session_name('session');
 session_start();
 
@@ -30,7 +33,7 @@ class User {
  * @return mysqli connection object
  */
 function getConnectionToDb() {
-//    AWS METHOD - LEAVE HERE FOR EASIER MIGRATION
+//    TODO: SWITCH BACK TO AWS METHOD AFTER HEROKU DEVELOPMENT
 //    $config = parse_ini_file('../../private/db-config.ini');
 //    return new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
 
@@ -132,8 +135,8 @@ function authenticateUser($email, $password) {
  * @param $email string email to check
  * @return bool true if email is registered, false otherwise
  */
-function isUser($email) {
-    $member = false;
+function isEmailRegistered($email) {
+    $isRegistered = false;
     $conn = getConnectionToDb();
 
     if ($conn->connect_error) {
@@ -150,22 +153,55 @@ function isUser($email) {
 
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
-            $member = true;
+            $isRegistered = true;
         }
 
         $stmt->close();
     }
 
     $conn->close();
-    return $member;
+    return $isRegistered;
+}
+
+/**
+ * Checks if the username provided is registered with an existing user
+ * @param $username string username to check
+ * @return bool true if username is registered, false otherwise
+ */
+function isUsernameRegistered($username) {
+    $isRegistered = false;
+    $conn = getConnectionToDb();
+
+    if ($conn->connect_error) {
+        http_response_code(500);
+        die('An unexpected error has occurred. Please try again later.');
+    } else {
+        $stmt = $conn->prepare('SELECT firstName FROM Users WHERE username = ?;');
+        $stmt->bind_param('s', $username);
+
+        if (!$stmt->execute()) {
+            http_response_code(500);
+            die('An unexpected error has occurred. Please try again later.');
+        }
+
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $isRegistered = true;
+        }
+
+        $stmt->close();
+    }
+
+    $conn->close();
+    return $isRegistered;
 }
 
 /**
  * Sanitise user input
- * @param $data string user input data for sanitization
+ * @param $data string user input data to sanitise
  * @return string sanitised input data
  */
-function sanitizeInput($data) {
+function sanitiseInput($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = strip_tags($data);

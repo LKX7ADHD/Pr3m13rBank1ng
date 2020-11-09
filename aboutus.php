@@ -8,7 +8,7 @@ and open the template in the editor.
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <?php include 'include/imports.inc.php';?>
+    <?php include 'include/imports.inc.php' ?>
 </head>
 <body>
 
@@ -16,6 +16,6 @@ and open the template in the editor.
 <?php
 // put your code here
 ?>
-<?php include "include/footer.inc.php"; ?>
+<?php include "include/footer.inc.php" ?>
 </body>
 </html>
