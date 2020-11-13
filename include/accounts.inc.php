@@ -352,6 +352,7 @@ function generateAccountNumber() {
     try {
         $accountNumber = (string)random_int(10000000, 99999999);
     } catch (Exception $e) {
+        http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     }
 
