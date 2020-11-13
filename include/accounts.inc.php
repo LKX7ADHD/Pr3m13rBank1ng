@@ -271,6 +271,10 @@ function getAccounts(User $user) {
  * @return Account|false the account details, or false if account number does not belong to any account
  */
 function getAccount(string $accountNumber) {
+    if (!isAccountNumberValid($accountNumber)) {
+        return false;
+    }
+
     $account = false;
     $conn = connectToDatabase();
 
@@ -350,13 +354,31 @@ function generateAccountNumber() {
     } catch (Exception $e) {
         die('An unexpected error has occurred. Please try again later.');
     }
-    $accumulator = 0;
 
+    $accumulator = 0;
     for ($i = 0; $i < 8; $i++) {
         $accumulator += ((int)$accountNumber[$i] * (17 ** $i)) % 17;
     }
 
     return $accountNumber . sprintf('%02d', $accumulator % 17);
+}
+
+/**
+ * Checks if the account number is valid (not whether it's in use; use getAccount for that)
+ * @param $accountNumber string the account number to check
+ * @return bool whether the account number is valid
+ */
+function isAccountNumberValid(string $accountNumber) {
+    if (strlen($accountNumber) != 10) {
+        return false;
+    }
+
+    $accumulator = 0;
+    for ($i = 0; $i < 8; $i++) {
+        $accumulator += ((int)$accountNumber[$i] * (17 ** $i)) % 17;
+    }
+
+    return substr($accumulator, -2) === sprintf('%02d', $accumulator % 17);
 }
 
 /**

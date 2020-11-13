@@ -34,7 +34,7 @@ and open the template in the editor.
             echo '<p class="lead">No Accounts</p>';
         } else {
             foreach ($accounts as $account) {
-                echo '<li class="list-group-item"><p class="h3">' . $account->getBalanceRepresentation() . '</p>' . $account->accountName . '</li>';
+                echo '<li class="list-group-item"><p class="h3">' . $account->getBalanceRepresentation() . '</p>' . $account->accountName . '<p class="text-muted mt-1 mb-0">' . $account->accountNumber . '</p></li>';
             }
         }
         ?>
