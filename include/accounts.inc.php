@@ -15,64 +15,6 @@ session_start();
 
 
 /**
- * Represents monetary value
- */
-class Currency {
-    /**
-     * @var string amount of money
-     */
-    private $value;
-
-    /**
-     * @param $value string amount of money
-     */
-    public function __construct(string $value) {
-        $this->value = trim($value);
-    }
-
-    /**
-     * @return string
-     */
-    public function getValue(): string {
-        return $this->value;
-    }
-
-    /**
-     * @param $currency Currency amount of money to add to the receiver
-     */
-    public function add(Currency $currency) {
-        $this->value = bcadd($this->value, $currency->value, 2);
-    }
-
-    /**
-     * @param Currency $currency amount of money to subtract from the receiver
-     */
-    public function subtract(Currency $currency) {
-        $this->value = bcsub($this->value, $currency->value, 2);
-    }
-
-    public function equalTo(Currency $other) {
-        return bccomp($this->value, $other->value, 2) == 0;
-    }
-
-    public function lessThan(Currency $other) {
-        return bccomp($this->value, $other->value, 2) == -1;
-    }
-
-    public function greaterThan(Currency $other) {
-        return $other->lessThan($this);
-    }
-
-    public function lessThanOrEqualTo(Currency $other) {
-        return !$other->lessThan($this);
-    }
-
-    public function greaterThanOrEqualTo(Currency $other) {
-        return !$this->lessThan($other);
-    }
-}
-
-/**
  * Encapsulates user information
  */
 class User {
@@ -91,7 +33,15 @@ class Account {
     public $balance;
 
     public function getBalanceRepresentation() {
-        return '$' . $this->balance;
+        $n = (strlen($this->balance) - 1) % 3 + 1;
+        $representation = '$' . substr($this->balance, 0, $n);
+
+        for ($i = 0; $i < ceil(strlen($this->balance) / 3) - 2; $i++) {
+            $representation .= ',' . substr($this->balance, $n + 3 * $i, 3);
+        }
+
+        $representation .= substr($this->balance, -3);
+        return $representation;
     }
 }
 
@@ -99,7 +49,7 @@ class Account {
  * Attempts to connect to the database
  * @return mysqli connection object
  */
-function getConnectionToDb() {
+function connectToDatabase() {
 //    TODO: SWITCH BACK TO AWS METHOD AFTER HEROKU DEVELOPMENT
 //    $config = parse_ini_file('../../private/db-config.ini');
 //    return new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
@@ -127,13 +77,13 @@ function getConnectionToDb() {
  * @param $hashed_password string the password for the user to login with, hashed
  */
 function registerUser(User $user, string $hashed_password) {
-    $conn = getConnectionToDb();
+    $conn = connectToDatabase();
 
     if ($conn->connect_error) {
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     } else {
-        $stmt = $conn->prepare('INSERT INTO Users (username, firstName, lastName, email, password) VALUES (?,?,?,?,?);');
+        $stmt = $conn->prepare('INSERT INTO Users (username, firstName, lastName, email, password) VALUES (?,?,?,?,?)');
         $stmt->bind_param('sssss', $user->username, $user->firstName, $user->lastName, $user->email, $hashed_password);
 
         if (!$stmt->execute()) {
@@ -155,7 +105,7 @@ function registerUser(User $user, string $hashed_password) {
  */
 function authenticateUser(string $email, string $password) {
     $authenticated = false;
-    $conn = getConnectionToDb();
+    $conn = connectToDatabase();
 
     if ($conn->connect_error) {
         http_response_code(500);
@@ -204,13 +154,13 @@ function authenticateUser(string $email, string $password) {
  */
 function isEmailRegistered(string $email) {
     $isRegistered = false;
-    $conn = getConnectionToDb();
+    $conn = connectToDatabase();
 
     if ($conn->connect_error) {
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     } else {
-        $stmt = $conn->prepare('SELECT firstName FROM Users WHERE email = ?;');
+        $stmt = $conn->prepare('SELECT firstName FROM Users WHERE email = ?');
         $stmt->bind_param('s', $email);
 
         if (!$stmt->execute()) {
@@ -237,13 +187,13 @@ function isEmailRegistered(string $email) {
  */
 function isUsernameRegistered(string $username) {
     $isRegistered = false;
-    $conn = getConnectionToDb();
+    $conn = connectToDatabase();
 
     if ($conn->connect_error) {
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     } else {
-        $stmt = $conn->prepare('SELECT firstName FROM Users WHERE username = ?;');
+        $stmt = $conn->prepare('SELECT firstName FROM Users WHERE username = ?');
         $stmt->bind_param('s', $username);
 
         if (!$stmt->execute()) {
@@ -282,13 +232,13 @@ function getAuthenticatedUser() {
  */
 function getAccounts(User $user) {
     $accounts = array();
-    $conn = getConnectionToDb();
+    $conn = connectToDatabase();
 
     if ($conn->connect_error) {
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     } else {
-        $stmt = $conn->prepare('SELECT Accounts.accountName, Accounts.accountValue FROM Accounts INNER JOIN Users ON Accounts.UserID=Users.UserID WHERE Users.username = ?;');
+        $stmt = $conn->prepare('SELECT Accounts.accountName, Accounts.accountValue FROM Accounts INNER JOIN Users ON Accounts.UserID=Users.UserID WHERE Users.username = ?');
         $stmt->bind_param('s', $user->username);
 
         if (!$stmt->execute()) {
@@ -319,7 +269,7 @@ function getAccounts(User $user) {
  * @param string $accountName name of the account to be created
  */
 function createAccount(User $user, string $accountName) {
-    $conn = getConnectionToDb();
+    $conn = connectToDatabase();
 
     if ($conn->connect_error) {
         http_response_code(500);
