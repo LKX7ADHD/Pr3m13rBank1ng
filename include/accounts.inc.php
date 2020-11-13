@@ -29,6 +29,7 @@ class User {
  */
 class Account {
     public $accountName;
+    public $accountNumber;
     public $user;
     public $balance;
 
@@ -238,7 +239,7 @@ function getAccounts(User $user) {
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     } else {
-        $stmt = $conn->prepare('SELECT Accounts.accountName, Accounts.accountValue FROM Accounts INNER JOIN Users ON Accounts.UserID=Users.UserID WHERE Users.username = ?');
+        $stmt = $conn->prepare('SELECT Accounts.accountName, Accounts.accountValue, Accounts.accountNumber FROM Accounts INNER JOIN Users ON Accounts.UserID=Users.UserID WHERE Users.username = ?');
         $stmt->bind_param('s', $user->username);
 
         if (!$stmt->execute()) {
@@ -252,6 +253,7 @@ function getAccounts(User $user) {
             $account->user = $user;
             $account->accountName = $row['accountName'];
             $account->balance = $row['accountValue'];
+            $account->accountNumber = $row['accountNumber'];
 
             $accounts[] = $account;
         }
@@ -264,6 +266,43 @@ function getAccounts(User $user) {
 }
 
 /**
+ * Retrieves account details
+ * @param string $accountNumber
+ * @return Account|false the account details, or false if account number does not belong to any account
+ */
+function getAccount(string $accountNumber) {
+    $account = false;
+    $conn = connectToDatabase();
+
+    if ($conn->connect_error) {
+        http_response_code(500);
+        die('An unexpected error has occurred. Please try again later.');
+    } else {
+        $stmt = $conn->prepare('SELECT Accounts.accountName, Accounts.accountValue, Users.UserID FROM Accounts INNER JOIN Users ON Accounts.UserID=Users.UserID WHERE Accounts.accountNumber = ?');
+        $stmt->bind_param('s', $accountNumber);
+
+        if (!$stmt->execute()) {
+            http_response_code(500);
+            die('An unexpected error has occurred. Please try again later.');
+        }
+
+        $result = $stmt->get_result();
+        while ($row = $result->fetch_assoc()) {
+            $account = new Account();
+            $account->user = $row['UserID'];
+            $account->accountName = $row['accountName'];
+            $account->balance = $row['accountValue'];
+            $account->accountNumber = $accountNumber;
+        }
+
+        $stmt->close();
+    }
+
+    $conn->close();
+    return $account;
+}
+
+/**
  * Creates a new account
  * @param User $user the owner of the new account
  * @param string $accountName name of the account to be created
@@ -271,12 +310,20 @@ function getAccounts(User $user) {
 function createAccount(User $user, string $accountName) {
     $conn = connectToDatabase();
 
+    $findAccountNumber = true;
+    while($findAccountNumber) {
+        $accountNumber = generateAccountNumber();
+        if (!getAccount($accountNumber)) {
+            $findAccountNumber = false;
+        }
+    }
+
     if ($conn->connect_error) {
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     } else {
-        $stmt = $conn->prepare('INSERT INTO Accounts (UserID, accountName, accountValue) SELECT Users.UserID, ?, 0 FROM Users WHERE Users.username = ? LIMIT 1');
-        $stmt->bind_param('ss', $accountName, $user->username);
+        $stmt = $conn->prepare('INSERT INTO Accounts (UserID, accountName, accountValue, accountNumber) SELECT Users.UserID, ?, 0, ? FROM Users WHERE Users.username = ? LIMIT 1');
+        $stmt->bind_param('sss', $accountName, $accountNumber, $user->username);
 
         if (!$stmt->execute()) {
             http_response_code(500);
@@ -287,6 +334,29 @@ function createAccount(User $user, string $accountName) {
     }
 
     $conn->close();
+}
+
+/**
+ * Generates a pseudo-random string for use as an account number
+ *
+ * WARNING:
+ * This function does not guarantee uniqueness in the account numbers it generates
+ *
+ * @return string the generated account number
+ */
+function generateAccountNumber() {
+    try {
+        $accountNumber = (string)random_int(10000000, 99999999);
+    } catch (Exception $e) {
+        die('An unexpected error has occurred. Please try again later.');
+    }
+    $accumulator = 0;
+
+    for ($i = 0; $i < 8; $i++) {
+        $accumulator += ((int)$accountNumber[$i] * (17 ** $i)) % 17;
+    }
+
+    return $accountNumber . sprintf('%02d', $accumulator % 17);
 }
 
 /**
