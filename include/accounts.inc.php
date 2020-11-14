@@ -44,6 +44,10 @@ class Account {
         $representation .= substr($this->balance, -3);
         return $representation;
     }
+
+    public function getAccountNumberRepresentation() {
+        return substr($this->accountNumber, 0, 3) . '-' . substr($this->accountNumber, 3, 5) . '-' . substr($this->accountNumber, -2);
+    }
 }
 
 /**
