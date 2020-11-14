@@ -14,6 +14,7 @@
 	--body-text: #525f81;
 	--complemetary-color:#EBB644;
 	--darker-complementary-color: #A88739;
+
 }
 
 *,
@@ -32,6 +33,7 @@ body {
 	font-family: 'Open Sans', sans-serif;
 	line-height: 1.6;
 }
+
 
 h1,
 h2,
@@ -237,8 +239,11 @@ img {
 	font-size: 28px;
 }
 
+/* Sign In Register Section */
 
-
+.form-check {
+	padding-left: 0;
+}
 
 
 

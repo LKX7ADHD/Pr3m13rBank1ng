@@ -7,5 +7,4 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@700&display=swap" rel="stylesheet">
 
 <!-- Style CSS -->
-<link rel="stylesheet" href="../assets/css/style.css">
-
+<link rel="stylesheet" href="assets/css/style.css">
