@@ -1,8 +1,10 @@
 <?php
 include_once '../include/accounts.inc.php';
+include "sessiontimeout.inc.php";
 
 $user = getAuthenticatedUser();
 $accounts = getAccounts($user);
+
 
 if (!$user) {
     header('Location: login.php');
