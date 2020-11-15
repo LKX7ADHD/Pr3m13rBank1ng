@@ -1,6 +1,5 @@
 <?php
 include_once '../include/accounts.inc.php';
-include "../include/sessiontimeout.inc.php";
 
 $user = getAuthenticatedUser();
 
