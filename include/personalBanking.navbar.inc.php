@@ -11,7 +11,7 @@
                 <a class="nav-link" href="#">My Accounts <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Transfer</a>
+                <a class="nav-link" href="../personal_banking/transfer.php">Transfer</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Loan Applications</a>
