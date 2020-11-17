@@ -2,7 +2,8 @@
 
 include_once 'include/accounts.inc.php';
 
-function isFieldRequired($field) {
+function isFieldRequired($field)
+{
     // All fields are required except for First Name
     return $field !== 'fname';
 }

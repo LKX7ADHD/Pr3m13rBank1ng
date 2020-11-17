@@ -17,7 +17,8 @@ session_start();
 /**
  * Encapsulates user information
  */
-class User {
+class User
+{
     public $username;
     public $firstName;
     public $lastName;
@@ -27,13 +28,15 @@ class User {
 /**
  * Encapsulates account information
  */
-class Account {
+class Account
+{
     public $accountName;
     public $accountNumber;
     public $user;
     public $balance;
 
-    public function getBalanceRepresentation() {
+    public function getBalanceRepresentation()
+    {
         $n = (strlen($this->balance) - 1) % 3 + 1;
         $representation = '$' . substr($this->balance, 0, $n);
 
@@ -45,7 +48,8 @@ class Account {
         return $representation;
     }
 
-    public function getAccountNumberRepresentation() {
+    public function getAccountNumberRepresentation()
+    {
         return substr($this->accountNumber, 0, 3) . '-' . substr($this->accountNumber, 3, 5) . '-' . substr($this->accountNumber, -2);
     }
 }
@@ -54,7 +58,8 @@ class Account {
  * Attempts to connect to the database
  * @return mysqli connection object
  */
-function connectToDatabase() {
+function connectToDatabase()
+{
 //    TODO: SWITCH BACK TO AWS METHOD AFTER HEROKU DEVELOPMENT
 //    $config = parse_ini_file('../../private/db-config.ini');
 //    return new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
@@ -81,7 +86,8 @@ function connectToDatabase() {
  * @param $user User the user to register
  * @param $hashed_password string the password for the user to login with, hashed
  */
-function registerUser(User $user, string $hashed_password) {
+function registerUser(User $user, string $hashed_password)
+{
     $conn = connectToDatabase();
 
     if ($conn->connect_error) {
@@ -108,7 +114,8 @@ function registerUser(User $user, string $hashed_password) {
  * @param $password string password of user
  * @return bool true if user is successfully authenticated, false otherwise
  */
-function authenticateUser(string $email, string $password) {
+function authenticateUser(string $email, string $password)
+{
     $authenticated = false;
     $conn = connectToDatabase();
 
@@ -157,7 +164,8 @@ function authenticateUser(string $email, string $password) {
  * @param $email string email to check
  * @return bool true if email is registered, false otherwise
  */
-function isEmailRegistered(string $email) {
+function isEmailRegistered(string $email)
+{
     $isRegistered = false;
     $conn = connectToDatabase();
 
@@ -190,7 +198,8 @@ function isEmailRegistered(string $email) {
  * @param $username string username to check
  * @return bool true if username is registered, false otherwise
  */
-function isUsernameRegistered(string $username) {
+function isUsernameRegistered(string $username)
+{
     $isRegistered = false;
     $conn = connectToDatabase();
 
@@ -222,7 +231,8 @@ function isUsernameRegistered(string $username) {
  * Retrieves information about the current logged in user
  * @return User|false user object if logged in, false otherwise
  */
-function getAuthenticatedUser() {
+function getAuthenticatedUser()
+{
     if (isset($_SESSION['user'])) {
         return $_SESSION['user'];
     } else {
@@ -235,7 +245,8 @@ function getAuthenticatedUser() {
  * @param User $user the user to retrieve accounts for
  * @return array<Account> accounts
  */
-function getAccounts(User $user) {
+function getAccounts(User $user)
+{
     $accounts = array();
     $conn = connectToDatabase();
 
@@ -274,7 +285,8 @@ function getAccounts(User $user) {
  * @param string $accountNumber
  * @return Account|false the account details, or false if account number does not belong to any account
  */
-function getAccount(string $accountNumber) {
+function getAccount(string $accountNumber)
+{
     if (!isAccountNumberValid($accountNumber)) {
         return false;
     }
@@ -315,11 +327,12 @@ function getAccount(string $accountNumber) {
  * @param User $user the owner of the new account
  * @param string $accountName name of the account to be created
  */
-function createAccount(User $user, string $accountName) {
+function createAccount(User $user, string $accountName)
+{
     $conn = connectToDatabase();
 
     $findAccountNumber = true;
-    while($findAccountNumber) {
+    while ($findAccountNumber) {
         $accountNumber = generateAccountNumber();
         if (!getAccount($accountNumber)) {
             $findAccountNumber = false;
@@ -352,7 +365,8 @@ function createAccount(User $user, string $accountName) {
  *
  * @return string the generated account number
  */
-function generateAccountNumber() {
+function generateAccountNumber()
+{
     try {
         $accountNumber = (string)random_int(10000000, 99999999);
     } catch (Exception $e) {
@@ -373,7 +387,8 @@ function generateAccountNumber() {
  * @param $accountNumber string the account number to check
  * @return bool whether the account number is valid
  */
-function isAccountNumberValid(string $accountNumber) {
+function isAccountNumberValid(string $accountNumber)
+{
     if (strlen($accountNumber) != 10) {
         return false;
     }
@@ -389,7 +404,8 @@ function isAccountNumberValid(string $accountNumber) {
 /**
  * Logs out the current user
  */
-function logOut() {
+function logOut()
+{
     session_unset();
     session_destroy();
 }
@@ -399,7 +415,8 @@ function logOut() {
  * @param $data string user input data to sanitise
  * @return string sanitised input data
  */
-function sanitiseInput(string $data) {
+function sanitiseInput(string $data)
+{
     $data = trim($data);
     $data = stripslashes($data);
     $data = strip_tags($data);

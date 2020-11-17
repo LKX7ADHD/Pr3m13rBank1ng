@@ -3,7 +3,7 @@ include_once '../include/accounts.inc.php';
 include_once "../include/sessiontimeout.inc.php";
 $user = getAuthenticatedUser();
 
-if(!$user) {
+if (!$user) {
     header('Location: login.php');
     exit();
 }
