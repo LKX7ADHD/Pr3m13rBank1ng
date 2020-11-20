@@ -9,7 +9,7 @@
 //session_set_cookie_params(1200, '/', $_SERVER['HTTP_HOST'], true, true);
 
 // Using unsecure cookies during development
-session_set_cookie_params(1200, '/', $_SERVER['HTTP_HOST']);
+session_set_cookie_params(1200, '/');
 session_name('session');
 session_start();
 
@@ -69,6 +69,7 @@ function connectToDatabase()
     $username = getenv('heroku_db_username');
     $password = getenv('heroku_db_password');
     $dbname = getenv('heroku_db_dbname');
+
 
     return new mysqli($servername, $username, $password, $dbname);
 }
