@@ -40,43 +40,49 @@ and open the template in the editor.
                         </div>
 
                         <div class="form-group">
-<!--                            <label for="username">Username</label>-->
-                            <input class="form-control" type="text" id="username" name="username" aria-label="Username" placeholder="Enter username"
+                            <!--                            <label for="username">Username</label>-->
+                            <input class="form-control" type="text" id="username" name="username" aria-label="Username"
+                                   placeholder="Enter username"
                                    required/>
                         </div>
 
                         <div class="form-group">
-<!--                            <label for="fname">First Name</label>-->
-                            <input class="form-control" type="text" id="fname" name="fname" maxlength="45" aria-label="First Name"
+                            <!--                            <label for="fname">First Name</label>-->
+                            <input class="form-control" type="text" id="fname" name="fname" maxlength="45"
+                                   aria-label="First Name"
                                    placeholder="Enter first name"/>
                         </div>
 
                         <div class="form-group">
-<!--                            <label for="lname">Last Name</label>-->
-                            <input class="form-control" type="text" id="lname" name="lname" maxlength="45" aria-label="Last Name" placeholder="Enter last name"
+                            <!--                            <label for="lname">Last Name</label>-->
+                            <input class="form-control" type="text" id="lname" name="lname" maxlength="45"
+                                   aria-label="Last Name" placeholder="Enter last name"
                                    required/>
                         </div>
 
                         <div class="form-group">
-<!--                            <label for="email">Email</label>-->
-                            <input class="form-control" type="email" id="email" name="email" aria-label="Email" placeholder="Enter email"
+                            <!--                            <label for="email">Email</label>-->
+                            <input class="form-control" type="email" id="email" name="email" aria-label="Email"
+                                   placeholder="Enter email"
                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required/>
                         </div>
 
                         <div class="form-group">
-<!--                            <label for="pwd">Password</label>-->
-                            <input class="form-control" type="password" id="pwd" name="pwd" aria-label="Password" placeholder="Enter password" required/>
+                            <!--                            <label for="pwd">Password</label>-->
+                            <input class="form-control" type="password" id="pwd" name="pwd" aria-label="Password"
+                                   placeholder="Enter password" required/>
                         </div>
 
                         <div class="form-group">
-<!--                            <label for="pwd_confirm">Confirm password</label>-->
-                            <input class="form-control" type="password" id="pwd_confirm" aria-label="Confirmation of Password" name="pwd_confirm"
+                            <!--                            <label for="pwd_confirm">Confirm password</label>-->
+                            <input class="form-control" type="password" id="pwd_confirm"
+                                   aria-label="Confirmation of Password" name="pwd_confirm"
                                    placeholder="Confirm password" required/>
                         </div>
 
                         <div class="form-check" id="form-agree">
                             <label>
-                                <input type="checkbox" name="agree" aria-label="Checkbox"  required/>
+                                <input type="checkbox" name="agree" aria-label="Checkbox" required/>
                                 Agree to Premier Banking's terms and conditions.
                             </label>
                         </div>
@@ -84,7 +90,8 @@ and open the template in the editor.
 
                         <div class="form-group">
                             <button class="form-btn" type="submit">Register</button>
-                            <small class="form-text text-muted sign-up-text">Already with us? <a href="login.php">Login Here</a></small>
+                            <small class="form-text text-muted sign-up-text">Already with us? <a href="login.php">Login
+                                    Here</a></small>
                         </div>
                     </form>
                 </div>
@@ -93,9 +100,6 @@ and open the template in the editor.
     </section>
 
 </main>
-
-
-
 
 
 </body>

@@ -58,8 +58,8 @@ img {
     object-fit: cover;
 }
 
-button {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+button.navbar-toggler {
+    border: 0;
 }
 
 /* Navbar */
@@ -73,11 +73,14 @@ button {
     color: var(--white-color);
 }
 
+.navbar-brand {
+    margin: 0 0.5em;
+}
+
 /* Bootstrap Overrides */
 /*.container {*/
 /*    max-width: 1100px !important;*/
 /*}*/
-
 
 
 /* New Hero Section */
@@ -129,6 +132,7 @@ button {
 .hero__button .btn:hover {
     background-color: #5B73A8;
 }
+
 .hero__button .btn:active {
     transform: translateY(2px);
 }
@@ -138,7 +142,7 @@ button {
 
 .stat {
     padding: 7em 0 4em 0;
-    background-color:  #f7f8fa;
+    background-color: #f7f8fa;
 
 }
 
@@ -172,7 +176,7 @@ button {
     margin: 0 1.875em;
 }
 
-.brand-logo img{
+.brand-logo img {
     width: 100%;
 }
 
@@ -200,7 +204,7 @@ button {
 
 .benefits {
     padding: 2em 0 7em 0;
-    background-color:  #f7f8fa;
+    background-color: #f7f8fa;
 }
 
 .benefits__content {
@@ -249,7 +253,7 @@ button {
 
 
 .mobile-banking {
-    background-color:  #f7f8fa;
+    background-color: #f7f8fa;
     padding: 5em 0 2em 0;
 }
 
@@ -350,7 +354,6 @@ button {
     margin-top: 3em;
 
 }
-
 
 
 .btn__funding {
@@ -773,6 +776,7 @@ input.form-control {
     color: var(--white-light-color);
     background-color: #5B73A8;
 }
+
 .cta__btn .btn:active {
     transform: translateY(2px);
 }
@@ -842,7 +846,6 @@ input.form-control {
 
 
     /*-----------------------Funding Section ------------------------*/
-
     .funding h3 {
         font-size: 3em;
     }
@@ -858,15 +861,14 @@ input.form-control {
     .funding {
         padding: 4em 0;
     }
+
     .funding .image-container {
         padding: 0 3.5em;
     }
 
 
     /*  --------- Main Page -------------  */
-
     /*  -----Hero Section--------  */
-
     .hero-content {
         text-align: center;
     }
@@ -874,6 +876,7 @@ input.form-control {
     .hero-content span {
         margin-bottom: 0.5em;
     }
+
     .hero__title {
         font-size: 3em;
         line-height: 1.3em;
@@ -887,16 +890,18 @@ input.form-control {
     }
 
     /*  Benefits Section  */
-
     .benefits .col-lg-6 {
         text-align: center;
     }
+
     .benefits__content h3 {
         font-size: 2.7em;
     }
+
     .benefits .col-lg-6:nth-child(2) {
         padding: 5em;
     }
+
     .benefits .image-container {
         width: 225px;
         padding: 0;
@@ -907,12 +912,15 @@ input.form-control {
         text-align: center;
 
     }
+
     .mobile-banking__content h3 {
         font-size: 2.7em;
     }
+
     .mobile-banking .col-lg-6:nth-child(1) {
         padding: 2em 0;
     }
+
     .mobile-banking .image-container {
         width: 200px;
         padding: 0;
