@@ -10,7 +10,8 @@ and open the template in the editor.
 
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Premier Banking | Register</title>
     <?php include 'include/imports.inc.php' ?>
 </head>
 
