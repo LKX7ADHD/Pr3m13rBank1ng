@@ -250,11 +250,7 @@ button {
     font-size: 28px;
 }
 
-/* Sign In Register Section */
 
-.form-check {
-    padding-left: 0;
-}
 
 
 /* Footer */
@@ -308,6 +304,11 @@ button {
 
 
 /* Login Styling */
+/* Sign In Register Section */
+
+.form-check {
+    padding-left: 0;
+}
 
 #login-body {
     height: 100vh;
@@ -344,6 +345,7 @@ button {
     /*box-shadow: rgba(65, 62, 101, 0.14) 0px 20px 61px;*/
     border-radius: 10px;
     width: 100%;
+    margin-bottom: 5em;
 
 }
 
@@ -565,6 +567,9 @@ input.form-control {
     .mission {
         padding: 3em 0;
     }
+    .mission__title {
+        padding: 0 1em;
+    }
     .mission__title h2 {
         font-size: 2.5em;
         line-height: 50px;
@@ -575,6 +580,10 @@ input.form-control {
     .mission .img-container {
         height: 300px;
         margin-bottom: 2em;
+    }
+
+    .team__title h2 {
+        font-size: 3em;
     }
 
 /*    Footer Section */
@@ -589,5 +598,9 @@ input.form-control {
     .footer__top .col-sm-12 p {
         margin: 0;
         max-width: 100%;
+    }
+    .footer__logo h4 {
+        font-size: 1.7em;
+        margin-bottom: 1em;
     }
 }
