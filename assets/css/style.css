@@ -547,6 +547,10 @@ button {
     height: 100vh;
 }
 
+#form-agree {
+    font-size: 0.7em;
+}
+
 
 #login {
     background-color: #f7f8fa;
@@ -901,15 +905,21 @@ input.form-control {
     /*  Mobile Banking Section  */
     .mobile-banking .col-lg-6 {
         text-align: center;
+
     }
     .mobile-banking__content h3 {
         font-size: 2.7em;
     }
     .mobile-banking .col-lg-6:nth-child(1) {
-        padding: 2em 10em;
+        padding: 2em 0;
     }
     .mobile-banking .image-container {
         width: 200px;
         padding: 0;
+    }
+
+    /*  Form  */
+    input.form-control {
+        height: 50px;
     }
 }

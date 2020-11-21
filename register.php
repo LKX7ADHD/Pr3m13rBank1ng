@@ -74,9 +74,9 @@ and open the template in the editor.
                                    placeholder="Confirm password" required/>
                         </div>
 
-                        <div class="form-check">
+                        <div class="form-check" id="form-agree">
                             <label>
-                                <input type="checkbox" name="agree" aria-label="Checkbox" required/>
+                                <input type="checkbox" name="agree" aria-label="Checkbox"  required/>
                                 Agree to Premier Banking's terms and conditions.
                             </label>
                         </div>
