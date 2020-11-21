@@ -13,9 +13,27 @@ and open the template in the editor.
 <body>
 
 <?php include "include/navbar.inc.php" ?>
-<?php
-// put your code here
-?>
+
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h1 class="title">About Us</h1>
+                <p>Becoming a Bank that our competitor can't beat.</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+
+</main>
+
+
+
+
+
+
 <?php include "include/footer.inc.php" ?>
 </body>
 </html>

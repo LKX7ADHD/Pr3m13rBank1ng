@@ -10,65 +10,47 @@
     <title>Pr3m13r Bank1ng | Login</title>
     <?php include 'include/imports.inc.php' ?>
 </head>
-<body>
+<body id="login-body">
 
-<?php include "include/navbar.inc.php" ?>
-<!---->
-<!--<header class="jumbotron jumbotron-fluid text-center">-->
-<!--    <div class="container">-->
-<!--        <h1 class="display-4">Login</h1>-->
-<!--    </div>-->
-<!--</header>-->
-<!--<main class="container">-->
-<!--    <p>If you do not have an account, please <a href="register.php">open one</a>.</p>-->
-<!--    <form action="process_login.php" method="POST">-->
-<!---->
-<!--        <div class="form-group">-->
-<!--            <label for="email">Email</label>-->
-<!--            <input class="form-control" type="email" id="email"-->
-<!--                   name="email" placeholder="Enter email"-->
-<!--                   required/>-->
-<!--        </div>-->
-<!---->
-<!--        <div class="form-group">-->
-<!--            <label for="pwd">Password</label>-->
-<!--            <input class="form-control" type="password" id="pwd"-->
-<!--                   name="pwd" placeholder="Enter password" required/>-->
-<!--        </div>-->
-<!---->
-<!--        <div class="form-group">-->
-<!--            <button class="btn btn-primary" type="submit">Submit</button>-->
-<!--        </div>-->
-<!--    </form>-->
-<!--</main>-->
 
-<main class="login">
-    <section class="container">
-        <div class="row d-flex align-items-center justify-content-center">
-            <div class="col-md-6">
-                <div class="login__image">
-                    <img src="assets/img/undraw_mobile_login_ikmv.svg" alt="SVG on Login">
+
+<main id="login" class="h-100">
+    <section class="container d-flex flex-column justify-content-start h-100">
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-xl-6">
+                <div class="brand text-center mt-5">
+                    <a href="index.php">
+                        Premier Banking
+                    </a>
                 </div>
             </div>
-            <div class="col-md-6 d-flex align-items-center">
-                <form class="form__container" action="process_login.php" method="POST">
-                    <p>If you do not have an account, please <a href="register.php">open one</a>.</p>
-                    <div class="form-group">
-                        <label for="email">Email address</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Password</label>
-                        <input type="password" class="form-control" id="pwd">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-xl-6">
+                <div class="form-container text-center align-self-center">
+                    <form action="process_login.php" method="POST">
+                        <div class="form-title">
+                            <h2 class="title">Sign In</h2>
+                            <p>Enter your account details below</p>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="email" placeholder="Enter your Email" name="email" aria-label="Email" required>
+                        </div>
+                        <div class="form-group forgot-block">
+                            <input type="password" class="form-control" placeholder="Enter Your Password" name="pwd" aria-label="Password" required>
+                        </div>
+                        <div class="form-group">
+                            <button class="form-btn" type="submit">Sign In</button>
+                            <small class="form-text text-muted sign-up-text">Don't have an account? <a href="register.php">Create for free now</a></small>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
+
 </main>
 
-<?php include "include/footer.inc.php" ?>
+<?php //include "include/footer.inc.php" ?>
 </body>
 </html>

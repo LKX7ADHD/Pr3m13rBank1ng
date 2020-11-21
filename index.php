@@ -28,7 +28,7 @@ and open the template in the editor.
 <!--        <div class="">-->
             <div class="container hero__content">
                 <div class="row align-items-center">
-                    <div class="col-md-7">
+                    <div class="col-md-6">
                         <div class="banner__content mb-2">
                             <h1>Get an extensive view of your cash flow.</h1>
                             <p>Automate your finance and increase your savings with our extensive dashboard. Protect Your Hard-Earned Money.</p>
@@ -39,7 +39,7 @@ and open the template in the editor.
                         </button>
                         </a>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <div class="banner__image">
                             <img src="assets/img/undraw_finance_0bdk.svg" alt="SVG on Finance" class="img-fluid">
                         </div>

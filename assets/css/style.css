@@ -65,16 +65,16 @@ button {
 }
 
 /* Bootstrap Overrides */
-.container {
-    max-width: 1280px !important;
-}
+/*.container {*/
+/*    max-width: 1100px !important;*/
+/*}*/
 
 .hero {
     background-color: var(--white-light-color);
 }
 
 .hero__content {
-    padding: 15em 0;
+    padding: 8em 0;
 }
 
 
@@ -292,44 +292,119 @@ button {
 
 /* Login Styling */
 
-.login {
-    /*background-color: var(--white-light-color);*/
+#login-body {
+    height: 100vh;
 }
 
-.login .container {
-    height: 90vh;
+
+#login {
+    background-color: #f7f8fa;
+
 }
 
-.login .container .row {
-    height: 100%;
+#login .brand {
+    margin-bottom: 4em;
 }
 
-.form__container {
+#login .brand a {
+    font-size: 2em;
+}
+
+#login .brand a:hover {
+    text-decoration: none;
+}
+
+
+.form-container {
     background-color: #fff;
-    border-radius: 25px;
-    padding: 2em;
+    padding: 3.3em 3.6em 3.1em;
     box-shadow: 0 1px 2px rgba(0,0,0,0.07),
     0 2px 4px rgba(0,0,0,0.07),
     0 4px 8px rgba(0,0,0,0.07),
     0 8px 16px rgba(0,0,0,0.07),
     0 16px 32px rgba(0,0,0,0.07),
     0 32px 64px rgba(0,0,0,0.07);
+    /*box-shadow: rgba(65, 62, 101, 0.14) 0px 20px 61px;*/
+    border-radius: 10px;
+    width: 100%;
+
 }
 
-.login__image {
-    border-radius: 25px;
-    background-color: #fff;
-    padding: 4em 7em 4em 4em;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.07),
-    0 2px 4px rgba(0,0,0,0.07),
-    0 4px 8px rgba(0,0,0,0.07),
-    0 8px 16px rgba(0,0,0,0.07),
-    0 16px 32px rgba(0,0,0,0.07),
-    0 32px 64px rgba(0,0,0,0.07);
-    margin-right: -7em;
+/* Inputs */
+input.form-control {
+
+    font-size: 18px;
+    line-height: 1.5;
+    overflow: visible;
+    width: 100%;
+    height: 73px;
+    font-weight: 300;
+    color: rgb(156, 154, 170);
+    background-clip: padding-box;
+    border: 1px solid rgb(234, 233, 242);
+    border-radius: 10px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    padding-left: 28px;
+    margin-bottom: 17px;
+    letter-spacing: -0.56px;
 }
 
 
+/* Form Title */
+
+.form-title {
+    margin-bottom: 35px;
+}
+.form-btn {
+    height: 60px;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    width: 100%;
+    color: #ffffff;
+    box-shadow: none;
+    font-size: 21px;
+    font-weight: 500;
+    letter-spacing: -0.66px;
+    border: none;
+    transition: all 0.15s ease-in-out 0s;
+}
+
+.form-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.sign-up-text {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 28px;
+    margin-top: 12px;
+    margin-bottom: 0;
+}
+
+
+
+/* Register */
+#register-body {
+    height: 100vh;
+}
+
+
+#register {
+    background-color: #f7f8fa;
+
+}
+
+#register .brand {
+    margin-bottom: 4em;
+}
+
+#register .brand a {
+    font-size: 2em;
+}
+
+#register .brand a:hover {
+    text-decoration: none;
+}
 
 
 /* Mobile Media Queries */
