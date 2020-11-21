@@ -57,7 +57,7 @@ img {
 }
 
 button {
-    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 /* Navbar */
@@ -128,8 +128,16 @@ button {
 }
 
 .funding {
-    padding: 150px 0;
+    padding: 8em 0;
     background-color: var(--white-light-color);
+}
+
+.funding .content {
+    margin-bottom: 3em;
+}
+
+.funding .image-container {
+    margin-top: 3em;
 }
 
 .btn__funding {
@@ -251,18 +259,16 @@ button {
 }
 
 
-
-
 /* Footer */
 
 .footer-area {
     background-color: var(--white-light-color);
+
 }
 
 .footer__top {
     padding: 3em 0 8em 0;
 }
-
 
 
 .footer__logo h4 {
@@ -296,6 +302,7 @@ button {
 
 .copyright__area {
     padding: 1em 0;
+    border-top: 1px solid var(--secondary-color);
 }
 
 .copyright__text {
@@ -336,12 +343,12 @@ button {
 .form-container {
     background-color: #fff;
     padding: 3.3em 3.6em 3.1em;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.07),
-    0 2px 4px rgba(0,0,0,0.07),
-    0 4px 8px rgba(0,0,0,0.07),
-    0 8px 16px rgba(0,0,0,0.07),
-    0 16px 32px rgba(0,0,0,0.07),
-    0 32px 64px rgba(0,0,0,0.07);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07),
+    0 2px 4px rgba(0, 0, 0, 0.07),
+    0 4px 8px rgba(0, 0, 0, 0.07),
+    0 8px 16px rgba(0, 0, 0, 0.07),
+    0 16px 32px rgba(0, 0, 0, 0.07),
+    0 32px 64px rgba(0, 0, 0, 0.07);
     /*box-shadow: rgba(65, 62, 101, 0.14) 0px 20px 61px;*/
     border-radius: 10px;
     width: 100%;
@@ -374,6 +381,7 @@ input.form-control {
 .form-title {
     margin-bottom: 35px;
 }
+
 .form-btn {
     height: 60px;
     border-radius: 10px;
@@ -399,7 +407,6 @@ input.form-control {
     margin-top: 12px;
     margin-bottom: 0;
 }
-
 
 
 /* Register */
@@ -462,7 +469,7 @@ input.form-control {
 
 .mission .img-container img {
     border-radius: 10px;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Team Section */
@@ -475,7 +482,7 @@ input.form-control {
     margin-bottom: 2em;
 }
 
-.team__title h2{
+.team__title h2 {
     font-size: 60px;
     line-height: 70px;
     margin-bottom: 0.3em;
@@ -529,7 +536,7 @@ input.form-control {
     color: var(--white-color);
     background-color: var(--secondary-color);
     transition: all 0.2s ease-in-out 0s;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
 }
 
 .cta__btn .btn:hover {
@@ -539,20 +546,13 @@ input.form-control {
 }
 
 
-
-
-
-
-
-
 /* Mobile Media Queries */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
     h1,
     h2,
     h3, h4 {
         font-size: 3rem;
     }
-
 
 
     .testimonial::before {
@@ -567,9 +567,11 @@ input.form-control {
     .mission {
         padding: 3em 0;
     }
+
     .mission__title {
         padding: 0 1em;
     }
+
     .mission__title h2 {
         font-size: 2.5em;
         line-height: 50px;
@@ -586,21 +588,37 @@ input.form-control {
         font-size: 3em;
     }
 
-/*    Footer Section */
-
+    /*    Footer Section */
     .footer__top {
         padding: 3em 0 0 0;
     }
+
     .footer__top .col-sm-12 {
         text-align: center;
         margin-bottom: 5em;
     }
+
     .footer__top .col-sm-12 p {
         margin: 0;
         max-width: 100%;
     }
+
     .footer__logo h4 {
         font-size: 1.7em;
         margin-bottom: 1em;
+    }
+
+
+    /*-----------------------Funding Section ------------------------*/
+    .funding {
+        padding: 7em 0;
+    }
+
+    .funding h3 {
+        font-size: 3em;
+    }
+
+    .funding .content {
+        margin-bottom: 2em;
     }
 }

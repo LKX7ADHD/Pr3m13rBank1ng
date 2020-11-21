@@ -116,19 +116,19 @@ and open the template in the editor.
             <div class="container">
                 <div class="row align-items-center">
 
-                    <div class="col-md-7 col-lg-6">
+                    <div class="col-lg-6">
                         <div class="content">
-                            <span>Reliable. Effective. Efficient</span>
+                            <span class="mb-3 d-inline-block">Reliable. Effective. Efficient</span>
                             <h3>Fast Funding, like Tomorrow-fast.</h3>
                             <p>No-hassle funding. Most businesses are approved the very next day.</p>
 
                         </div>
-                        <button class="btn btn-primary my-5 py-3 px-4 btn__funding">
+                        <button class="btn btn-primary py-3 px-4 btn__funding">
                             Fund Your Business Now
                         </button>
                     </div>
-                    <div class="col-md-5 col-lg-6">
-                        <div>
+                    <div class="col-lg-6">
+                        <div class="image-container">
                             <img src="assets/img/undraw_investment_xv9d.svg" alt="#">
                         </div>
                     </div>
@@ -202,123 +202,6 @@ and open the template in the editor.
         <!-- End Testimonial Area -->
 
 
-        <!-- Start Footer Area -->
-        <section class="footer-area">
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-4">
-                        <div class="single-footer-widget">
-                            <div class="footer-logo">
-                                <a href="/">Premiere Banking</a>
-
-                                <p>Lorem ipsum dolor sit amet, consec tetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt labore et dolore magna aliqua.</p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4">
-                        <div class="single-footer-widget">
-                            <h3>Contact</h3>
-
-                            <ul class="footer-contact-info">
-                                <li>
-                                    <i class='bx bxs-phone'></i>
-                                    <span>Phone</span>
-                                    <a href="tel:15147939-357">+65 9123 4567</a>
-                                </li>
-                                <li>
-                                    <i class='bx bx-envelope'></i>
-                                    <span>Email</span>
-                                    <a href="mailto:hello@spiderweb.com">hello@spiderweb.com</a>
-                                </li>
-                                <li>
-                                    <i class='bx bx-map'></i>
-                                    <span>Address</span>
-                                    10 Dover Dr, Singapore 138683
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4">
-                        <div class="single-footer-widget pl-5">
-                            <h3>Services</h3>
-
-                            <ul class="quick-links">
-                                <li>
-                                    <a href="#">Bank accounts</a>
-                                </li>
-                                <li>
-                                    <a href="#">Savings</a>
-                                </li>
-                                <li>
-                                    <a href="#">Credit cards</a>
-                                </li>
-                                <li>
-                                    <a href="#">Loans</a>
-                                </li>
-                                <li>
-                                    <a href="#">Car finance</a>
-                                </li>
-                                <li>
-                                    <a href="#">Mobile banking</a>
-                                </li>
-                                <li>
-                                    <a href="#">Online banking</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-<!---->
-<!--                    <div class="col-lg-3 col-sm-6">-->
-<!--                        <div class="single-footer-widget">-->
-<!--                            <h3>Help & guidance</h3>-->
-<!---->
-<!--                            <ul class="quick-links">-->
-<!--                                <li>-->
-<!--                                    <a href="#">Privacy statement</a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="#">Corporate information</a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="#">Online banking help</a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="#">Managing your money</a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="#">Proving your identity</a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="#">International banking</a>-->
-<!--                                </li>-->
-<!--                                <li>-->
-<!--                                    <a href="#">Help centre</a>-->
-<!--                                </li>-->
-<!--                            </ul>-->
-<!--                        </div>-->
-<!--                    </div>-->
-                </div>
-            </div>
-        </section>
-        <!-- End Footer Area -->
-
-        <!-- Start Copy Right Area -->
-        <!--div class="copyright-area">
-        <div class="container">
-            <div class="copyright-area-content">
-                <p>
-                    <i class='bx bx-copyright'></i>
-                    Copyright @2020 Spider Web. All Rights Reserved by ICT1004
-                </p>
-            </div>
-        </div>
-    </div-->
-        <!-- End Copy Right Area -->
     </main>
 
     <?php include "include/footer.inc.php" ?>
