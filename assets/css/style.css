@@ -1,10 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans&display=swap');
+
 :root {
-    --main-bg-light-color: #CBBEB5;
-    --main-bg-dark-color: #423F3B;
-    --main-brand-color: #525266;
-    --main-accent-color: #FF6666;
-    --main-accent-color-light: #FFE5A9;
-    --bg-cloud-color: #FAFAFA;
 
     --primary-color: #437eeb;
     --secondary-color: #313e5b;
@@ -13,14 +9,13 @@
     --sub-title-color: #437eeb;
     --body-text: #525f81;
     --complemetary-color: #EBB644;
-    --darker-complementary-color: #A88739;
 
 }
 
-*,
-*::before,
-*::after {
+* {
     font-size: 16px;
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
 }
 
@@ -29,17 +24,16 @@ html {
 }
 
 body {
-    margin: 0;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Public Sans', sans-serif;
     line-height: 1.6;
 }
-
 
 h1,
 h2,
 h3, h4 {
     font-family: 'Roboto', sans-serif;
-    font-size: 65px;
+    line-height: 1.2;
+    font-size: 4rem;
     color: var(--secondary-color);
 }
 
@@ -47,9 +41,23 @@ p {
     color: var(--body-text);
 }
 
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    z-index: 99;
+}
+
 img {
-    max-width: 100%;
-    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+button {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 /* Navbar */
@@ -59,16 +67,16 @@ img {
 }
 
 /* Bootstrap Overrides */
-.container {
-    max-width: 1280px !important;
-}
+/*.container {*/
+/*    max-width: 1100px !important;*/
+/*}*/
 
 .hero {
     background-color: var(--white-light-color);
 }
 
 .hero__content {
-    padding: 150px 0;
+    padding: 8em 0;
 }
 
 
@@ -120,8 +128,16 @@ img {
 }
 
 .funding {
-    padding: 150px 0;
-    background-color: var(--bg-cloud-color);
+    padding: 8em 0;
+    background-color: var(--white-light-color);
+}
+
+.funding .content {
+    margin-bottom: 3em;
+}
+
+.funding .image-container {
+    margin-top: 3em;
 }
 
 .btn__funding {
@@ -188,6 +204,8 @@ img {
     justify-content: center;
     align-items: center;
 
+    margin-bottom: 2em;
+
 }
 
 .insurance-planning {
@@ -196,9 +214,10 @@ img {
 
 .insurance-planning .insurance-planning__container {
     text-align: center;
-    margin-bottom: 4em !important;
+
     max-width: 600px;
     margin: 0 auto;
+    margin-bottom: 4em !important;
 }
 
 .insurance-planning__container h3 {
@@ -239,42 +258,367 @@ img {
     font-size: 28px;
 }
 
+
+/* Footer */
+
+.footer-area {
+    background-color: var(--white-light-color);
+
+}
+
+.footer__top {
+    padding: 3em 0 8em 0;
+}
+
+
+.footer__logo h4 {
+    font-size: 1.3em;
+    margin-bottom: 1.5em;
+}
+
+.footer__top p {
+    max-width: 60%;
+}
+
+.footer__title {
+    margin-bottom: 1.5em;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+.footer__list li {
+    line-height: 38px;
+
+}
+
+.footer__list li a {
+    text-decoration: none;
+    color: var(--body-text);
+}
+
+.footer__list li a:hover {
+    color: var(--secondary-color);
+}
+
+.copyright__area {
+    padding: 1em 0;
+    border-top: 1px solid var(--secondary-color);
+}
+
+.copyright__text {
+    font-size: 0.9em;
+}
+
+
+/* Login Styling */
 /* Sign In Register Section */
 
 .form-check {
     padding-left: 0;
 }
 
-
-/* Footer */
-
-.footer-area {
-    background-color: var(--bg-cloud-color);
-    padding: 120px 0 70px 0;
-}
-
-.footer-logo > a {
-    font-size: 30px;
-
-}
-
-.footer-logo a {
-    display: inline-block;
-    margin-bottom: 1.2em;
+#login-body {
+    height: 100vh;
 }
 
 
-.single-footer-widget h3 {
-    font-size: 25px;
-    margin-bottom: 2.2em;
+#login {
+    background-color: #f7f8fa;
+
 }
 
-.social, .footer-contact-info, .quick-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+#login .brand {
+    margin-bottom: 4em;
 }
 
-.quick-links li {
-    margin-bottom: 16px;
+#login .brand a {
+    font-size: 2em;
+}
+
+#login .brand a:hover {
+    text-decoration: none;
+}
+
+
+.form-container {
+    background-color: #fff;
+    padding: 3.3em 3.6em 3.1em;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07),
+    0 2px 4px rgba(0, 0, 0, 0.07),
+    0 4px 8px rgba(0, 0, 0, 0.07),
+    0 8px 16px rgba(0, 0, 0, 0.07),
+    0 16px 32px rgba(0, 0, 0, 0.07),
+    0 32px 64px rgba(0, 0, 0, 0.07);
+    /*box-shadow: rgba(65, 62, 101, 0.14) 0px 20px 61px;*/
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 5em;
+
+}
+
+/* Inputs */
+input.form-control {
+
+    font-size: 18px;
+    line-height: 1.5;
+    overflow: visible;
+    width: 100%;
+    height: 73px;
+    font-weight: 300;
+    color: rgb(156, 154, 170);
+    background-clip: padding-box;
+    border: 1px solid rgb(234, 233, 242);
+    border-radius: 10px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    padding-left: 28px;
+    margin-bottom: 17px;
+    letter-spacing: -0.56px;
+}
+
+
+/* Form Title */
+
+.form-title {
+    margin-bottom: 35px;
+}
+
+.form-btn {
+    height: 60px;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    width: 100%;
+    color: #ffffff;
+    box-shadow: none;
+    font-size: 21px;
+    font-weight: 500;
+    letter-spacing: -0.66px;
+    border: none;
+    transition: all 0.15s ease-in-out 0s;
+}
+
+.form-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.sign-up-text {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 28px;
+    margin-top: 12px;
+    margin-bottom: 0;
+}
+
+
+/* Register */
+#register-body {
+    height: 100vh;
+}
+
+
+#register {
+    background-color: #f7f8fa;
+
+}
+
+#register .brand {
+    margin-bottom: 4em;
+}
+
+#register .brand a {
+    font-size: 2em;
+}
+
+#register .brand a:hover {
+    text-decoration: none;
+}
+
+
+/* ------------------About Us Page--------------------------- */
+
+#about {
+    padding: 11.25em 0;
+}
+
+.about__text {
+    font-size: 21px;
+    font-weight: 300;
+    letter-spacing: -0.66px;
+    line-height: 39px;
+}
+
+
+/* Mission Page */
+
+.mission {
+    padding: 9em 0;
+}
+
+.mission__title {
+    margin-bottom: 4em;
+}
+
+.mission__title h2 {
+    font-size: 60px;
+    line-height: 84px;
+    letter-spacing: -2.5px;
+}
+
+.mission .img-container {
+    height: 477px;
+}
+
+.mission .img-container img {
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Team Section */
+
+.team {
+    margin-bottom: 10em;
+}
+
+.team__title {
+    margin-bottom: 2em;
+}
+
+.team__title h2 {
+    font-size: 60px;
+    line-height: 70px;
+    margin-bottom: 0.3em;
+}
+
+.team__title p {
+
+    font-size: 1.2em;
+    line-height: 39px;
+}
+
+.team h3.title {
+    font-size: 1.2rem;
+}
+
+.team-container {
+    margin-top: 2em;
+    text-align: center;
+}
+
+.team-image {
+    width: 160px;
+    height: 160px;
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 29px;
+
+}
+
+.team-image img {
+    border-radius: 100%;
+}
+
+/* Call to Action */
+
+.cta-section {
+    padding: 8em 0;
+    background-color: var(--white-light-color);
+}
+
+.cta__title p {
+    font-size: 1.2em;
+    margin: 0.4em 0 2em 0;
+}
+
+.cta__btn .btn {
+    width: 250px;
+    height: 60px;
+    border-radius: 10px;
+    font-size: 1.3em;
+    color: var(--white-color);
+    background-color: var(--secondary-color);
+    transition: all 0.2s ease-in-out 0s;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cta__btn .btn:hover {
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+    background-color: var(--white-color);
+}
+
+
+/* Mobile Media Queries */
+@media only screen and (max-width: 768px) {
+    h1,
+    h2,
+    h3, h4 {
+        font-size: 3rem;
+    }
+
+
+    .testimonial::before {
+        height: 85%;
+    }
+
+    /* -------------- About Us ------------------- */
+    #about {
+        padding: 4em 0;
+    }
+
+    .mission {
+        padding: 3em 0;
+    }
+
+    .mission__title {
+        padding: 0 1em;
+    }
+
+    .mission__title h2 {
+        font-size: 2.5em;
+        line-height: 50px;
+        letter-spacing: -1.5px;
+        margin-bottom: 0.4em;
+    }
+
+    .mission .img-container {
+        height: 300px;
+        margin-bottom: 2em;
+    }
+
+    .team__title h2 {
+        font-size: 3em;
+    }
+
+    /*    Footer Section */
+    .footer__top {
+        padding: 3em 0 0 0;
+    }
+
+    .footer__top .col-sm-12 {
+        text-align: center;
+        margin-bottom: 5em;
+    }
+
+    .footer__top .col-sm-12 p {
+        margin: 0;
+        max-width: 100%;
+    }
+
+    .footer__logo h4 {
+        font-size: 1.7em;
+        margin-bottom: 1em;
+    }
+
+
+    /*-----------------------Funding Section ------------------------*/
+    .funding {
+        padding: 7em 0;
+    }
+
+    .funding h3 {
+        font-size: 3em;
+    }
+
+    .funding .content {
+        margin-bottom: 2em;
+    }
 }

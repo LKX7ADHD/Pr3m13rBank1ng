@@ -69,6 +69,7 @@ function connectToDatabase()
     $password = getenv('heroku_db_password');
     $dbname = getenv('heroku_db_dbname');
 
+
     return new mysqli($servername, $username, $password, $dbname);
 }
 
