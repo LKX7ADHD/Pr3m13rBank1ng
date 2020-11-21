@@ -9,10 +9,9 @@
 //session_set_cookie_params(1200, '/', $_SERVER['HTTP_HOST'], true, true);
 
 // Using unsecure cookies during development
-session_set_cookie_params(1200, '/', $_SERVER['HTTP_HOST']);
+session_set_cookie_params(1200, '/');
 session_name('session');
 session_start();
-
 
 /**
  * Encapsulates user information
