@@ -9,6 +9,8 @@
     --sub-title-color: #437eeb;
     --body-text: #525f81;
     --complemetary-color: #EBB644;
+    --white-background: #f7f8fa;
+    --btn-hover: #5B73A8;
 
 }
 
@@ -56,14 +58,23 @@ img {
     object-fit: cover;
 }
 
-button {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+button.navbar-toggler {
+    border: 0;
 }
 
 /* Navbar */
+
+.navbar {
+    padding: 1em 0;
+}
+
 .btn--cta {
     background-color: var(--primary-color);
     color: var(--white-color);
+}
+
+.navbar-brand {
+    margin: 0 0.5em;
 }
 
 /* Bootstrap Overrides */
@@ -71,6 +82,209 @@ button {
 /*    max-width: 1100px !important;*/
 /*}*/
 
+
+/* New Hero Section */
+.hero-section {
+    background-color: #f7f8fa;
+    color: #19191b;
+    padding: 12.5em 0 3.5em 0;
+}
+
+.hero-content span {
+    margin-bottom: 1.25em;
+    font-size: 1.3em;
+}
+
+.hero__title {
+    font-size: 70px;
+    line-height: 80px;
+    color: #19191b;
+}
+
+.hero__button {
+    margin-top: 3.5em;
+}
+
+.hero__button a {
+    text-decoration: none;
+}
+
+.hero__button .btn {
+
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    background-color: var(--secondary-color);
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+    transition: all 0.4s ease 0s;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 60px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1.3em;
+    font-family: 'Public Sans', sans-serif;
+
+}
+
+.hero__button .btn:hover {
+    background-color: #5B73A8;
+}
+
+.hero__button .btn:active {
+    transform: translateY(2px);
+}
+
+
+/* Statistics Section */
+
+.stat {
+    padding: 7em 0 4em 0;
+    background-color: #f7f8fa;
+
+}
+
+
+.single-fact .title {
+    font-size: 3.75em;
+    font-weight: 700;
+    letter-spacing: -1.88px;
+    line-height: 70px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    color: #19191b;
+}
+
+.single-fact p {
+    font-size: 1.3em;
+    font-weight: 300;
+    letter-spacing: -0.66px;
+    line-height: 35px;
+    color: rgba(25, 25, 27, 0.75);
+}
+
+
+/* Brand Testimonial Section */
+.brand-section {
+    padding: 1.5em;
+}
+
+.brand-logo {
+    padding: 1em 0;
+    margin: 0 1.875em;
+}
+
+.brand-logo img {
+    width: 100%;
+}
+
+/* Send Money Benefits */
+
+.btn__benefits {
+
+    display: inline-block;
+    color: var(--white-light-color);
+    background-color: var(--secondary-color);
+    width: 200px;
+    height: 60px;
+    border: 0;
+    font-size: 1.3em;
+}
+
+.btn__benefits:hover {
+    color: var(--white-light-color);
+    background-color: var(--btn-hover);
+}
+
+.btn__benefits:active {
+    transform: translateY(2px);
+}
+
+.benefits {
+    padding: 2em 0 7em 0;
+    background-color: #f7f8fa;
+}
+
+.benefits__content {
+    margin-bottom: 3em;
+}
+
+.benefits__content h3 {
+    font-size: 3.2em;
+}
+
+.benefits .col-lg-6:nth-child(2) {
+    padding: 3em;
+}
+
+.benefits .image-container {
+    width: 400px;
+    padding: 2em;
+    background-color: transparent;
+    transform: rotate(15deg);
+    margin: 0 auto;
+}
+
+.benefits .image-container img {
+    background-color: transparent;
+    border-radius: 40px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+
+}
+
+/* Iphone Smart Mobile Banking */
+
+
+.mobile-banking {
+    background-color: #f7f8fa;
+    padding: 5em 0 2em 0;
+}
+
+.mobile-banking__content {
+    margin-bottom: 3em;
+}
+
+.mobile-banking__content h3 {
+    font-size: 3.2em;
+}
+
+.mobile-banking .col-lg-6:nth-child(1) {
+    padding: 3em;
+    background-color: transparent;
+}
+
+.mobile-banking .image-container {
+    width: 350px;
+    padding: 2em;
+    color: transparent;
+    margin: 0 auto;
+}
+
+.mobile-banking .image-container img {
+    background-color: transparent;
+    /*border-radius: 80px;*/
+    transform: rotate(-15deg);
+}
+
+
+/* Old Hero */
 .hero {
     background-color: var(--white-light-color);
 }
@@ -128,8 +342,8 @@ button {
 }
 
 .funding {
-    padding: 8em 0;
-    background-color: var(--white-light-color);
+    padding: 7em 0;
+    background-color: var(--white-background);
 }
 
 .funding .content {
@@ -138,13 +352,28 @@ button {
 
 .funding .image-container {
     margin-top: 3em;
+
 }
+
 
 .btn__funding {
 
     display: inline-block;
-    background-color: var(--primary-color);
+    color: var(--white-light-color);
+    background-color: var(--secondary-color);
+    width: 240px;
+    height: 60px;
     border: 0;
+    font-size: 1.3em;
+}
+
+.btn__funding:hover {
+    color: var(--white-light-color);
+    background-color: var(--btn-hover);
+}
+
+.btn__funding:active {
+    transform: translateY(2px);
 }
 
 .funding .content span {
@@ -321,6 +550,10 @@ button {
     height: 100vh;
 }
 
+#form-agree {
+    font-size: 0.7em;
+}
+
 
 #login {
     background-color: #f7f8fa;
@@ -397,7 +630,7 @@ input.form-control {
 }
 
 .form-btn:hover {
-    background-color: var(--secondary-color);
+    background-color: #5B73A8;
 }
 
 .sign-up-text {
@@ -540,9 +773,12 @@ input.form-control {
 }
 
 .cta__btn .btn:hover {
-    border: 1px solid var(--secondary-color);
-    color: var(--secondary-color);
-    background-color: var(--white-color);
+    color: var(--white-light-color);
+    background-color: #5B73A8;
+}
+
+.cta__btn .btn:active {
+    transform: translateY(2px);
 }
 
 
@@ -610,15 +846,88 @@ input.form-control {
 
 
     /*-----------------------Funding Section ------------------------*/
-    .funding {
-        padding: 7em 0;
-    }
-
     .funding h3 {
         font-size: 3em;
     }
 
     .funding .content {
         margin-bottom: 2em;
+    }
+
+    .funding .col-lg-6 {
+        text-align: center;
+    }
+
+    .funding {
+        padding: 4em 0;
+    }
+
+    .funding .image-container {
+        padding: 0 3.5em;
+    }
+
+
+    /*  --------- Main Page -------------  */
+    /*  -----Hero Section--------  */
+    .hero-content {
+        text-align: center;
+    }
+
+    .hero-content span {
+        margin-bottom: 0.5em;
+    }
+
+    .hero__title {
+        font-size: 3em;
+        line-height: 1.3em;
+    }
+
+    /*  Facts Section  */
+    .single-fact {
+        padding: 0 5em;
+        margin-bottom: 3em;
+        text-align: center;
+    }
+
+    /*  Benefits Section  */
+    .benefits .col-lg-6 {
+        text-align: center;
+    }
+
+    .benefits__content h3 {
+        font-size: 2.7em;
+    }
+
+    .benefits .col-lg-6:nth-child(2) {
+        padding: 5em;
+    }
+
+    .benefits .image-container {
+        width: 225px;
+        padding: 0;
+    }
+
+    /*  Mobile Banking Section  */
+    .mobile-banking .col-lg-6 {
+        text-align: center;
+
+    }
+
+    .mobile-banking__content h3 {
+        font-size: 2.7em;
+    }
+
+    .mobile-banking .col-lg-6:nth-child(1) {
+        padding: 2em 0;
+    }
+
+    .mobile-banking .image-container {
+        width: 200px;
+        padding: 0;
+    }
+
+    /*  Form  */
+    input.form-control {
+        height: 50px;
     }
 }

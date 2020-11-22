@@ -21,190 +21,192 @@ and open the template in the editor.
 
 <body>
 
-    <?php include "include/navbar.inc.php" ?>
+<?php include "include/navbar.inc.php" ?>
 
-    <!-- Start of Header -->
-    <header class="hero">
-<!--        <div class="">-->
-            <div class="container hero__content">
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <div class="banner__content mb-2">
-                            <h1>Get an extensive view of your cash flow.</h1>
-                            <p>Automate your finance and increase your savings with our extensive dashboard. Protect Your Hard-Earned Money.</p>
-                        </div>
+<!--  New Header  -->
+<header class="hero-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-9 col-md-11">
+                <div class="hero-content">
+                        <span class="d-inline-block">
+                            A bank that you can trust.
+                        </span>
+                    <h1 class="hero__title">
+                        Understand Your Finance Clearly
+                    </h1>
+                    <div class="hero__button">
                         <a href="register.php">
-                        <button class="banner__button btn btn-primary my-5 py-3 px-4">
-                            Get Started
-                        </button>
+                            <button class="btn">
+                                Get Started
+                            </button>
                         </a>
                     </div>
-                    <div class="col-md-6">
-                        <div class="banner__image">
-                            <img src="assets/img/undraw_finance_0bdk.svg" alt="SVG on Finance" class="img-fluid">
-                        </div>
-                    </div>
                 </div>
-<!--            </div>-->
+            </div>
         </div>
-    </header>
+    </div>
+</header>
 
-    <!-- End of Header -->
-
-    <!-- Start of Main -->
-
-    <main>
-
-        <!-- Start of Grow Area -->
-        <section class="grow pt-5 pb-5">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-5 col-lg-6">
-                        <div class="grow__image">
-                            <img src="assets/img/undraw_business_shop_qw5t.svg" alt="An SVG of a man pointing to a bank">
-                        </div>
+<main>
+    <!--  Statistics Section  -->
+    <section class="stat">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    <div class="single-fact">
+                        <h3 class="title">250K+</h3>
+                        <p>Customers are already seeing the benefits.</p>
                     </div>
-                    <div class="col-md-7 col-lg-6">
-                        <div class="grow__content">
-                            <span>Help your Business Grow</span>
-                            <h3>Acquire New Business Opportunities Through Our Financial Solutions and Strategies.</h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
-                                viverra maecenas accumsan lacus vel facilisis.</p>
-                            <div class="grow__inner-content">
-                                <div class="number mr-3">
-                                    <span>1</span>
-                                </div>
-                                <div class="grow__container">
-                                    <h4>Open An Account In Minutes</h4>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua.</p>
-                                </div>
-
-                            </div>
-                            <div class="grow__inner-content">
-                                <div class="number mr-3">
-                                    <span>2</span>
-                                </div>
-                                <div class="grow__container">
-                                    <h4>0% Interest Rate</h4>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua.</p>
-                                </div>
-                            </div>
-                            <div class="grow__inner-content">
-                                <div class="number mr-3">
-                                    <span>3</span>
-                                </div>
-                                <div class="grow__container">
-                                    <h4>Financial Life at your fingertips</h4>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua.</p>
-                                </div>
-                            </div>
-                        </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="single-fact">
+                        <h3 class="title">100%</h3>
+                        <p>Satisfaction rate from our loyal customers</p>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="single-fact">
+                        <h3 class="title">0%</h3>
+                        <p>Loan Interest Rate. Effective Solution for your Business Needs</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- End of Grow Area -->
+    <!--    -->
 
-        <!--  -->
 
-        <section class="funding">
-            <div class="container">
-                <div class="row align-items-center">
+    <!--   End of Testimonial Section     -->
 
-                    <div class="col-lg-6">
-                        <div class="content">
-                            <span class="mb-3 d-inline-block">Reliable. Effective. Efficient</span>
-                            <h3>Fast Funding, like Tomorrow-fast.</h3>
-                            <p>No-hassle funding. Most businesses are approved the very next day.</p>
 
-                        </div>
-                        <button class="btn btn-primary py-3 px-4 btn__funding">
-                            Fund Your Business Now
+    <!-- Funding Section -->
+    <section class="funding">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-lg-6">
+                    <div class="content">
+                        <span class="mb-3 d-inline-block">Reliable. Effective. Efficient</span>
+                        <h3>Fast Funding, like Tomorrow-fast.</h3>
+                        <p>No-hassle funding. Most businesses are approved the very next day.</p>
+
+                    </div>
+                    <a href="register.php">
+                        <button class="btn btn__funding">
+                            Fund Your Business
                         </button>
+                    </a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="image-container">
+                        <img src="assets/img/undraw_investment_xv9d.svg" alt="#">
                     </div>
-                    <div class="col-lg-6">
-                        <div class="image-container">
-                            <img src="assets/img/undraw_investment_xv9d.svg" alt="#">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--   End of Funding Section     -->
+
+
+    <!--   Start of Mobile Banking     -->
+
+    <section class="mobile-banking">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="image-container">
+                        <img src="assets/img/iphone.svg" alt="#">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="mobile-banking__content">
+                        <span class="mb-3 d-inline-block">Smart and Secure</span>
+                        <h3>Miltary-Grade Encryption Banking</h3>
+                        <p>Fully Layered Security Mobile Banking with smooth and efficient experience.
+                            No hiccups and the smoothness of mobile banking does not compromise the security of mobile
+                            banking.
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!--   End of Mobile Banking Section     -->
+
+    <!--   Benefits Section    -->
+
+    <section class="benefits">
+        <div class="container">
+            <div class="row align-items-center flex-md-row-reverse">
+                <div class="col-lg-6">
+                    <div class="image-container">
+                        <img src="assets/img/cards/main.svg" alt="#">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="benefits__content">
+                        <span class="mb-3 d-inline-block">Transfer More. Worry Less.</span>
+                        <h3>Send Money All over the world with no hidden fees.</h3>
+                        <p>Send money to your family, your friends regardless of where they are. Transfer money with a
+                            small fee of 0.5% for anything above $10,000. This means you can worry less and transfer
+                            more
+                            with our services.
+                        </p>
+
+                    </div>
+                    <a href="register.php">
+                        <button class="btn btn__benefits">
+                            Get Started
+                        </button>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!--    End of Benefits Section    -->
+
+
+    <!--    Call To Action    -->
+
+    <!--    Start of Call To Action -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-7 col-xl-6">
+
+                    <div class="cta__title text-center">
+                        <h2 class="title">
+                            Launch Your Business Quickly
+                        </h2>
+                        <p>Register to get your account started and launch your business effortlessly.</p>
+                        <div class="cta__btn">
+                            <a href="register.php">
+                                <button class="btn">
+                                    Check Job Openings
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Start Testimonial Area -->
-        <section class="testimonial">
-            <div class="container">
-                <div class="testimonial__container">
-                    <span>Why choose us</span>
-                    <h2>Our bank has been providing services to its customers for almost 25 years.</h2>
-                </div>
+    <!--        End of Cta Section-->
 
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="single-fun-fact">
-                            <div class="icon">
-                                <i class="flaticon-positive-vote"></i>
-                            </div>
-
-                            <h3>
-                                946372
-                            </h3>
-                            <p>Happy customers</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="single-fun-fact">
-                            <div class="icon">
-                                <i class="flaticon-confetti"></i>
-                            </div>
-
-                            <h3>
-                                25
-                            </h3>
-                            <p>Years in banking</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="single-fun-fact">
-                            <div class="icon">
-                                <i class="flaticon-bank"></i>
-                            </div>
-
-                            <h3>
-                                2631
-                            </h3>
-                            <p>Our branches</p>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="single-fun-fact">
-                            <div class="icon">
-                                <i class="flaticon-success"></i>
-                            </div>
-
-                            <h3>
-                                75263
-                            </h3>
-                            <p>Successfully works</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Testimonial Area -->
+</main>
 
 
-    </main>
-
-    <?php include "include/footer.inc.php" ?>
+<?php include "include/footer.inc.php" ?>
 </body>
 
 </html>

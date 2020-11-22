@@ -11,3 +11,5 @@ as they access their money.
 <span>Photo by <a href="https://unsplash.com/@linkedinsalesnavigator?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">LinkedIn Sales Navigator</a> on <a href="https://unsplash.com/s/photos/work-at-office?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
 
 <span>Photo by <a href="https://unsplash.com/@miracletwentyone?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Joseph Gonzalez</a> on <a href="https://unsplash.com/s/photos/face?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+
+https://www.stickpng.com/img/download/58429187a6515b1e0ad75ac8
