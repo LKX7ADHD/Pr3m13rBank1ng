@@ -1,8 +1,3 @@
-<!-- Start Copy Right Area -->
-<?php include 'imports.inc.php'; ?>
-
-
-
 <footer class="footer-area">
 
     <div class="container">
@@ -37,10 +32,10 @@
                                 </h5>
                                 <ul class="footer__list">
                                     <li>
-                                        <a href="login.php">Login</a>
+                                        <a href="/login.php">Login</a>
                                     </li>
                                     <li>
-                                        <a href="register.php">Register</a>
+                                        <a href="/register.php">Register</a>
                                     </li>
                                 </ul>
                             </div>
