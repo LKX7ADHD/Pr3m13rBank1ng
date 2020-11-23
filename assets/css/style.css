@@ -69,6 +69,10 @@ img {
     object-fit: cover;
 }
 
+.btn {
+    border-radius: 10px !important;
+}
+
 button.navbar-toggler {
     border: 0;
 }
@@ -88,6 +92,21 @@ button.navbar-toggler {
     margin: 0 0.5em;
 }
 
+.btn__primary {
+    background-color: var(--secondary-color);
+    color: var(--white-light-color);
+}
+
+.btn__primary:hover {
+    background-color: var(--btn-hover);
+    color: var(--white-light-color);
+}
+
+/* Navbar Overwrite */
+.navbar-light .navbar-nav .nav-link {
+    color: rgba(0, 0, 0, 0.8);
+}
+
 
 /* New Hero Section */
 .hero-section {
@@ -104,7 +123,7 @@ button.navbar-toggler {
 .hero__title {
     font-size: 70px;
     line-height: 80px;
-    color: #19191b;
+    /*color: #19191b;*/
 }
 
 .hero__button {
@@ -325,7 +344,8 @@ button.navbar-toggler {
 }
 
 .funding .content span {
-    color: var(--primary-color);
+    /*color: var(--primary-color);*/
+    color: #212529;
 }
 
 

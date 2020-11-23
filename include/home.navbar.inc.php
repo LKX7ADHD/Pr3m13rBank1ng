@@ -21,7 +21,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="/register.php">
-                        <button class="btn btn-primary"> Open Account</button>
+                        <button class="btn btn__primary"> Open Account</button>
                     </a>
                 </li>
             </ul>
