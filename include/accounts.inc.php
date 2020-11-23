@@ -13,11 +13,13 @@ session_set_cookie_params(1200, '/');
 session_name('session');
 session_start();
 
+
 /**
  * Encapsulates user information
  */
 class User
 {
+    public $userId;
     public $username;
     public $firstName;
     public $lastName;
@@ -108,6 +110,7 @@ function registerUser(User $user, string $hashed_password)
     $conn->close();
 }
 
+
 /**
  * Attempts to authenticate a user with an email-password pair
  * @param $email string email of user
@@ -123,7 +126,7 @@ function authenticateUser(string $email, string $password)
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     } else {
-        $stmt = $conn->prepare('SELECT username, firstName, lastName, password FROM Users WHERE email = ?');
+        $stmt = $conn->prepare('SELECT UserID,username, firstName, lastName, password FROM Users WHERE email = ?');
         $stmt->bind_param('s', $email);
 
         if (!$stmt->execute()) {
@@ -145,6 +148,7 @@ function authenticateUser(string $email, string $password)
         $authenticated = true;
 
         $user = new User();
+        $user->userId = $row['UserID'];
         $user->username = $row['username'];
         $user->firstName = $row['firstName'];
         $user->lastName = $row['lastName'];
@@ -287,6 +291,7 @@ function getAccounts(User $user)
  */
 function getAccount(string $accountNumber)
 {
+
     if (!isAccountNumberValid($accountNumber)) {
         return false;
     }
