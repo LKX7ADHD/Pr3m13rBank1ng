@@ -36,7 +36,7 @@
 # .idea/compiler.xml
 # .idea/jarRepositories.xml
 # .idea/modules.xml
-# .idea/*.iml
+ .idea/*.iml
 # .idea/modules
 # *.iml
 # *.ipr
@@ -75,7 +75,7 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 # VS code
-
+.vs
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json

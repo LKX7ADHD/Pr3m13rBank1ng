@@ -1,8 +1,3 @@
-<!-- Start Copy Right Area -->
-<?php include 'imports.inc.php'; ?>
-
-
-
 <footer class="footer-area">
 
     <div class="container">
@@ -10,7 +5,7 @@
             <div class="row justify-content-center">
                 <div class="col-sm-12 col-md-4">
                     <div class="footer__logo">
-                        <h4>Premier Banking</h4>
+                        <h3>Premier Banking</h3>
                     </div>
                     <p>The Future of Banking. Your Satisfaction is our priority.</p>
                 </div>
@@ -19,9 +14,9 @@
 
                         <div class="col-6">
                             <div class="single-footer">
-                                <h5 class="footer__title">
+                                <h4 class="footer__title">
                                     Tools
-                                </h5>
+                                </h4>
                                 <ul class="footer__list">
                                     <li>
                                         <a href="#">Loan Calculator</a>
@@ -32,15 +27,15 @@
 
                         <div class="col-6">
                             <div class="single-footer">
-                                <h5 class="footer__title">
+                                <h4 class="footer__title">
                                     Get Started
-                                </h5>
+                                </h4>
                                 <ul class="footer__list">
                                     <li>
-                                        <a href="login.php">Login</a>
+                                        <a href="/login.php">Login</a>
                                     </li>
                                     <li>
-                                        <a href="register.php">Register</a>
+                                        <a href="/register.php">Register</a>
                                     </li>
                                 </ul>
                             </div>

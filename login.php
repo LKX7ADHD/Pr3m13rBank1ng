@@ -30,7 +30,7 @@
                 <div class="form-container text-center align-self-center">
                     <form action="process_login.php" method="POST">
                         <div class="form-title">
-                            <h2 class="title">Sign In</h2>
+                            <h1 class="title">Sign In</h1>
                             <p>Enter your account details below</p>
                         </div>
                         <div class="form-group">
