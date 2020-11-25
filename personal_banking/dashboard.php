@@ -56,20 +56,31 @@ and open the template in the editor.
                 <th scope="col">Transaction</th>
                 <th scope="col">Deposit</th>
                 <th scope="col">Withdrawal</th>
-                <th scope="col">Balance</th>
             </tr>
             </thead>
             <tbody>
             <?php
-                foreach ($transactions as $transac):
+                foreach ($transactions as $transac)
+                {
+                    echo '<tr>';
+                    echo '<th scope="row">' . $transac['transferTimestamp'] . '</th>';
+                    echo '<th></th>';
 
+                    $ID = $user->userId;
+
+                    if ($ID == $transac["SenderID"])
+                    {
+                        echo "<th>" . $transac['transferValue'] . "</th>";
+                        echo "<th>" . "-" . "</th>";
+                    } else {
+                        echo "<th>" . "-" . "</th>";
+                        echo "<th>" . $transac['transferValue'] . "</th>";
+                    }
+
+                    echo '</tr>';
+                }
             ?>
-            <tr>
-                <th scope="row"><?= $transac['transferTimestamp'] ?></th>
-                <th scope="row"><?= $transac['transferValue'] ?></th>
-                <th scope="row"><?= $transac['transferValue'] ?></th>
-            </tr>
-            <?php endforeach; ?>
+
 
             </tbody>
         </table>
