@@ -156,6 +156,9 @@ and open the template in the editor.
                 // One of own accounts
                 dropdown.next().addClass('d-none')
                 dropdown.next().find('input').val($(e.target).attr('data-accountNumber'))
+
+                $('a.dropdown-item').removeClass('disabled')
+                $('.account-dropdown').not(dropdown).find('a.dropdown-item[data-accountNumber="' + $(e.target).attr('data-accountNumber') + '"]').addClass('disabled')
             }
         })
 

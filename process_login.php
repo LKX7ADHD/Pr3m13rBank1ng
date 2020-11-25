@@ -30,6 +30,10 @@ if (isset($_POST['email']) && !empty($_POST['email'])) {
     $success = false;
 }
 
+if ($success) {
+    header("Location: /personal_banking/dashboard.php");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,21 +52,14 @@ if (isset($_POST['email']) && !empty($_POST['email'])) {
 </header>
 <main class="container">
     <?php
-    if ($success) {
-//        echo '<p class="h1">Login successful!</p>';
-//        echo '<p class="lead">Welcome back, ' . getAuthenticatedUser()->username . '.</p>';
-//        echo '<a class="btn btn-success" href="/personal_banking/dashboard.php" role="button">Continue</a>';
-        header("Location: /personal_banking/dashboard.php");
-    } else {
-        echo '<p class="h1">Oops</p>';
-        echo '<p class="lead">The following errors were detected:</p>';
-        echo '<ul class="list-group list-group-flush">';
-        foreach ($errorMessages as $errorMessage) {
-            echo '<li class="list-group-item">' . $errorMessage . '</li>';
-        }
-        echo '</ul>';
-        echo '<a class="btn btn-warning" href="login.php" role="button">Return to Login</a>';
+    echo '<p class="h1">Oops</p>';
+    echo '<p class="lead">The following errors were detected:</p>';
+    echo '<ul class="list-group list-group-flush">';
+    foreach ($errorMessages as $errorMessage) {
+        echo '<li class="list-group-item">' . $errorMessage . '</li>';
     }
+    echo '</ul>';
+    echo '<a class="btn btn-warning" href="login.php" role="button">Return to Login</a>';
     ?>
 </main>
 
