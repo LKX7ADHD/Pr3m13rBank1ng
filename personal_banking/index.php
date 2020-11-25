@@ -73,7 +73,7 @@ and open the template in the editor.
                 {
 
                     echo '<tr>';
-                    echo '<th scope="row">' . $transac['transferTimestamp'] . '</th>';
+                    echo '<th scope="row">' . date('d/m/Y',strtotime($transac['transferTimestamp'])) . '</th>';
                     echo '<th></th>';
                     echo '<th></th>';
 

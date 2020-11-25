@@ -89,7 +89,7 @@ if ($success) {
 <header class="jumbotron text-center">
     <h1 class="display-4">Open Account</h1>
 </header>
-<main class="container">
+<main class="container process-register">
     <?php
     if ($success) {
         echo '<p class="h1">Your registration is successful!</p>';

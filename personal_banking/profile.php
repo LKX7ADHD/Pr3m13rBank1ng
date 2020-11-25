@@ -28,7 +28,7 @@ and open the template in the editor.
 <header class="jumbotron text-center">
     <h1 class="display-4">Profile</h1>
 </header>
-<main class="container">
+<main class="container profile">
     <p class="h1">Hello, <?php echo $user->username; ?></p>
     <a class="btn btn-warning" href="../logout.php" role="button">Logout</a>
 </main>

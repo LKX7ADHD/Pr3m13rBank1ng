@@ -20,7 +20,7 @@ and open the template in the editor.
 <header class="jumbotron text-center">
     <h1 class="display-4">Logout</h1>
 </header>
-<main class="container">
+<main class="container logout">
     <p class="h1">Logout success</p>
     <a class="btn btn-success" href="/" role="button">Return to Home</a>
 </main>

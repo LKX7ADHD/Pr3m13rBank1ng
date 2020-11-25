@@ -651,6 +651,11 @@ body {
     margin-bottom: 5em;
 }
 
+/* Process Register */
+.process-register, .process-login, .logout, .profile {
+    padding: 6em 0;
+}
+
 
 
 /* Mobile Media Queries */

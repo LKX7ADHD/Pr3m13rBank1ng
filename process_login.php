@@ -50,7 +50,7 @@ if ($success) {
 <header class="jumbotron text-center">
     <h1 class="display-4">Login</h1>
 </header>
-<main class="container">
+<main class="container process-login">
     <?php
     echo '<p class="h1">Oops</p>';
     echo '<p class="lead">The following errors were detected:</p>';
