@@ -152,6 +152,8 @@ and open the template in the editor.
                 // Other account
                 dropdown.next().find('input').val('')
                 dropdown.next().removeClass('d-none')
+
+                $('a.dropdown-item').removeClass('disabled')
             } else {
                 // One of own accounts
                 dropdown.next().addClass('d-none')
