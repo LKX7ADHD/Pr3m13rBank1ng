@@ -89,3 +89,7 @@ fabric.properties
 
 # Ignore netbeans folder
 nbproject/
+
+
+# Personal Banking
+./personal_banking/.vs/*
