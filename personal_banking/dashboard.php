@@ -1,6 +1,6 @@
 <?php
 require_once '../include/accounts.inc.php';
-require "../include/sessiontimeout.inc.php";
+require_once '../include/sessiontimeout.inc.php';
 
 $user = getAuthenticatedUser();
 $accounts = getAccounts($user);

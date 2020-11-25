@@ -1,7 +1,7 @@
 <?php
 
-include_once 'include/accounts.inc.php';
-include_once "include/sessiontimeout.inc.php";
+require_once 'include/accounts.inc.php';
+require_once "include/sessiontimeout.inc.php";
 
 $success = true;
 $errorMessages = array();

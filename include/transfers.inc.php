@@ -1,14 +1,5 @@
 <?php
-
-include 'accounts.inc.php';
-$user = getAuthenticatedUser();
-$senderAccounts = getAccounts($user);
-$errorMessages = array();
-
-if (!$user) {
-    header('Location: login.php');
-    exit();
-}
+require_once 'accounts.inc.php';
 
 /**
  * Represents monetary value
@@ -68,68 +59,28 @@ class Currency {
     }
 }
 
-
-
-// Get the receiver account ID from user input
-if (isset($_POST['receiverAccountNumber']) && !empty($_POST['receiverAccountNumber'])) {
-    $accNum = sanitiseInput($_POST['accountNumber']);
-
-}
-
-// Get the amount that the user wants to transfer
-if (isset($_POST['transferredAmount']) && !empty($_POST['transferredAmount'])) {
-    $value_amount = sanitiseInput($_POST['accountNumber']);
-    $amount = new Currency($value_amount);
-}
-
-/**
- * Get sender Accounts information.
- * @param $senderAcc array Accounts for the given users.
- * @return Account|false the sender account details, or false if user did not select any accounts.
- */
-
-function getSenderAccounts(array $senderAcc) {
-    foreach ($senderAcc as $senderAccount) {
-        if (isset($_POST['senderAcc']) && !empty($_POST['senderAcc'])) {
-            if ($_POST['senderAcc'] === $senderAccount) {
-                return $senderAccount;
-            }
-        }
-    }
-    return false;
-}
-
-/**
- * Get Receiver Accounts information.
- * @param $receiverAcc string Accounts given from user input.
- * @return Account|false the sender account details, or false if user did not select any accounts.
- */
-
-function getReceiverAccounts(string $receiverAcc) {
-
-    return getAccount($receiverAcc);
-}
-
 /**
  * Sends money from an account to another
  * @param Account $sender Sender Account
  * @param Account $receiver Receiver Account
  * @param Currency $amount Currency Account
- * @return bool weather the transferred is successful or not.
+ * @return bool true if transfer was successful, false otherwise
  */
-
 function performTransfer(Account $sender, Account $receiver, Currency $amount) {
     $transferred = true;
 
     // Initialise the currency classes for both the sender and receiver.
     $senderCurr = new Currency($sender->balance);
     $receiverCurr = new Currency($receiver->balance);
-    $newReceiverBal = $receiverCurr->add($amount->getValue());
-    $newSenderBal = $senderCurr->subtract($amount->getValue());
 
+    $receiverCurr->add($amount);
+    $senderCurr->subtract($amount);
+
+    $receiverBalance = $receiverCurr->getValue();
+    $senderBalance = $senderCurr->getValue();
 
     // Connecting to the database to update the data.
-    if ($newSenderBal > 0) {
+    if ($senderBalance > 0) {
         $conn = connectToDatabase();
         if ($conn->connect_error) {
             $transferred = false;
@@ -138,17 +89,18 @@ function performTransfer(Account $sender, Account $receiver, Currency $amount) {
 
         } else {
             // Update the receiver account balance
-            $stmt = $conn->prepare('UPDATE accounts SET accountValue = ? WHERE accountNumber =?;');
-            $stmt->bind_param('ss', $newReceiverBal, $receiver->accountNumber);
+            $stmt = $conn->prepare('UPDATE Accounts SET accountValue = ? WHERE accountNumber = ?');
+            $stmt->bind_param('ss', $receiverBalance, $receiver->accountNumber);
 
             if (!$stmt->execute()) {
                 $transferred = false;
                 http_response_code(500);
                 die('Unable to update receiver account balance');
             }
+
             // Update the sender account balance
-            $stmt = $conn->prepare('UPDATE accounts SET accountValue = ? WHERE accountNumber =?;');
-            $stmt->bind_param('ss', $newSenderBal, $sender->accountNumber);
+            $stmt = $conn->prepare('UPDATE Accounts SET accountValue = ? WHERE accountNumber = ?');
+            $stmt->bind_param('ss', $senderBalance, $sender->accountNumber);
 
             if (!$stmt->execute()) {
                 $transferred = false;
@@ -157,10 +109,11 @@ function performTransfer(Account $sender, Account $receiver, Currency $amount) {
             }
 
             // Get current date and time.
-            $current = date('Y-m-d H:i:s');
+            $timestamp = date('Y-m-d H:i:s');
+            $amountValue = $amount->getValue();
 
-            $stmt = $conn->prepare('INSERT INTO transfers (senderid, receiverid, transfervalue, transfertimestamp) VALUES (?,?,?,?)');
-            $stmt->bind_param('iiss', $sender->user, $receiver->user, $amount->getValue(), $current);
+            $stmt = $conn->prepare('INSERT INTO Transfers (SenderId, ReceiverId, transfervalue, transfertimestamp) SELECT S.AccountID, R.AccountID, ?, ? FROM Accounts S, Accounts R WHERE S.accountNumber = ? AND R.accountNumber = ?');
+            $stmt->bind_param('ssss', $amountValue, $timestamp, $sender->accountNumber, $receiver->accountNumber);
 
             if (!$stmt->execute()) {
                 $transferred = false;
@@ -181,31 +134,34 @@ function performTransfer(Account $sender, Account $receiver, Currency $amount) {
 /**
  * Reverse a transfer
  * @param int $transferID
- * @return bool weather the reversed transferred is successful or not.
+ * @return bool true if reverse was successful, false otherwise
  */
-function reverseTransfer(int $transferID)
-{
+function reverseTransfer(int $transferID) {
+    // TODO : DOESNT ACTUALLY CREDIT THE TWO ACCOUNTS YET
+
     $reversed = true;
 
     $conn = connectToDatabase();
     if ($conn->connect_error) {
-        $transferred = false;
+        $reversed = false;
         http_response_code(500);
         die('Unable to connect to the database');
     } else {
-    // Update the reverseTransfer status
-    $stmt = $conn->prepare('UPDATE transfers SET reverseTransfer = 1 WHERE TransferID =?;');
-    $stmt->bind_param('i', $transferID);
+        // Update the reverseTransfer status
+        $stmt = $conn->prepare('UPDATE Transfers SET reverseTransfer = 1 WHERE TransferID = ?');
+        $stmt->bind_param('i', $transferID);
 
-    if (!$stmt->execute()) {
-        $transferred = false;
-        http_response_code(500);
-        die('Unable to update receiver account balance');
+        if (!$stmt->execute()) {
+            $reversed = false;
+            http_response_code(500);
+            die('Unable to update receiver account balance');
+        }
+        $stmt->close();
     }
-    $stmt->close();
-}
-$conn->close();
+
+    $conn->close();
     return $reversed;
 
 }
+
 ?>

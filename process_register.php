@@ -1,6 +1,5 @@
 <?php
-
-include_once 'include/accounts.inc.php';
+require_once 'include/accounts.inc.php';
 
 function isFieldRequired($field)
 {

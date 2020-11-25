@@ -403,7 +403,7 @@ function isAccountNumberValid(string $accountNumber)
         $accumulator += ((int)$accountNumber[$i] * (17 ** $i)) % 17;
     }
 
-    return substr($accumulator, -2) === sprintf('%02d', $accumulator % 17);
+    return substr($accountNumber, -2) === sprintf('%02d', $accumulator % 17);
 }
 
 /**
@@ -428,5 +428,6 @@ function sanitiseInput(string $data)
     $data = htmlspecialchars($data);
     return $data;
 }
+
 
 ?>

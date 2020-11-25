@@ -1,6 +1,6 @@
 <?php
 phpinfo();
-include_once '2fa.php';
+require_once '2fa.php';
 ini_set('sendmail_from', 'leekaixuan2001@gmail.com');
 
 # Is the OS Windows or Mac or Linux

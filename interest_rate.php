@@ -1,4 +1,4 @@
-<?php include_once 'include/accounts.inc.php' ?>
+<?php require_once 'include/accounts.inc.php' ?>
 
 <!DOCTYPE html>
 <!--
