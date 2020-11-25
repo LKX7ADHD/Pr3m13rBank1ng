@@ -53,6 +53,7 @@ class Account
     {
         return substr($this->accountNumber, 0, 3) . '-' . substr($this->accountNumber, 3, 5) . '-' . substr($this->accountNumber, -2);
     }
+
 }
 
 /**
@@ -405,6 +406,38 @@ function isAccountNumberValid(string $accountNumber)
 
     return substr($accountNumber, -2) === sprintf('%02d', $accumulator % 17);
 }
+
+
+// Get Transfers
+
+function getTransactions(User $user) {
+
+    $conn = connectToDatabase();
+
+    if ($conn->connect_error) {
+        http_response_code(500);
+        die('An unexpected error has occurred. Please try again later.');
+    } else {
+        $stmt = $conn->prepare('SELECT transfers.transferTimestamp, transfers.transferValue from transfers,accounts WHERE transfers.SenderID = ? OR transfers.ReceiverID = ?');
+        $stmt -> bind_param("ss", $user->userId, $user->userId);
+
+        if (!$stmt->execute()) {
+            http_response_code(500);
+            die('An unexpected error has occurred. Please try again later.');
+        }
+
+        $result = $stmt->get_result();
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+
+        $stmt->close();
+    }
+
+    $conn->close();
+    return $data;
+}
+
+
+
 
 /**
  * Logs out the current user

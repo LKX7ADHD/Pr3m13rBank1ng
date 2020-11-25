@@ -114,7 +114,7 @@
                 <div class="col-lg-6">
                     <div class="mobile-banking__content">
                         <span class="mb-3 d-inline-block">Smart and Secure</span>
-                        <h3>Miltary-Grade Encryption Banking</h3>
+                        <h3>Smart & Safe Mobile Banking</h3>
                         <p>Fully Layered Security Mobile Banking with smooth and efficient experience.
                             No hiccups and the smoothness of mobile banking does not compromise the security of mobile
                             banking.
@@ -140,7 +140,7 @@
                 <div class="col-lg-6">
                     <div class="benefits__content">
                         <span class="mb-3 d-inline-block">Transfer More. Worry Less.</span>
-                        <h3>Send Money All over the world with no hidden fees.</h3>
+                        <h3>Send Money all over the world with no hidden fees.</h3>
                         <p>Send money to your family, your friends regardless of where they are. Transfer money with a
                             small fee of 0.5% for anything above $10,000. This means you can worry less and transfer
                             more

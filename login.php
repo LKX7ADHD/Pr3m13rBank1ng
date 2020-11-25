@@ -36,12 +36,12 @@
                         <div class="form-group">
                             <input type="email" class="form-control" id="email" placeholder="Enter your Email" name="email" aria-label="Email" required>
                         </div>
-                        <div class="form-group forgot-block">
+                        <div class="form-group">
                             <input type="password" class="form-control" placeholder="Enter Your Password" name="pwd" aria-label="Password" required>
                         </div>
                         <div class="form-group">
                             <button class="form-btn" type="submit">Sign In</button>
-                            <small class="form-text text-muted sign-up-text">Don't have an account? <a href="register.php">Create for free now</a></small>
+                            <small class="form-text text-muted sign-up-text">Don't have an account? <a href="register.php" title="Register Page">Click here to Create a New Account.</a></small>
                         </div>
                     </form>
                 </div>

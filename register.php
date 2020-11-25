@@ -35,7 +35,7 @@ and open the template in the editor.
                     <form action="process_register.php" method="POST">
 
                         <div class="form-title">
-                            <h2 class="title">Register</h2>
+                            <h1 class="title">Register</h1>
                             <p>Enter your account details below</p>
                         </div>
 
@@ -61,20 +61,20 @@ and open the template in the editor.
                         </div>
 
                         <div class="form-group">
-                            <!--                            <label for="email">Email</label>-->
+
                             <input class="form-control" type="email" id="email" name="email" aria-label="Email"
                                    placeholder="Enter email"
                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required/>
                         </div>
 
                         <div class="form-group">
-                            <!--                            <label for="pwd">Password</label>-->
+
                             <input class="form-control" type="password" id="pwd" name="pwd" aria-label="Password"
                                    placeholder="Enter password" required/>
                         </div>
 
                         <div class="form-group">
-                            <!--                            <label for="pwd_confirm">Confirm password</label>-->
+
                             <input class="form-control" type="password" id="pwd_confirm"
                                    aria-label="Confirmation of Password" name="pwd_confirm"
                                    placeholder="Confirm password" required/>
@@ -90,8 +90,7 @@ and open the template in the editor.
 
                         <div class="form-group">
                             <button class="form-btn" type="submit">Register</button>
-                            <small class="form-text text-muted sign-up-text">Already with us? <a href="login.php">Login
-                                    Here</a></small>
+                            <small class="form-text text-muted sign-up-text">Already with us? <a href="login.php">Click Here to Login Here</a></small>
                         </div>
                     </form>
                 </div>
