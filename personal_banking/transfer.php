@@ -26,8 +26,8 @@ if (!isset($_POST['amount']) || empty($_POST['amount']) || !filter_var($_POST['a
 }
 
 if ($readyToTransfer) {
-    $senderAccountNumber = sanitiseInput($_POST['senderAccountNumber']);
-    $receiverAccountNumber = sanitiseInput($_POST['receiverAccountNumber']);
+    $senderAccountNumber = str_replace('-', '', sanitiseInput($_POST['senderAccountNumber']));
+    $receiverAccountNumber = str_replace('-', '', sanitiseInput($_POST['receiverAccountNumber']));
     $amountValue = sanitiseInput($_POST['amount']);
     $amount = new Currency($amountValue);
 
