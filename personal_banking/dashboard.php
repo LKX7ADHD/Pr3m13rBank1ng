@@ -4,6 +4,7 @@ require_once '../include/sessiontimeout.inc.php';
 
 $user = getAuthenticatedUser();
 $accounts = getAccounts($user);
+$transactions = getTransactions($user);
 
 if (!$user) {
     header('Location: login.php');
@@ -42,6 +43,38 @@ and open the template in the editor.
         }
         ?>
     </ul>
+
+    <section class="transfers">
+        <h3>
+            Transaction History
+        </h3>
+
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Transaction</th>
+                <th scope="col">Deposit</th>
+                <th scope="col">Withdrawal</th>
+                <th scope="col">Balance</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+                foreach ($transactions as $transac):
+
+            ?>
+            <tr>
+                <th scope="row"><?= $transac['transferTimestamp'] ?></th>
+                <th scope="row"><?= $transac['transferValue'] ?></th>
+                <th scope="row"><?= $transac['transferValue'] ?></th>
+            </tr>
+            <?php endforeach; ?>
+
+            </tbody>
+        </table>
+    </section>
+
 </main>
 <?php include "../include/footer.inc.php" ?>
 </body>

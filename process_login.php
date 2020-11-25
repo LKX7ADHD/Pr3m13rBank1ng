@@ -49,9 +49,10 @@ if (isset($_POST['email']) && !empty($_POST['email'])) {
 <main class="container">
     <?php
     if ($success) {
-        echo '<p class="h1">Login successful!</p>';
-        echo '<p class="lead">Welcome back, ' . getAuthenticatedUser()->username . '.</p>';
-        echo '<a class="btn btn-success" href="/personal_banking/dashboard.php" role="button">Continue</a>';
+//        echo '<p class="h1">Login successful!</p>';
+//        echo '<p class="lead">Welcome back, ' . getAuthenticatedUser()->username . '.</p>';
+//        echo '<a class="btn btn-success" href="/personal_banking/dashboard.php" role="button">Continue</a>';
+        header("Location: /personal_banking/dashboard.php");
     } else {
         echo '<p class="h1">Oops</p>';
         echo '<p class="lead">The following errors were detected:</p>';
