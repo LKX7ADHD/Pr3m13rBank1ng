@@ -6,7 +6,7 @@ require_once '../include/sessiontimeout.inc.php';
 $user = getAuthenticatedUser();
 
 if (!$user) {
-    header('Location: login.php');
+    header('Location: ../login.php');
     exit();
 }
 
@@ -93,7 +93,7 @@ and open the template in the editor.
                     <span class="input-group-text" id="account-number-from">Send from</span>
                 </div>
                 <input type="text" class="form-control" aria-label="Send from" aria-describedby="account-number-from"
-                       placeholder="Account number" name="senderAccountNumber">
+                       placeholder="Account number" name="senderAccountNumber" required>
             </div>
         </div>
 
@@ -122,7 +122,7 @@ and open the template in the editor.
                     <span class="input-group-text" id="account-number-to">Send to</span>
                 </div>
                 <input type="text" class="form-control" aria-label="Send to" aria-describedby="account-number-to"
-                       placeholder="Account number" name="receiverAccountNumber">
+                       placeholder="Account number" name="receiverAccountNumber" required>
             </div>
         </div>
 
@@ -135,7 +135,8 @@ and open the template in the editor.
                 <div class="input-group-prepend">
                     <span class="input-group-text">SGD</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Amount" placeholder="Amount" id="amount" name="amount">
+                <input type="text" class="form-control" aria-label="Amount" placeholder="Amount" id="amount"
+                       name="amount" required>
             </div>
         </div>
 
@@ -147,7 +148,7 @@ and open the template in the editor.
             const dropdown = $(e.target).parents('.dropdown')
             dropdown.children('button').text($(e.target).text())
 
-            if (typeof($(e.target).attr('data-otherAccount')) !== 'undefined') {
+            if (typeof ($(e.target).attr('data-otherAccount')) !== 'undefined') {
                 // Other account
                 dropdown.next().find('input').val('')
                 dropdown.next().removeClass('d-none')
@@ -155,6 +156,37 @@ and open the template in the editor.
                 // One of own accounts
                 dropdown.next().addClass('d-none')
                 dropdown.next().find('input').val($(e.target).attr('data-accountNumber'))
+            }
+        })
+
+        $('input[name=senderAccountNumber], input[name=receiverAccountNumber]').on('input', e => {
+            const input = $(e.target)
+            const dashIndices = [3, 9]
+
+            for (let i of dashIndices) {
+                if (input.val().length > i && input.val()[i] !== '-') {
+                    input.val(input.val().slice(0, i) + '-' + input.val().slice(i))
+                } else if (input.val().length === i + 1 && input.val()[i] === '-') {
+                    input.val(input.val().slice(0, i))
+                }
+            }
+        }).on('change', e => {
+            const value = $(e.target).val().replaceAll('-', '')
+
+            if (value.length !== 10) {
+                e.target.setCustomValidity("Invalid account number")
+                return
+            }
+
+            let accumulator = 0;
+            for (let i = 0; i < 8; i++) {
+                accumulator += (parseInt(value[i]) * (17 ** i)) % 17
+            }
+
+            if (value.slice(-2) !== (accumulator % 17).toString().padStart(2, '0')) {
+                e.target.setCustomValidity("Invalid account number")
+            } else {
+                e.target.setCustomValidity("")
             }
         })
     </script>
