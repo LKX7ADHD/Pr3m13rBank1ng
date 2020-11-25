@@ -97,12 +97,12 @@ and open the template in the editor.
             </div>
         </div>
 
-        <p class="lead">Recipent account</p>
+        <p class="lead">Recipient account</p>
 
         <div class="dropdown account-dropdown mb-3" id="receiverDropdown">
             <button type="button" class="btn btn-light dropdown-toggle" id="receiverDropdownButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Select recipent account
+                Select Recipient account
             </button>
             <div class="dropdown-menu" aria-labelledby="receiverDropdownButton">
                 <span class="dropdown-header">My accounts</span>

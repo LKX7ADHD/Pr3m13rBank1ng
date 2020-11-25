@@ -54,6 +54,11 @@ class Account
         return substr($this->accountNumber, 0, 3) . '-' . substr($this->accountNumber, 3, 5) . '-' . substr($this->accountNumber, -2);
     }
 
+    public function getUserID()
+    {
+        return $this->user;
+    }
+
 }
 
 /**
@@ -418,7 +423,7 @@ function getTransactions(User $user) {
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     } else {
-        $stmt = $conn->prepare('SELECT transfers.transferTimestamp, transfers.transferValue from transfers,accounts WHERE transfers.SenderID = ? OR transfers.ReceiverID = ?');
+        $stmt = $conn->prepare('SELECT transfers.transferTimestamp, transfers.transferValue, transfers.SenderID, transfers.ReceiverID from transfers WHERE transfers.SenderID = ? OR transfers.ReceiverID = ?');
         $stmt -> bind_param("ss", $user->userId, $user->userId);
 
         if (!$stmt->execute()) {
