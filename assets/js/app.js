@@ -8,3 +8,9 @@
 function calculate_interest(P, r, n, t) {
     return P * (1 + r / n) ** (n * t);
 }
+
+$(() => {
+    $('nav a.nav-link[href="' + location.pathname + '"]')
+        .append('<span class="sr-only">(current)</span>')
+        .parent().addClass('active')
+})

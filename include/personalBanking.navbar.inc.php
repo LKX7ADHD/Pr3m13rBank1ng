@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <div class="container">
-    <a class="navbar-brand" href="/personal_banking/dashboard.php">Premier Banking</a>
+    <a class="navbar-brand" href="/">Premier Banking</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
             aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -8,11 +8,11 @@
 
     <div class="collapse navbar-collapse" id="navbar">
         <ul class="navbar-nav mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">My Accounts <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <a class="nav-link" href="/personal_banking/">My Accounts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../personal_banking/transfer.php">Transfer</a>
+                <a class="nav-link" href="/personal_banking/transfer.php">Transfer</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Loan Applications</a>

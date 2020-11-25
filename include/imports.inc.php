@@ -9,6 +9,7 @@
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
 
+<script src="../assets/js/app.js" defer></script>
 
 <!-- Style CSS -->
 <link rel="stylesheet" href="/assets/css/style.css">

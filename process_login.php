@@ -31,7 +31,7 @@ if (isset($_POST['email']) && !empty($_POST['email'])) {
 }
 
 if ($success) {
-    header("Location: /personal_banking/dashboard.php");
+    header("Location: /personal_banking/");
 }
 
 ?>
