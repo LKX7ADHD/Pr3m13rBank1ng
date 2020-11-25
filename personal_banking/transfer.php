@@ -13,12 +13,24 @@ if (!$user) {
 $accounts = getAccounts($user);
 $readyToTransfer = true;
 
-if (!isset($_POST['senderAccountNumber']) || empty($_POST['senderAccountNumber']) || !isAccountNumberValid($_POST['senderAccountNumber'])) {
+if (!isset($_POST['senderAccountNumber']) || empty($_POST['senderAccountNumber'])) {
     $readyToTransfer = false;
+} else {
+    $senderAccountNumber = str_replace('-', '', sanitiseInput($_POST['senderAccountNumber']));
+
+    if (!isAccountNumberValid($senderAccountNumber)) {
+        $readyToTransfer = false;
+    }
 }
 
-if (!isset($_POST['receiverAccountNumber']) || empty($_POST['receiverAccountNumber']) || !isAccountNumberValid($_POST['receiverAccountNumber'])) {
+if (!isset($_POST['receiverAccountNumber']) || empty($_POST['receiverAccountNumber'])) {
     $readyToTransfer = false;
+} else {
+    $receiverAccountNumber = str_replace('-', '', sanitiseInput($_POST['receiverAccountNumber']));
+
+    if (!isAccountNumberValid($receiverAccountNumber)) {
+        $readyToTransfer = false;
+    }
 }
 
 if (!isset($_POST['amount']) || empty($_POST['amount']) || !filter_var($_POST['amount'], FILTER_VALIDATE_FLOAT)) {
@@ -26,8 +38,6 @@ if (!isset($_POST['amount']) || empty($_POST['amount']) || !filter_var($_POST['a
 }
 
 if ($readyToTransfer) {
-    $senderAccountNumber = str_replace('-', '', sanitiseInput($_POST['senderAccountNumber']));
-    $receiverAccountNumber = str_replace('-', '', sanitiseInput($_POST['receiverAccountNumber']));
     $amountValue = sanitiseInput($_POST['amount']);
     $amount = new Currency($amountValue);
 
