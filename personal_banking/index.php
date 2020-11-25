@@ -74,9 +74,12 @@ and open the template in the editor.
 
                     echo '<tr>';
                     echo '<th scope="row">' . date('d/m/Y',strtotime($transac['transferTimestamp'])) . '</th>';
-                    echo '<th></th>';
-                    echo '<th></th>';
 
+
+                    foreach ($accounts as $account) {
+                        echo '<th>' . $account->getAccountNumberRepresentation() . '</th>';
+                    }
+                    echo '<th></th>';
                     foreach($accID as $acc) {
                         if ((int)implode($acc) == $transac['ReceiverID'])
                         {
