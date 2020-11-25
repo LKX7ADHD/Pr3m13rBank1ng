@@ -4,7 +4,14 @@ require_once '../include/sessiontimeout.inc.php';
 
 $user = getAuthenticatedUser();
 $accounts = getAccounts($user);
-$transactions = getTransactions($user);
+
+$transactionsData = getTransactions($accounts);
+
+$transaction = array();
+$accID = array();
+list($accID, $transaction) = $transactionsData;
+
+
 
 if (!$user) {
     header('Location: login.php');
@@ -53,29 +60,35 @@ and open the template in the editor.
             <thead>
             <tr>
                 <th scope="col">Date</th>
+                <th scope="col">Account</th>
                 <th scope="col">Transaction</th>
                 <th scope="col">Deposit</th>
                 <th scope="col">Withdrawal</th>
             </tr>
             </thead>
             <tbody>
-            <?php
-                foreach ($transactions as $transac)
+
+<?php
+                foreach ($transaction as $transac)
                 {
+
                     echo '<tr>';
                     echo '<th scope="row">' . $transac['transferTimestamp'] . '</th>';
                     echo '<th></th>';
+                    echo '<th></th>';
 
-                    $ID = $user->userId;
-
-                    if ($ID == $transac["SenderID"])
-                    {
-                        echo "<th>" . $transac['transferValue'] . "</th>";
-                        echo "<th>" . "-" . "</th>";
-                    } else {
-                        echo "<th>" . "-" . "</th>";
-                        echo "<th>" . $transac['transferValue'] . "</th>";
+                    foreach($accID as $acc) {
+                        if ((int)implode($acc) == $transac['ReceiverID'])
+                        {
+                            echo "<th>" . $transac['transferValue'] . "</th>";
+                            echo "<th>" . "-" . "</th>";
+                        } else {
+                            echo "<th>" . "-" . "</th>";
+                            echo "<th>" . $transac['transferValue'] . "</th>";
+                        }
                     }
+
+
 
                     echo '</tr>';
                 }

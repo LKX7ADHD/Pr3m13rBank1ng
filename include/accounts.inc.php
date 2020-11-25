@@ -413,32 +413,56 @@ function isAccountNumberValid(string $accountNumber)
 }
 
 
+
+
 // Get Transfers
 
-function getTransactions(User $user) {
+function getTransactions(array $accounts) {
 
     $conn = connectToDatabase();
+
+    $arrData = [];
+    $accID = [];
 
     if ($conn->connect_error) {
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     } else {
-        $stmt = $conn->prepare('SELECT transfers.transferTimestamp, transfers.transferValue, transfers.SenderID, transfers.ReceiverID from transfers WHERE transfers.SenderID = ? OR transfers.ReceiverID = ?');
-        $stmt -> bind_param("ss", $user->userId, $user->userId);
+        foreach ($accounts as $acc) {
+            // Get Accounts Number
 
-        if (!$stmt->execute()) {
-            http_response_code(500);
-            die('An unexpected error has occurred. Please try again later.');
+            $stmtForAccountID = $conn->prepare('SELECT accounts.AccountID FROM accounts WHERE accounts.accountNumber = ?');
+            $stmtForAccountID -> bind_param("s", $acc->accountNumber);
+
+            if (!$stmtForAccountID->execute()) {
+                http_response_code(500);
+                die('An unexpected error has occurred. Please try again later.');
+            }
+
+            $result = $stmtForAccountID->get_result();
+            $accID = $result->fetch_all(MYSQLI_ASSOC);
+
+            $stmtForAccountID->close();
+
+//            Get Value
+            $stmt = $conn->prepare('SELECT transfers.transferTimestamp, transfers.transferValue, transfers.ReceiverID FROM transfers WHERE transfers.ReceiverID = (SELECT accounts.AccountID from accounts WHERE accounts.accountNumber = ?) OR transfers.SenderID = (SELECT accounts.AccountID from accounts WHERE accounts.accountNumber = ?)');
+            $stmt -> bind_param("ss", $acc->accountNumber, $acc->accountNumber);
+
+            if (!$stmt->execute()) {
+                http_response_code(500);
+                die('An unexpected error has occurred. Please try again later.');
+            }
+
+            $result = $stmt->get_result();
+            $arrData = $result->fetch_all(MYSQLI_ASSOC);
+
+            $stmt->close();
         }
 
-        $result = $stmt->get_result();
-        $data = $result->fetch_all(MYSQLI_ASSOC);
-
-        $stmt->close();
     }
 
     $conn->close();
-    return $data;
+    return array($accID, $arrData);
 }
 
 
