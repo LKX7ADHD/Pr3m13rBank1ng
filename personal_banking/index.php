@@ -42,9 +42,7 @@ if (!$user) {
     </ul>
 
     <section class="transfers">
-        <h3>
-            Transaction History
-        </h3>
+        <h3>Transaction History</h3>
 
         <table class="table table-bordered">
             <thead>
@@ -60,6 +58,8 @@ if (!$user) {
 
             <?php
             foreach ($transfers as $transfer) {
+                $value = new Currency($transfer['transferValue']);
+
                 echo '<tr>';
                 echo '<td scope="row">' . date('d/m/Y', strtotime($transfer['transferTimestamp'])) . '</td>';
 
@@ -69,11 +69,11 @@ if (!$user) {
 
                 echo '<td></td>';
                 if ($transfer['deposit']) {
-                    echo "<td>" . $transfer['transferValue'] . "</td>";
-                    echo "<td>" . "-" . "</td>";
+                    echo "<td>" . $value->getRepresentation() . "</td>";
+                    echo "<td>-</td>";
                 } else {
-                    echo "<td>" . "-" . "</td>";
-                    echo "<td>" . $transfer['transferValue'] . "</td>";
+                    echo "<td>-</td>";
+                    echo "<td>" . $value->getRepresentation() . "</td>";
                 }
                 echo '</tr>';
             }
