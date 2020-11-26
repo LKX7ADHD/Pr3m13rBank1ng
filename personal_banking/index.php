@@ -5,13 +5,7 @@ require_once '../include/sessiontimeout.inc.php';
 $user = getAuthenticatedUser();
 $accounts = getAccounts($user);
 
-$transactionsData = getTransactions($accounts);
-
-$transaction = array();
-$accID = array();
-list($accID, $transaction) = $transactionsData;
-
-
+$transfers = getTransfers($accounts);
 
 if (!$user) {
     header('Location: login.php');
@@ -64,33 +58,26 @@ if (!$user) {
             </thead>
             <tbody>
 
-<?php
-                foreach ($transaction as $txn)
-                {
+            <?php
+            foreach ($transfers as $transfer) {
+                echo '<tr>';
+                echo '<td scope="row">' . date('d/m/Y', strtotime($transfer['transferTimestamp'])) . '</td>';
 
-                    echo '<tr>';
-                    echo '<th scope="row">' . date('d/m/Y',strtotime($txn['transferTimestamp'])) . '</th>';
-
-
-                    foreach ($accounts as $account) {
-                        echo '<th>' . $account->getAccountNumberRepresentation() . '</th>';
-                    }
-                    echo '<th></th>';
-                    foreach($accID as $acc) {
-                        if ((int)implode($acc) == $txn['ReceiverID'])
-                        {
-                            echo "<th>" . $txn['transferValue'] . "</th>";
-                            echo "<th>" . "-" . "</th>";
-                        } else {
-                            echo "<th>" . "-" . "</th>";
-                            echo "<th>" . $txn['transferValue'] . "</th>";
-                        }
-                    }
-                    echo '</tr>';
+                foreach ($accounts as $account) {
+                    echo '<td>' . $account->getAccountNumberRepresentation() . '</td>';
                 }
+
+                echo '<td></td>';
+                if ($transfer['deposit']) {
+                    echo "<td>" . $transfer['transferValue'] . "</td>";
+                    echo "<td>" . "-" . "</td>";
+                } else {
+                    echo "<td>" . "-" . "</td>";
+                    echo "<td>" . $transfer['transferValue'] . "</td>";
+                }
+                echo '</tr>';
+            }
             ?>
-
-
             </tbody>
         </table>
     </section>

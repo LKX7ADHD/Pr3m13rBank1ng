@@ -376,50 +376,30 @@ function isAccountNumberValid(string $accountNumber) {
 }
 
 
-// Get Transfers
 
-function getTransactions(array $accounts) {
-
+function getTransfers(array $accounts) {
     $conn = connectToDatabase();
-
-    $arrData = [];
-    $accID = [];
+    $transfers = array();
 
     if ($conn->connect_error) {
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     } else {
         foreach ($accounts as $acc) {
-            // Get Accounts Number
-
-            $stmtForAccountID = $conn->prepare('SELECT accounts.AccountID FROM accounts WHERE accounts.accountNumber = ?');
-            $stmtForAccountID->bind_param("s", $acc->accountNumber);
-
-            if (!$stmtForAccountID->execute()) {
-                http_response_code(500);
-                die('An unexpected error has occurred. Please try again later.');
-            }
-            $result = $stmtForAccountID->get_result();
-            $stmtForAccountID->close();
-            $accID = $result->fetch_all(MYSQLI_ASSOC);
-
-//            Get Value
-            $stmt = $conn->prepare('SELECT transfers.transferTimestamp, transfers.transferValue, transfers.ReceiverID FROM transfers WHERE transfers.ReceiverID = (SELECT accounts.AccountID from accounts WHERE accounts.accountNumber = ?) OR transfers.SenderID = (SELECT accounts.AccountID from accounts WHERE accounts.accountNumber = ?)');
-            $stmt->bind_param("ss", $acc->accountNumber, $acc->accountNumber);
+            $stmt = $conn->prepare('SELECT T.transferTimestamp, T.transferValue, A.AccountID = T.ReceiverID AS deposit FROM Transfers T INNER JOIN Accounts A ON T.ReceiverID = A.AccountID OR T.SenderID = A.AccountID WHERE A.accountNumber = ?');
+            $stmt->bind_param("s", $acc->accountNumber);
 
             if (!$stmt->execute()) {
                 http_response_code(500);
                 die('An unexpected error has occurred. Please try again later.');
             }
             $result = $stmt->get_result();
+            array_push($transfers, ...$result->fetch_all(MYSQLI_ASSOC));
             $stmt->close();
         }
     }
     $conn->close();
-    if ($result) {
-        $arrData = $result->fetch_all(MYSQLI_ASSOC);
-    }
-    return array($accID, $arrData);
+    return $transfers;
 }
 
 
