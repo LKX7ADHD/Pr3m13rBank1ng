@@ -12,48 +12,77 @@ if (!$user) {
 
 $accounts = getAccounts($user);
 $readyToTransfer = true;
+$errors = array();
 
-if (!isset($_POST['senderAccountNumber']) || empty($_POST['senderAccountNumber'])) {
-    $readyToTransfer = false;
-} else {
-    $senderAccountNumber = str_replace('-', '', sanitiseInput($_POST['senderAccountNumber']));
-
-    if (!isAccountNumberValid($senderAccountNumber) || !in_array($senderAccountNumber, array_map(function ($account) { return $account->accountNumber; }, $accounts), true)) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!isset($_POST['senderAccountNumber']) || empty($_POST['senderAccountNumber'])) {
         $readyToTransfer = false;
-    }
-}
-
-if (!isset($_POST['receiverAccountNumber']) || empty($_POST['receiverAccountNumber'])) {
-    $readyToTransfer = false;
-} else {
-    $receiverAccountNumber = str_replace('-', '', sanitiseInput($_POST['receiverAccountNumber']));
-
-    if (!isAccountNumberValid($receiverAccountNumber) || !getAccount($receiverAccountNumber)) {
-        $readyToTransfer = false;
-    }
-}
-
-if (isset($senderAccountNumber) && isset($receiverAccountNumber) && $senderAccountNumber === $receiverAccountNumber) {
-    $readyToTransfer = false;
-}
-
-if (!isset($_POST['amount']) || empty($_POST['amount']) || !filter_var($_POST['amount'], FILTER_VALIDATE_FLOAT)) {
-    $readyToTransfer = false;
-}
-
-if ($readyToTransfer) {
-    $amountValue = sanitiseInput($_POST['amount']);
-    $amount = new Currency($amountValue);
-
-    $senderAccount = getAccount($senderAccountNumber);
-    $receiverAccount = getAccount($receiverAccountNumber);
-
-    if (performTransfer($senderAccount, $receiverAccount, $amount)) {
-        header('Location: transferSuccess.php');
-        exit();
+        $errors[] = 'No sender account number specified';
     } else {
-        header('Location: transferError.php');
-        exit();
+        $senderAccountNumber = str_replace('-', '', sanitiseInput($_POST['senderAccountNumber']));
+
+        if (!isAccountNumberValid($senderAccountNumber)) {
+            $readyToTransfer = false;
+            $errors[] = 'Invalid sender account number';
+        } else {
+            foreach ($accounts as $account) {
+                if ($senderAccountNumber === $account->accountNumber) {
+                    $senderAccount = $account;
+                }
+            }
+
+            if (!$senderAccount) {
+                $readyToTransfer = false;
+                $errors[] = 'Invalid sender account number';
+            }
+        }
+    }
+
+    if (!isset($_POST['receiverAccountNumber']) || empty($_POST['receiverAccountNumber'])) {
+        $readyToTransfer = false;
+        $errors[] = 'No recipient account number specified';
+    } else {
+        $receiverAccountNumber = str_replace('-', '', sanitiseInput($_POST['receiverAccountNumber']));
+
+        if (!isAccountNumberValid($receiverAccountNumber)) {
+            $readyToTransfer = false;
+            $errors[] = 'Invalid recipient account number';
+        } else {
+            $receiverAccount = getAccount($receiverAccountNumber);
+
+            if (!$receiverAccount) {
+                $readyToTransfer = false;
+                $errors[] = 'Invalid recipient account number';
+            }
+        }
+    }
+
+    if (isset($senderAccountNumber) && isset($receiverAccountNumber) && $senderAccountNumber === $receiverAccountNumber) {
+        $readyToTransfer = false;
+        $errors[] = 'Cannot transfer to the same account';
+    }
+
+    if (!isset($_POST['amount']) || empty($_POST['amount']) || !filter_var($_POST['amount'], FILTER_VALIDATE_FLOAT)) {
+        $readyToTransfer = false;
+        $errors[] = 'No amount specified';
+    } else {
+        $amountValue = sanitiseInput($_POST['amount']);
+        $amount = new Currency($amountValue);
+
+        if ($amount->lessThan(new Currency('0'))) {
+            $readyToTransfer = false;
+            $errors[] = 'Invalid amount';
+        }
+    }
+
+    if ($readyToTransfer) {
+        if (performTransfer($senderAccount, $receiverAccount, $amount)) {
+            header('Location: transferSuccess.php');
+            exit();
+        } else {
+            header('Location: transferError.php');
+            exit();
+        }
     }
 }
 
@@ -81,7 +110,16 @@ and open the template in the editor.
 </header>
 
 <main class="container">
-    <form method="POST">
+    <?php
+
+    if (!$readyToTransfer) {
+        foreach ($errors as $error) {
+            echo '<div class="alert alert-danger" role="alert">' . $error . '</div>';
+        }
+    }
+
+    ?>
+    <form method="POST" id="transfer-form">
         <p class="lead">Sending account</p>
 
         <div class="dropdown account-dropdown mb-3" id="senderDropdown">
@@ -105,16 +143,17 @@ and open the template in the editor.
                     <span class="input-group-text" id="account-number-from">Send from</span>
                 </div>
                 <input type="text" class="form-control" aria-label="Send from" aria-describedby="account-number-from"
-                       placeholder="Account number" name="senderAccountNumber" required>
+                       placeholder="Account number" name="senderAccountNumber">
             </div>
         </div>
 
+        <p id="sending-account-invalid-warning" class="text-danger d-none mb-4">Please specify an account to transfer from</p>
         <p class="lead">Recipient account</p>
 
         <div class="dropdown account-dropdown mb-3" id="receiverDropdown">
             <button type="button" class="btn btn-light dropdown-toggle" id="receiverDropdownButton"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Select Recipient account
+                Select recipient account
             </button>
             <div class="dropdown-menu" aria-labelledby="receiverDropdownButton">
                 <span class="dropdown-header">My accounts</span>
@@ -134,25 +173,24 @@ and open the template in the editor.
                     <span class="input-group-text" id="account-number-to">Send to</span>
                 </div>
                 <input type="text" class="form-control" aria-label="Send to" aria-describedby="account-number-to"
-                       placeholder="Account number" name="receiverAccountNumber" required>
+                       placeholder="Account number" name="receiverAccountNumber">
             </div>
         </div>
 
-        <label for="amount">
-            <p class="lead">Amount to send</p>
-        </label>
+        <p id="recipent-account-invalid-warning" class="text-danger d-none mb-4">Please specify an account to transfer to</p>
+        <label for="amount" class="d-block lead">Amount to send</label>
 
         <div class="form-group mb-3">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">SGD</span>
+                    <span class="input-group-text">$</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Amount" placeholder="Amount" id="amount"
-                       name="amount" required>
+                <input type="number" class="form-control" aria-label="Amount" placeholder="Amount" id="amount"
+                       name="amount" min="0.01" step="0.01" required>
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary mb-3">Transfer</button>
+        <button type="submit" class="btn btn-primary btn-lg mb-3">Transfer</button>
     </form>
 
     <script>
@@ -205,6 +243,23 @@ and open the template in the editor.
             } else {
                 e.target.setCustomValidity("")
             }
+        })
+
+        $('#transfer-form').on('submit', e => {
+            let valid = true
+            $('#sending-account-invalid-warning, #recipent-account-invalid-warning').addClass('d-none')
+
+            if ($('input[name=senderAccountNumber]').val() === '') {
+                $('#sending-account-invalid-warning').removeClass('d-none')
+                valid = false
+            }
+
+            if ($('input[name=receiverAccountNumber]').val() === '') {
+                $('#recipent-account-invalid-warning').removeClass('d-none')
+                valid = false
+            }
+
+            return valid
         })
     </script>
 
