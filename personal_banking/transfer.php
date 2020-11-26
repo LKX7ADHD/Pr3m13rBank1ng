@@ -37,6 +37,8 @@ if (!isset($_POST['amount']) || empty($_POST['amount']) || !filter_var($_POST['a
     $readyToTransfer = false;
 }
 
+
+
 if ($readyToTransfer) {
     $amountValue = sanitiseInput($_POST['amount']);
     $amount = new Currency($amountValue);

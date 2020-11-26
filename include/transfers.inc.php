@@ -125,7 +125,7 @@ function performTransfer(Account $sender, Account $receiver, Currency $amount) {
         $conn->close();
     } else {
         $transferred = false;
-        die('Not enough balance!');
+        //die('Not enough balance!');
     }
 
     return $transferred;
@@ -163,5 +163,3 @@ function reverseTransfer(int $transferID) {
     return $reversed;
 
 }
-
-?>
