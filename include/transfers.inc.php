@@ -1,6 +1,8 @@
 <?php
 require_once 'accounts.inc.php';
 
+$errors = array();
+
 /**
  * Sends money from an account to another
  * @param Account $sender Sender Account
@@ -27,7 +29,7 @@ function performTransfer(Account $sender, Account $receiver, Currency $amount) {
         if ($conn->connect_error) {
             $transferred = false;
             http_response_code(500);
-            die('Unable to connect to the database');
+            $errors[] = 'Unable to connect to the database';
 
         } else {
             // Update the receiver account balance
@@ -37,7 +39,7 @@ function performTransfer(Account $sender, Account $receiver, Currency $amount) {
             if (!$stmt->execute()) {
                 $transferred = false;
                 http_response_code(500);
-                die('Unable to update receiver account balance');
+                $errors[] = 'Unable to update receiver account balance';
             }
 
             // Update the sender account balance
@@ -47,7 +49,7 @@ function performTransfer(Account $sender, Account $receiver, Currency $amount) {
             if (!$stmt->execute()) {
                 $transferred = false;
                 http_response_code(500);
-                die('An unexpected error has occurred. Please try again later.');
+                $errors[] = 'An unexpected error has occurred. Please try again later.';
             }
 
             // Get current date and time.
@@ -60,17 +62,23 @@ function performTransfer(Account $sender, Account $receiver, Currency $amount) {
             if (!$stmt->execute()) {
                 $transferred = false;
                 http_response_code(500);
-                die('An unexpected error has occurred. Please try again later.');
+                $errors[] = 'An unexpected error has occurred. Please try again later.';
             }
             $stmt->close();
         }
         $conn->close();
     } else {
         $transferred = false;
-        //die('Not enough balance!');
+        $errors[] = 'Not enough balance!';
     }
 
     return $transferred;
+}
+
+function getErrors() {
+    global $errors;
+    return $errors;
+
 }
 
 /**
