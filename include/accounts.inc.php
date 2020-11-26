@@ -48,10 +48,18 @@ class Account {
      */
     public $balance;
 
+    /**
+     * Get a representation of the balance for display
+     * @return string
+     */
     public function getBalanceRepresentation() {
         return $this->balance->getRepresentation();
     }
 
+    /**
+     * Get a representation of account number for display
+     * @return string
+     */
     public function getAccountNumberRepresentation() {
         return substr($this->accountNumber, 0, 3) . '-' . substr($this->accountNumber, 3, 5) . '-' . substr($this->accountNumber, -2);
     }
@@ -73,11 +81,15 @@ class Currency {
         $this->value = trim($value);
     }
 
-    public function getValue(): string {
+    public function getValue() {
         return $this->value;
     }
 
-    public function getRepresentation(): string {
+    /**
+     * Get a representation of value for display
+     * @return string
+     */
+    public function getRepresentation() {
         $n = (strlen($this->value) - 1) % 3 + 1;
         $representation = '$' . substr($this->value, 0, $n);
 
@@ -299,7 +311,7 @@ function getAuthenticatedUser() {
 /**
  * Retrieves accounts owned by the specified user
  * @param User $user the user to retrieve accounts for
- * @return array<Account> accounts
+ * @return Account[] accounts
  */
 function getAccounts(User $user) {
     $accounts = array();
@@ -451,7 +463,7 @@ function isAccountNumberValid(string $accountNumber) {
 
 /**
  * Retrieves transfer history for one or more accounts
- * @param array<Account> $accounts
+ * @param Account[] $accounts
  * @return array transfers
  */
 function getTransfers(array $accounts) {
