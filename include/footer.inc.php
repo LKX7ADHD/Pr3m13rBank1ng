@@ -49,7 +49,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <p class="copyright__text">
-                        Copyright &copy; 2020 Spider Web &middot; ICT1004 Project
+                        Copyright &copy; 2020 Premier Banking &middot; ICT1004 Project
                     </p>
                 </div>
             </div>

@@ -440,9 +440,9 @@ function getTransactions(array $accounts) {
             }
 
             $result = $stmtForAccountID->get_result();
+            $stmtForAccountID->close();
             $accID = $result->fetch_all(MYSQLI_ASSOC);
 
-            $stmtForAccountID->close();
 
 //            Get Value
             $stmt = $conn->prepare('SELECT transfers.transferTimestamp, transfers.transferValue, transfers.ReceiverID FROM transfers WHERE transfers.ReceiverID = (SELECT accounts.AccountID from accounts WHERE accounts.accountNumber = ?) OR transfers.SenderID = (SELECT accounts.AccountID from accounts WHERE accounts.accountNumber = ?)');
@@ -454,9 +454,8 @@ function getTransactions(array $accounts) {
             }
 
             $result = $stmt->get_result();
-            $arrData = $result->fetch_all(MYSQLI_ASSOC);
-
             $stmt->close();
+            $arrData = $result->fetch_all(MYSQLI_ASSOC);
         }
 
     }
@@ -465,6 +464,11 @@ function getTransactions(array $accounts) {
     return array($accID, $arrData);
 }
 
+
+function getTransferDescription()
+{
+
+}
 
 
 

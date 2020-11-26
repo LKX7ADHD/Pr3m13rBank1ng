@@ -20,11 +20,7 @@ if (!$user) {
 
 ?>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html lang="en">
 
 <head>
@@ -69,11 +65,11 @@ and open the template in the editor.
             <tbody>
 
 <?php
-                foreach ($transaction as $transac)
+                foreach ($transaction as $txn)
                 {
 
                     echo '<tr>';
-                    echo '<th scope="row">' . date('d/m/Y',strtotime($transac['transferTimestamp'])) . '</th>';
+                    echo '<th scope="row">' . date('d/m/Y',strtotime($txn['transferTimestamp'])) . '</th>';
 
 
                     foreach ($accounts as $account) {
@@ -81,18 +77,15 @@ and open the template in the editor.
                     }
                     echo '<th></th>';
                     foreach($accID as $acc) {
-                        if ((int)implode($acc) == $transac['ReceiverID'])
+                        if ((int)implode($acc) == $txn['ReceiverID'])
                         {
-                            echo "<th>" . $transac['transferValue'] . "</th>";
+                            echo "<th>" . $txn['transferValue'] . "</th>";
                             echo "<th>" . "-" . "</th>";
                         } else {
                             echo "<th>" . "-" . "</th>";
-                            echo "<th>" . $transac['transferValue'] . "</th>";
+                            echo "<th>" . $txn['transferValue'] . "</th>";
                         }
                     }
-
-
-
                     echo '</tr>';
                 }
             ?>
