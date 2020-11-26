@@ -143,7 +143,7 @@ and open the template in the editor.
                     <span class="input-group-text" id="account-number-from">Send from</span>
                 </div>
                 <input type="text" class="form-control" aria-label="Send from" aria-describedby="account-number-from"
-                       placeholder="Account number" name="senderAccountNumber">
+                       placeholder="Account number" name="senderAccountNumber" minlength="12" maxlength="12">
             </div>
         </div>
 
@@ -173,7 +173,7 @@ and open the template in the editor.
                     <span class="input-group-text" id="account-number-to">Send to</span>
                 </div>
                 <input type="text" class="form-control" aria-label="Send to" aria-describedby="account-number-to"
-                       placeholder="Account number" name="receiverAccountNumber">
+                       placeholder="Account number" name="receiverAccountNumber" minlength="12" maxlength="12">
             </div>
         </div>
 
@@ -217,14 +217,24 @@ and open the template in the editor.
         $('input[name=senderAccountNumber], input[name=receiverAccountNumber]').on('input', e => {
             const input = $(e.target)
             const dashIndices = [3, 9]
+            let caretPos = e.target.selectionStart
 
-            for (let i of dashIndices) {
-                if (input.val().length > i && input.val()[i] !== '-') {
-                    input.val(input.val().slice(0, i) + '-' + input.val().slice(i))
-                } else if (input.val().length === i + 1 && input.val()[i] === '-') {
-                    input.val(input.val().slice(0, i))
+            for (let i = 0; i < input.val().length; i++) {
+                if (dashIndices.includes(i)) {
+                    if (input.val().length > i && input.val()[i] !== '-') {
+                        input.val(input.val().slice(0, i) + '-' + input.val().slice(i))
+                        if (caretPos === i+1) {
+                            caretPos++
+                        }
+                    } else if (input.val().length === i + 1 && input.val()[i] === '-') {
+                        input.val(input.val().slice(0, i))
+                    }
+                } else if (input.val()[i] === '-') {
+                    input.val(input.val().slice(0, i) + input.val().slice(i+1))
                 }
             }
+
+            e.target.setSelectionRange(caretPos, caretPos)
         }).on('change', e => {
             const value = $(e.target).val().replaceAll('-', '')
 
