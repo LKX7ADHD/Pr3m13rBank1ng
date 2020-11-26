@@ -18,7 +18,6 @@ session_start();
  * Encapsulates user information
  */
 class User {
-    public $userId;
     public $username;
     public $firstName;
     public $lastName;
@@ -29,31 +28,112 @@ class User {
  * Encapsulates account information
  */
 class Account {
+    /**
+     * @var string name of the account
+     */
     public $accountName;
+
+    /**
+     * @var string unique account number representing the account
+     */
     public $accountNumber;
+
+    /**
+     * @var User the owner of the account
+     */
     public $user;
+
+    /**
+     * @var Currency amount of money stored in account
+     */
     public $balance;
 
+    /**
+     * Get a representation of the balance for display
+     * @return string
+     */
     public function getBalanceRepresentation() {
-        $n = (strlen($this->balance) - 1) % 3 + 1;
-        $representation = '$' . substr($this->balance, 0, $n);
-
-        for ($i = 0; $i < ceil(strlen($this->balance) / 3) - 2; $i++) {
-            $representation .= ',' . substr($this->balance, $n + 3 * $i, 3);
-        }
-
-        $representation .= substr($this->balance, -3);
-        return $representation;
+        return $this->balance->getRepresentation();
     }
 
+    /**
+     * Get a representation of account number for display
+     * @return string
+     */
     public function getAccountNumberRepresentation() {
         return substr($this->accountNumber, 0, 3) . '-' . substr($this->accountNumber, 3, 5) . '-' . substr($this->accountNumber, -2);
     }
+}
 
-    public function getUserID() {
-        return $this->user;
+/**
+ * Represents monetary value
+ */
+class Currency {
+    /**
+     * @var string amount of money
+     */
+    private $value;
+
+    /**
+     * @param $value string amount of money
+     */
+    public function __construct(string $value) {
+        $this->value = trim($value);
     }
 
+    public function getValue() {
+        return $this->value;
+    }
+
+    /**
+     * Get a representation of value for display
+     * @return string
+     */
+    public function getRepresentation() {
+        $n = (strlen($this->value) - 1) % 3 + 1;
+        $representation = '$' . substr($this->value, 0, $n);
+
+        for ($i = 0; $i < ceil(strlen($this->value) / 3) - 2; $i++) {
+            $representation .= ',' . substr($this->value, $n + 3 * $i, 3);
+        }
+
+        $representation .= substr($this->value, -3);
+        return $representation;
+    }
+
+    /**
+     * @param $currency Currency amount of money to add to the receiver
+     */
+    public function add(Currency $currency) {
+        $this->value = bcadd($this->value, $currency->value, 2);
+    }
+
+    /**
+     * @param Currency $currency amount of money to subtract from the receiver
+     */
+    public function subtract(Currency $currency) {
+        $this->value = bcsub($this->value, $currency->value, 2);
+    }
+
+    public function equalTo(Currency $other) {
+        return bccomp($this->value, $other->value, 2) == 0;
+    }
+
+    public function lessThan(Currency $other) {
+        return bccomp($this->value, $other->value, 2) == -1;
+    }
+
+    public function greaterThan(Currency $other) {
+        return $other->lessThan($this);
+    }
+
+    public function lessThanOrEqualTo(Currency $other) {
+        return !$other->lessThan($this);
+    }
+
+    public function greaterThanOrEqualTo(Currency $other) {
+        return !$this->lessThan($other);
+    }
 }
 
 /**
@@ -231,7 +311,7 @@ function getAuthenticatedUser() {
 /**
  * Retrieves accounts owned by the specified user
  * @param User $user the user to retrieve accounts for
- * @return array<Account> accounts
+ * @return Account[] accounts
  */
 function getAccounts(User $user) {
     $accounts = array();
@@ -257,7 +337,7 @@ function getAccounts(User $user) {
         $account = new Account();
         $account->user = $user;
         $account->accountName = $row['accountName'];
-        $account->balance = $row['accountValue'];
+        $account->balance = new Currency($row['accountValue']);
         $account->accountNumber = $row['accountNumber'];
         $accounts[] = $account;
     }
@@ -281,7 +361,7 @@ function getAccount(string $accountNumber) {
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     } else {
-        $stmt = $conn->prepare('SELECT Accounts.accountName, Accounts.accountValue, Users.UserID FROM Accounts INNER JOIN Users ON Accounts.UserID=Users.UserID WHERE Accounts.accountNumber = ?');
+        $stmt = $conn->prepare('SELECT A.accountName, A.accountValue, U.username, U.firstName, U.lastName, U.email FROM Accounts A INNER JOIN Users U ON A.UserID = U.UserID WHERE A.accountNumber = ?');
         $stmt->bind_param('s', $accountNumber);
 
         if (!$stmt->execute()) {
@@ -294,10 +374,16 @@ function getAccount(string $accountNumber) {
     }
     $conn->close();
     while ($row = $result->fetch_assoc()) {
+        $user = new User();
+        $user->username = $row['username'];
+        $user->firstName = $row['firstName'];
+        $user->lastName = $row['lastName'];
+        $user->email = $row['email'];
+
         $account = new Account();
-        $account->user = $row['UserID'];
+        $account->user = $user;
         $account->accountName = $row['accountName'];
-        $account->balance = $row['accountValue'];
+        $account->balance = new Currency($row['accountValue']);
         $account->accountNumber = $accountNumber;
     }
     return $account;
@@ -375,51 +461,34 @@ function isAccountNumberValid(string $accountNumber) {
     return substr($accountNumber, -2) === sprintf('%02d', $accumulator % 17);
 }
 
-
-// Get Transfers
-
-function getTransactions(array $accounts) {
-
+/**
+ * Retrieves transfer history for one or more accounts
+ * @param Account[] $accounts
+ * @return array transfers
+ */
+function getTransfers(array $accounts) {
     $conn = connectToDatabase();
-
-    $arrData = [];
-    $accID = [];
+    $transfers = array();
 
     if ($conn->connect_error) {
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     } else {
         foreach ($accounts as $acc) {
-            // Get Accounts Number
-
-            $stmtForAccountID = $conn->prepare('SELECT accounts.AccountID FROM accounts WHERE accounts.accountNumber = ?');
-            $stmtForAccountID->bind_param("s", $acc->accountNumber);
-
-            if (!$stmtForAccountID->execute()) {
-                http_response_code(500);
-                die('An unexpected error has occurred. Please try again later.');
-            }
-            $result = $stmtForAccountID->get_result();
-            $stmtForAccountID->close();
-            $accID = $result->fetch_all(MYSQLI_ASSOC);
-
-//            Get Value
-            $stmt = $conn->prepare('SELECT transfers.transferTimestamp, transfers.transferValue, transfers.ReceiverID FROM transfers WHERE transfers.ReceiverID = (SELECT accounts.AccountID from accounts WHERE accounts.accountNumber = ?) OR transfers.SenderID = (SELECT accounts.AccountID from accounts WHERE accounts.accountNumber = ?)');
-            $stmt->bind_param("ss", $acc->accountNumber, $acc->accountNumber);
+            $stmt = $conn->prepare('SELECT T.transferTimestamp, T.transferValue, A.AccountID = T.ReceiverID AS deposit FROM Transfers T INNER JOIN Accounts A ON T.ReceiverID = A.AccountID OR T.SenderID = A.AccountID WHERE A.accountNumber = ?');
+            $stmt->bind_param("s", $acc->accountNumber);
 
             if (!$stmt->execute()) {
                 http_response_code(500);
                 die('An unexpected error has occurred. Please try again later.');
             }
             $result = $stmt->get_result();
+            array_push($transfers, ...$result->fetch_all(MYSQLI_ASSOC));
             $stmt->close();
         }
     }
     $conn->close();
-    if ($result) {
-        $arrData = $result->fetch_all(MYSQLI_ASSOC);
-    }
-    return array($accID, $arrData);
+    return $transfers;
 }
 
 
