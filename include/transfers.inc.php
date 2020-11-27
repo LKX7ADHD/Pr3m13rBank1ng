@@ -1,16 +1,15 @@
 <?php
 require_once 'accounts.inc.php';
 
-$errors = array();
-
 /**
  * Sends money from an account to another
- * @param Account $sender Sender Account
- * @param Account $receiver Receiver Account
- * @param Currency $amount Currency Account
+ * @param Account $sender sender account
+ * @param Account $receiver receiver account
+ * @param Currency $amount currency account
+ * @param array $errors stores error messages if available
  * @return bool true if transfer was successful, false otherwise
  */
-function performTransfer(Account $sender, Account $receiver, Currency $amount) {
+function performTransfer(Account $sender, Account $receiver, Currency $amount, array &$errors = array()) {
     $transferred = true;
 
     // Initialise the currency classes for both the sender and receiver.
@@ -24,12 +23,12 @@ function performTransfer(Account $sender, Account $receiver, Currency $amount) {
     $senderBalance = $senderCurr->getValue();
 
     // Connecting to the database to update the data.
-    if ($senderBalance > 0) {
+    if ($senderBalance >= 0) {
         $conn = connectToDatabase();
         if ($conn->connect_error) {
             $transferred = false;
             http_response_code(500);
-            $errors[] = 'Unable to connect to the database';
+            $errors[] = 'An unexpected error has occurred. Please try again later.';
 
         } else {
             // Update the receiver account balance
@@ -39,7 +38,7 @@ function performTransfer(Account $sender, Account $receiver, Currency $amount) {
             if (!$stmt->execute()) {
                 $transferred = false;
                 http_response_code(500);
-                $errors[] = 'Unable to update receiver account balance';
+                $errors[] = 'An unexpected error has occurred. Please try again later.';
             }
 
             // Update the sender account balance
@@ -73,12 +72,6 @@ function performTransfer(Account $sender, Account $receiver, Currency $amount) {
     }
 
     return $transferred;
-}
-
-function getErrors() {
-    global $errors;
-    return $errors;
-
 }
 
 /**

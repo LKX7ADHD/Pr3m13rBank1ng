@@ -76,11 +76,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($readyToTransfer) {
-        if (performTransfer($senderAccount, $receiverAccount, $amount)) {
+        if (performTransfer($senderAccount, $receiverAccount, $amount, $errors)) {
             header('Location: transferSuccess.php');
-            exit();
-        } else {
-            header('Location: transferError.php');
             exit();
         }
     }
@@ -112,7 +109,7 @@ and open the template in the editor.
 <main class="container">
     <?php
 
-    if (!$readyToTransfer) {
+    if (!empty($errors)) {
         foreach ($errors as $error) {
             echo '<div class="alert alert-danger" role="alert">' . $error . '</div>';
         }

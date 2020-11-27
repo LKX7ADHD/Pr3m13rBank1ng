@@ -31,7 +31,7 @@ if (!$user) {
     echo '<p class="h1">Transferred Successful</p>';
 
     echo '</ul>';
-    echo '<a class="btn btn-warning" href="/personal_banking/" role="button">Return to Dashboard</a>';
+    echo '<a class="btn btn-success btn-lg" href="/personal_banking/" role="button">Return to Dashboard</a>';
     ?>
 </main>
 
