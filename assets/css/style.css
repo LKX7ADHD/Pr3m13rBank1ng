@@ -299,6 +299,19 @@ button.navbar-toggler {
     background-color: transparent;
     /*border-radius: 80px;*/
     transform: rotate(-15deg);
+    animation: spin 4s ease-in-out infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(-15deg);
+    }
+    50% {
+        transform: rotate(-14deg);
+    }
+    100% {
+        transform: rotate(-15deg);
+    }
 }
 
 .funding {
