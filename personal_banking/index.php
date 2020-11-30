@@ -18,9 +18,9 @@ if (!$user) {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Premier Banking | Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset="UTF-8">
+	<title>Premier Banking | Dashboard</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php include "../include/imports.inc.php" ?>
 </head>
 
@@ -29,7 +29,7 @@ if (!$user) {
 
 
 <main class="container">
-    <ul class="list-group">
+	<ul class="list-group">
         <?php
         if (count($accounts) == 0) {
             echo '<p class="lead">No Accounts</p>';
@@ -39,22 +39,22 @@ if (!$user) {
             }
         }
         ?>
-    </ul>
+	</ul>
 
-    <section class="transfers">
-        <h3>Transaction History</h3>
+	<section class="transfers">
+		<h3>Transaction History</h3>
 
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Account</th>
-                <th scope="col">Transaction</th>
-                <th scope="col">Deposit</th>
-                <th scope="col">Withdrawal</th>
-            </tr>
-            </thead>
-            <tbody>
+		<table class="table table-bordered">
+			<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Account</th>
+				<th scope="col">Transaction</th>
+				<th scope="col">Deposit</th>
+				<th scope="col">Withdrawal</th>
+			</tr>
+			</thead>
+			<tbody>
 
             <?php
             foreach ($transfers as $transfer) {
@@ -78,9 +78,9 @@ if (!$user) {
                 echo '</tr>';
             }
             ?>
-            </tbody>
-        </table>
-    </section>
+			</tbody>
+		</table>
+	</section>
 
 </main>
 <?php include "../include/footer.inc.php" ?>

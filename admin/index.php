@@ -16,9 +16,9 @@ if (!$user || !$user->admin) {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Premier Banking | Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset="UTF-8">
+	<title>Premier Banking | Dashboard</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php include "../include/imports.inc.php" ?>
 </head>
 
@@ -27,20 +27,20 @@ if (!$user || !$user->admin) {
 
 
 <main class="container">
-    <section class="transfers">
-        <h3>Transaction History</h3>
+	<section class="transfers">
+		<h3>Transaction History</h3>
 
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Sending account</th>
-                <th scope="col">Receiving account</th>
-                <th scope="col">Transaction</th>
-                <th scope="col">Amount</th>
-            </tr>
-            </thead>
-            <tbody>
+		<table class="table table-bordered">
+			<thead>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">Sending account</th>
+				<th scope="col">Receiving account</th>
+				<th scope="col">Transaction</th>
+				<th scope="col">Amount</th>
+			</tr>
+			</thead>
+			<tbody>
 
             <?php
             foreach ($transfers as $transfer) {
@@ -57,9 +57,9 @@ if (!$user || !$user->admin) {
                 echo '</tr>';
             }
             ?>
-            </tbody>
-        </table>
-    </section>
+			</tbody>
+		</table>
+	</section>
 
 </main>
 <?php include "../include/footer.inc.php" ?>

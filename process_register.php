@@ -1,8 +1,7 @@
 <?php
 require_once 'include/accounts.inc.php';
 
-function isFieldRequired($field)
-{
+function isFieldRequired($field) {
     // All fields are required except for First Name
     return $field !== 'fname';
 }
@@ -79,15 +78,15 @@ if ($success) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title></title>
+	<meta charset="UTF-8">
+	<title></title>
     <?php include 'include/imports.inc.php' ?>
 </head>
 <body>
 <?php include "include/navbar.inc.php" ?>
 
 <header class="jumbotron text-center">
-    <h1 class="display-4">Open Account</h1>
+	<h1 class="display-4">Open Account</h1>
 </header>
 <main class="container process-register">
     <?php

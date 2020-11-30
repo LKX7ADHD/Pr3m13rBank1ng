@@ -14,17 +14,17 @@ if (!$user) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Premier Banking|Transfers</title>
+	<title>Premier Banking|Transfers</title>
     <?php include '../include/imports.inc.php' ?>
 </head>
 <body>
 <?php include "../include/navbar.inc.php" ?>
 
 <header class="jumbotron text-center">
-    <h1 class="display-4">Transfer Result</h1>
+	<h1 class="display-4">Transfer Result</h1>
 </header>
 <main class="container process-login">
     <?php
