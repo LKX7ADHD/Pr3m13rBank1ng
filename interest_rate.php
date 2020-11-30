@@ -116,7 +116,7 @@ and open the template in the editor.
                 <p class="lead">Amount</p>
                 <p class="h1"><?php
                     if ($readyToConvert) {
-                        echo '$' . $amount->getRepresentation();
+                        echo '$' . $amount;
                     } else {
                         echo '$0.00';
                     }
