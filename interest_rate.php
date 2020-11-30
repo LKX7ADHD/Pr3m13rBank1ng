@@ -1,6 +1,7 @@
 <?php
 
 require_once 'include/interest_rate_calculator.php';
+require_once 'include/accounts.inc.php';
 
 $fields = array("P" => NULL, "n" => NULL, "r" => NULL, "t" => NULL);
 $readyToConvert = true;
@@ -15,9 +16,9 @@ foreach ($fields as $field => $value) {
 if ($readyToConvert) {
     $amount = calculate_interest(
         $fields['P'],
-        $fields['n'],
         $fields['r'],
-        $fields['t'],
+        $fields['n'],
+        $fields['t']
     );
 }
 
@@ -65,7 +66,6 @@ and open the template in the editor.
 <!-- End of Header -->
 
 <!-- Start of Main -->
-<!---->
 <main class="container">
     <div class="row mb-5">
         <section class="col-md-6 col-sm-12 mt-5">
@@ -76,7 +76,7 @@ and open the template in the editor.
                         <div class="input-group-prepend">
                             <span class="input-group-text">$</span>
                         </div>
-                        <input type="number" class="form-control" id="principal"
+                        <input type="number" step=0.01 min=0 class="form-control" id="principal"
                                value="<?php if(!is_null($fields['P'])) echo $fields['P'] ?>"
                                placeholder="Enter principal" name="P" required>
                     </div>
@@ -85,7 +85,7 @@ and open the template in the editor.
                 <div class="form-group">
                     <label for="rate">Interest rate</label>
                     <div class="input-group">
-                        <input type="number" class="form-control" id="rate"
+                        <input type="number" step=0.1 min=0 class="form-control" id="rate"
                                value="<?php if(!is_null($fields['r'])) echo $fields['r'] ?>"
                                placeholder="Enter interest rate" name="r" required>
                         <div class="input-group-append">
@@ -96,14 +96,14 @@ and open the template in the editor.
 
                 <div class="form-group">
                     <label for="times">Number of times compounded per year</label>
-                        <input type="number" class="form-control" id="times"
+                        <input type="number" min=0 class="form-control" id="times"
                                value="<?php if(!is_null($fields['n'])) echo $fields['n'] ?>"
                                placeholder="Enter times compounded per year" name="n" required>
                 </div>
 
                 <div class="form-group">
                     <label for="years">Number of years</label>
-                    <input type="number" class="form-control" id="years"
+                    <input type="number" min=0 class="form-control" id="years"
                            value="<?php if(!is_null($fields['t'])) echo $fields['t'] ?>"
                            placeholder="Enter duration in years" name="t" required>
                 </div>
@@ -116,9 +116,9 @@ and open the template in the editor.
                 <p class="lead">Amount</p>
                 <p class="h1"><?php
                     if ($readyToConvert) {
-                        echo $amount;
+                        echo '$' . $amount->getRepresentation();
                     } else {
-                        echo '0.00';
+                        echo '$0.00';
                     }
                     ?></p>
             </div>

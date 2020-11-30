@@ -7,6 +7,5 @@
 // t = the time the money is invested or borrowed for
 
 function calculate_interest($P, $r, $n, $t) {
-    return $P * (1 + $r / $n) ** ($n * $t);
+    return round($P * (1 + $r / $n) ** ($n * $t), 2);
 }
-?>

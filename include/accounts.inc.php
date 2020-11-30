@@ -22,7 +22,6 @@ class User {
     public $firstName;
     public $lastName;
     public $email;
-    public $admin;
 }
 
 /**
@@ -142,18 +141,17 @@ class Currency {
  * @return mysqli connection object
  */
 function connectToDatabase() {
-//    $config = parse_ini_file('../../private/db-config.ini');
-//
-//    if ($config) {
-//        return new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
-//    }
+//    AWS method
+    $config = parse_ini_file('../../private/db-config.ini');
+    return new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
 
-    $servername = getenv('heroku_db_servername');
-    $username = getenv('heroku_db_username');
-    $password = getenv('heroku_db_password');
-    $dbname = getenv('heroku_db_dbname');
+//    Heroku method
+//    $servername = getenv('heroku_db_servername');
+//    $username = getenv('heroku_db_username');
+//    $password = getenv('heroku_db_password');
+//    $dbname = getenv('heroku_db_dbname');
 
-    return new mysqli($servername, $username, $password, $dbname);
+//    return new mysqli($servername, $username, $password, $dbname);
 }
 
 /**
@@ -202,7 +200,7 @@ function authenticateUser(string $email, string $password) {
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     } else {
-        $stmt = $conn->prepare('SELECT username, firstName, lastName, password, isAdmin FROM Users WHERE email = ?');
+        $stmt = $conn->prepare('SELECT UserID,username, firstName, lastName, password FROM Users WHERE email = ?');
         $stmt->bind_param('s', $email);
 
         if (!$stmt->execute()) {
@@ -227,7 +225,6 @@ function authenticateUser(string $email, string $password) {
         $user->firstName = $row['firstName'];
         $user->lastName = $row['lastName'];
         $user->email = $email;
-        $user->admin = (bool)$row['isAdmin'];
 
         $_SESSION['user'] = $user;
     }
@@ -364,7 +361,7 @@ function getAccount(string $accountNumber) {
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     } else {
-        $stmt = $conn->prepare('SELECT A.accountName, A.accountValue, U.username, U.firstName, U.lastName, U.email, U.isAdmin FROM Accounts A INNER JOIN Users U ON A.UserID = U.UserID WHERE A.accountNumber = ?');
+        $stmt = $conn->prepare('SELECT A.accountName, A.accountValue, U.username, U.firstName, U.lastName, U.email FROM Accounts A INNER JOIN Users U ON A.UserID = U.UserID WHERE A.accountNumber = ?');
         $stmt->bind_param('s', $accountNumber);
 
         if (!$stmt->execute()) {
@@ -382,7 +379,6 @@ function getAccount(string $accountNumber) {
         $user->firstName = $row['firstName'];
         $user->lastName = $row['lastName'];
         $user->email = $row['email'];
-        $user->admin = (bool)$row['isAdmin'];
 
         $account = new Account();
         $account->user = $user;
@@ -466,11 +462,11 @@ function isAccountNumberValid(string $accountNumber) {
 }
 
 /**
- * Retrieves transfer history, with optional account filtering
- * @param array|null $accounts array of accounts to filter by, if no arguments passed, returns all transfers
+ * Retrieves transfer history for one or more accounts
+ * @param Account[] $accounts
  * @return array transfers
  */
-function getTransfers(array $accounts = NULL) {
+function getTransfers(array $accounts) {
     $conn = connectToDatabase();
     $transfers = array();
 
@@ -478,21 +474,9 @@ function getTransfers(array $accounts = NULL) {
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     } else {
-        if ($accounts) {
-            foreach ($accounts as $acc) {
-                $stmt = $conn->prepare('SELECT T.transferTimestamp, T.transferValue, A.AccountID = T.ReceiverID AS deposit FROM Transfers T INNER JOIN Accounts A ON T.ReceiverID = A.AccountID OR T.SenderID = A.AccountID WHERE A.accountNumber = ?');
-                $stmt->bind_param("s", $acc->accountNumber);
-
-                if (!$stmt->execute()) {
-                    http_response_code(500);
-                    die('An unexpected error has occurred. Please try again later.');
-                }
-                $result = $stmt->get_result();
-                array_push($transfers, ...$result->fetch_all(MYSQLI_ASSOC));
-                $stmt->close();
-            }
-        } else {
-            $stmt = $conn->prepare('SELECT T.transferTimestamp, T.transferValue, RS.accountNumber AS Sender, RR.accountNumber AS Receiver FROM Transfers T, Accounts RS, Accounts RR WHERE T.SenderID = RS.AccountID AND R.ReceiverID = RR.AccountID');
+        foreach ($accounts as $acc) {
+            $stmt = $conn->prepare('SELECT T.transferTimestamp, T.transferValue, A.AccountID = T.ReceiverID AS deposit FROM Transfers T INNER JOIN Accounts A ON T.ReceiverID = A.AccountID OR T.SenderID = A.AccountID WHERE A.accountNumber = ?');
+            $stmt->bind_param("s", $acc->accountNumber);
 
             if (!$stmt->execute()) {
                 http_response_code(500);

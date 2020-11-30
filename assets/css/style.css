@@ -29,7 +29,6 @@ body {
 }
 
 
-
 footer {
     margin-top: auto;
 }
@@ -656,7 +655,7 @@ body {
     flex-direction: column;
 }
 
-.dashboard-body>.container {
+.dashboard-body > .container {
     margin-top: 5em;
 }
 
@@ -668,7 +667,6 @@ body {
 .process-register, .process-login, .logout, .profile {
     padding: 6em 0;
 }
-
 
 
 /* Mobile Media Queries */
@@ -819,6 +817,13 @@ body {
     input.form-control {
         height: 50px;
     }
+}
+
+/* other things */
+
+#interest-rate-calculator-amount-container {
+    position: sticky;
+    top: 10em;
 }
 
 /* other things */

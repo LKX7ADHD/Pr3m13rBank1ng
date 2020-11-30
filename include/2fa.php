@@ -1,7 +1,6 @@
 <?php
 
-function send_email()
-{
+function send_email() {
     $to = "leekaixuan7@hotmail.com";
     $subject = "HTML email";
 
