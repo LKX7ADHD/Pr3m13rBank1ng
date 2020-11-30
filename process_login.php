@@ -31,7 +31,13 @@ if (isset($_POST['email']) && !empty($_POST['email'])) {
 }
 
 if ($success) {
-    header("Location: /personal_banking/");
+    $user = getAuthenticatedUser();
+
+    if ($user->admin) {
+        header("Location: /admin/");
+    } else {
+        header("Location: /personal_banking/");
+    }
 }
 
 ?>
