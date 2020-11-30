@@ -72,23 +72,33 @@ and open the template in the editor.
             <form method="POST">
                 <div class="form-group">
                     <label for="principal">Principal amount</label>
-                    <input type="number" class="form-control" id="principal"
-                           value="<?php if(!is_null($fields['P'])) echo $fields['P'] ?>"
-                           placeholder="Enter principal" name="P" required>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
+                        <input type="number" class="form-control" id="principal"
+                               value="<?php if(!is_null($fields['P'])) echo $fields['P'] ?>"
+                               placeholder="Enter principal" name="P" required>
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label for="rate">Interest rate</label>
-                    <input type="number" class="form-control" id="rate"
-                           value="<?php if(!is_null($fields['r'])) echo $fields['r'] ?>"
-                           placeholder="Enter interest rate" name="r" step="0.01" required>
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="rate"
+                               value="<?php if(!is_null($fields['r'])) echo $fields['r'] ?>"
+                               placeholder="Enter interest rate" name="r" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text">%</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label for="times">Number of times compounded per year</label>
-                    <input type="number" class="form-control" id="times"
-                           value="<?php if(!is_null($fields['n'])) echo $fields['n'] ?>"
-                           placeholder="Enter times compounded per year" name="n" required>
+                        <input type="number" class="form-control" id="times"
+                               value="<?php if(!is_null($fields['n'])) echo $fields['n'] ?>"
+                               placeholder="Enter times compounded per year" name="n" required>
                 </div>
 
                 <div class="form-group">
@@ -104,7 +114,13 @@ and open the template in the editor.
         <section class="col-md-6 col-sm-12 mt-5">
             <div id="interest-rate-calculator-amount-container">
                 <p class="lead">Amount</p>
-                <p class="h1"><?php if ($readyToConvert) echo $amount; ?></p>
+                <p class="h1"><?php
+                    if ($readyToConvert) {
+                        echo $amount;
+                    } else {
+                        echo '0.00';
+                    }
+                    ?></p>
             </div>
         </section>
     </div>
