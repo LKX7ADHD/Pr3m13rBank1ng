@@ -820,3 +820,10 @@ body {
         height: 50px;
     }
 }
+
+/* other things */
+
+#interest-rate-calculator-amount-container {
+    position: sticky;
+    top: 10em;
+}

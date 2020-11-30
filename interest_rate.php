@@ -1,4 +1,27 @@
-<?php require_once 'include/accounts.inc.php' ?>
+<?php
+
+require_once 'include/interest_rate_calculator.php';
+
+$fields = array("P" => NULL, "n" => NULL, "r" => NULL, "t" => NULL);
+$readyToConvert = true;
+foreach ($fields as $field => $value) {
+    if (!isset($_POST[$field]) || empty($_POST[$field])) {
+        $readyToConvert = false;
+    }
+
+    $fields[$field] = $_POST[$field];
+}
+
+if ($readyToConvert) {
+    $amount = calculate_interest(
+        $fields['P'],
+        $fields['n'],
+        $fields['r'],
+        $fields['t'],
+    );
+}
+
+?>
 
 <!DOCTYPE html>
 <!--
@@ -9,13 +32,13 @@ and open the template in the editor.
 <html lang="en">
 
 <head>
-	<!-- Meta Tags -->
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <?php include 'include/imports.inc.php' ?>
 
-	<title>Pr3m13r Bank1ng | Home</title>
+    <title>Pr3m13r Bank1ng | Home</title>
 
 </head>
 
@@ -25,43 +48,66 @@ and open the template in the editor.
 
 <!-- Start of Header -->
 <header class="hero">
-	<div class="hero__content">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-6">
-					<div class="banner__content mb-2">
-						<h1>Interest Rate Calculator</h1>
-						<p>Calculate your interest rate using compound interest rates!</p>
-					</div>
-					<button class="banner__button btn btn-success my-2 my-sm-0 py-3 px-4">
-						Get Started
-					</button>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="hero__content">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="banner__content mb-2">
+                        <h1>Interest Rate Calculator</h1>
+                        <p>Calculate your interest rate using compound interest rates!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 
 <!-- End of Header -->
 
 <!-- Start of Main -->
 <!---->
-<main>
-	<section class="container">
-		<div class="col-lg-6 mt-5">
-			<form>
-				<div class="form-group">
-					<label for="exampleInputEmail1"></label>
-					<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-					       placeholder="Enter email">
-					<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-						else.</small>
-				</div>
+<main class="container">
+    <div class="row mb-5">
+        <section class="col-md-6 col-sm-12 mt-5">
+            <form method="POST">
+                <div class="form-group">
+                    <label for="principal">Principal amount</label>
+                    <input type="number" class="form-control" id="principal"
+                           value="<?php if(!is_null($fields['P'])) echo $fields['P'] ?>"
+                           placeholder="Enter principal" name="P" required>
+                </div>
 
-				<button type="submit" class="btn btn-primary">Submit</button>
-			</form>
-		</div>
-	</section>
+                <div class="form-group">
+                    <label for="rate">Interest rate</label>
+                    <input type="number" class="form-control" id="rate"
+                           value="<?php if(!is_null($fields['r'])) echo $fields['r'] ?>"
+                           placeholder="Enter interest rate" name="r" step="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="times">Number of times compounded per year</label>
+                    <input type="number" class="form-control" id="times"
+                           value="<?php if(!is_null($fields['n'])) echo $fields['n'] ?>"
+                           placeholder="Enter times compounded per year" name="n" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="years">Number of years</label>
+                    <input type="number" class="form-control" id="years"
+                           value="<?php if(!is_null($fields['t'])) echo $fields['t'] ?>"
+                           placeholder="Enter duration in years" name="t" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg">Calculate</button>
+            </form>
+        </section>
+        <section class="col-md-6 col-sm-12 mt-5">
+            <div id="interest-rate-calculator-amount-container">
+                <p class="lead">Amount</p>
+                <p class="h1"><?php if ($readyToConvert) echo $amount; ?></p>
+            </div>
+        </section>
+    </div>
 </main>
 
 <?php include "include/footer.inc.php" ?>
