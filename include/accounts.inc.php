@@ -13,6 +13,10 @@ session_set_cookie_params(1200, '/');
 session_name('session');
 session_start();
 
+// TODO : REMOVE WHEN DONE
+
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 
 /**
  * Encapsulates user information
@@ -142,7 +146,7 @@ class Currency {
  */
 function connectToDatabase() {
 //    AWS method
-    $config = parse_ini_file('../../private/db-config.ini');
+    $config = parse_ini_file('/var/private/db-config.ini');
     return new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
 
 //    Heroku method
@@ -483,7 +487,12 @@ function getTransfers(array $accounts) {
                 die('An unexpected error has occurred. Please try again later.');
             }
             $result = $stmt->get_result();
-            array_push($transfers, ...$result->fetch_all(MYSQLI_ASSOC));
+            $resultArray = $result->fetch_all(MYSQLI_ASSOC);
+
+            if (!empty($resultArray)) {
+                array_push($transfers, ...$resultArray);
+            }
+
             $stmt->close();
         }
     }
