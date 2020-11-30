@@ -26,6 +26,7 @@ class User {
     public $firstName;
     public $lastName;
     public $email;
+    public $admin;
 }
 
 /**
@@ -204,7 +205,7 @@ function authenticateUser(string $email, string $password) {
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     } else {
-        $stmt = $conn->prepare('SELECT UserID,username, firstName, lastName, password FROM Users WHERE email = ?');
+        $stmt = $conn->prepare('SELECT username, firstName, lastName, password, isAdmin FROM Users WHERE email = ?');
         $stmt->bind_param('s', $email);
 
         if (!$stmt->execute()) {
@@ -229,6 +230,7 @@ function authenticateUser(string $email, string $password) {
         $user->firstName = $row['firstName'];
         $user->lastName = $row['lastName'];
         $user->email = $email;
+        $user->admin = $row['isAdmin'];
 
         $_SESSION['user'] = $user;
     }
@@ -365,7 +367,7 @@ function getAccount(string $accountNumber) {
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     } else {
-        $stmt = $conn->prepare('SELECT A.accountName, A.accountValue, U.username, U.firstName, U.lastName, U.email FROM Accounts A INNER JOIN Users U ON A.UserID = U.UserID WHERE A.accountNumber = ?');
+        $stmt = $conn->prepare('SELECT A.accountName, A.accountValue, U.username, U.firstName, U.lastName, U.email, U.isAdmin FROM Accounts A INNER JOIN Users U ON A.UserID = U.UserID WHERE A.accountNumber = ?');
         $stmt->bind_param('s', $accountNumber);
 
         if (!$stmt->execute()) {
@@ -383,6 +385,7 @@ function getAccount(string $accountNumber) {
         $user->firstName = $row['firstName'];
         $user->lastName = $row['lastName'];
         $user->email = $row['email'];
+        $user->admin = $row['isAdmin'];
 
         $account = new Account();
         $account->user = $user;
@@ -466,11 +469,11 @@ function isAccountNumberValid(string $accountNumber) {
 }
 
 /**
- * Retrieves transfer history for one or more accounts
+ * Retrieves transfer history, optionally filtering for one or more accounts
  * @param Account[] $accounts
  * @return array transfers
  */
-function getTransfers(array $accounts) {
+function getTransfers(array $accounts = NULL) {
     $conn = connectToDatabase();
     $transfers = array();
 
@@ -478,9 +481,8 @@ function getTransfers(array $accounts) {
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     } else {
-        foreach ($accounts as $acc) {
-            $stmt = $conn->prepare('SELECT T.transferTimestamp, T.transferValue, A.AccountID = T.ReceiverID AS deposit FROM Transfers T INNER JOIN Accounts A ON T.ReceiverID = A.AccountID OR T.SenderID = A.AccountID WHERE A.accountNumber = ?');
-            $stmt->bind_param("s", $acc->accountNumber);
+        if (empty($accounts)) {
+            $stmt = $conn->prepare('SELECT T.transferTimestamp, T.transferValue, SA.AccountNumber AS Sender, RA.AccountNumber AS Receiver FROM Transfers T, Accounts SA, Accounts RA WHERE T.ReceiverID = RA.AccountID AND T.SenderID = SA.AccountID');
 
             if (!$stmt->execute()) {
                 http_response_code(500);
@@ -494,6 +496,24 @@ function getTransfers(array $accounts) {
             }
 
             $stmt->close();
+        } else {
+            foreach ($accounts as $acc) {
+                $stmt = $conn->prepare('SELECT T.transferTimestamp, T.transferValue, A.AccountID = T.ReceiverID AS deposit FROM Transfers T INNER JOIN Accounts A ON T.ReceiverID = A.AccountID OR T.SenderID = A.AccountID WHERE A.accountNumber = ?');
+                $stmt->bind_param("s", $acc->accountNumber);
+
+                if (!$stmt->execute()) {
+                    http_response_code(500);
+                    die('An unexpected error has occurred. Please try again later.');
+                }
+                $result = $stmt->get_result();
+                $resultArray = $result->fetch_all(MYSQLI_ASSOC);
+
+                if (!empty($resultArray)) {
+                    array_push($transfers, ...$resultArray);
+                }
+
+                $stmt->close();
+            }
         }
     }
     $conn->close();
