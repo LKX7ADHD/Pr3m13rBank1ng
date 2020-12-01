@@ -11,7 +11,7 @@
 
     <?php include 'include/imports.inc.php' ?>
 
-	<title>Pr3m13r Bank1ng | Home</title>
+	<title>Premier Banking | Home</title>
 
 </head>
 

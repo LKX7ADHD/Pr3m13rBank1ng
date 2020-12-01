@@ -47,7 +47,7 @@ if ($success) {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>Pr3m13r Bank1ng</title>
+	<title>Premier Banking</title>
     <?php include 'include/imports.inc.php' ?>
 </head>
 <body>

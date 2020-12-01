@@ -7,7 +7,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>Pr3m13r Bank1ng | Login</title>
+	<title>Premier Banking | Login</title>
     <?php include 'include/imports.inc.php' ?>
 </head>
 <body id="login-body">
