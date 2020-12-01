@@ -25,11 +25,6 @@ if ($readyToConvert) {
 ?>
 
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html lang="en">
 
 <head>
@@ -78,7 +73,7 @@ and open the template in the editor.
 						</div>
 						<input type="number" step=0.01 min=0 class="form-control" id="principal"
 						       value="<?php if (!is_null($fields['P'])) echo $fields['P'] ?>"
-						       placeholder="Enter principal" name="P" required>
+						       placeholder="Enter principal amount" name="P" required>
 					</div>
 				</div>
 
