@@ -27,9 +27,8 @@
     }
 
     $('#session-extension-button').on('click', e => {
-        const button = $('#session-extension-button')
-        button.attr('disabled', '')
-        button.text('Extending session...')
+        $(e.target).attr('disabled', '')
+        $(e.target).text('Extending session...')
 
         // make request to server to renew cookie
         fetch('/session_extend.php')
