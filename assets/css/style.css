@@ -826,9 +826,10 @@ body {
     top: 10em;
 }
 
-/* other things */
+.pwd-requirement.pwd-requirement-valid {
+    color: #0ac60a;
+}
 
-#interest-rate-calculator-amount-container {
-    position: sticky;
-    top: 10em;
+.pwd-requirement.pwd-requirement-invalid {
+    color: #9f1a1a;
 }

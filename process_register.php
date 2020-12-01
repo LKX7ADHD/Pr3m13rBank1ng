@@ -49,6 +49,28 @@ if (isset($formInput['username']) && isUsernameRegistered($formInput['username']
     $success = false;
 }
 
+if (isset($_POST['pwd'])) {
+    if (strlen($_POST['pwd']) < 8) {
+        $errorMessages[] = 'Passwords should be at least 8 characters long';
+        $success = false;
+    }
+
+    if (!preg_match('/\d/', $_POST['pwd'])) {
+        $errorMessages[] = 'Passwords should contain at least one number';
+        $success = false;
+    }
+
+    if (!preg_match('/[A-Z]/', $_POST['pwd'])) {
+        $errorMessages[] = 'Passwords should contain at least one uppercase letter';
+        $success = false;
+    }
+
+    if (!preg_match('/[!@#\$%\^\&*\)\(+=._-]/', $_POST['pwd'])) {
+        $errorMessages[] = 'Passwords should contain at least one special character';
+        $success = false;
+    }
+}
+
 if (isset($_POST['pwd']) && isset($_POST['pwd_confirm'])) {
     if ($_POST['pwd'] !== $_POST['pwd_confirm']) {
         $errorMessages[] = 'Passwords do not match';

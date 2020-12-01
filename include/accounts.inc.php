@@ -1,15 +1,6 @@
 <?php
 
-// TODO: RE-ENABLE AFTER
-//if (empty($_SERVER['HTTPS'])) {
-//    http_response_code(301);
-//    header('Location: ' . 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
-//    exit();
-//}
-//session_set_cookie_params(1200, '/', $_SERVER['HTTP_HOST'], true, true);
-
-// Using unsecure cookies during development
-session_set_cookie_params(1200, '/');
+session_set_cookie_params(1200, '/', $_SERVER['HTTP_HOST'], true, true);
 session_name('session');
 session_start();
 

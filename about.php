@@ -1,3 +1,5 @@
+<?php require_once 'include/accounts.inc.php' ?>
+
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
