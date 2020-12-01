@@ -8,9 +8,9 @@ $readyToConvert = true;
 foreach ($fields as $field => $value) {
     if (!isset($_POST[$field]) || empty($_POST[$field])) {
         $readyToConvert = false;
+    } else {
+        $fields[$field] = $_POST[$field];
     }
-
-    $fields[$field] = $_POST[$field];
 }
 
 if ($readyToConvert) {
@@ -69,7 +69,7 @@ and open the template in the editor.
 <main class="container">
 	<div class="row mb-5">
 		<section class="col-md-6 col-sm-12 mt-5">
-			<form method="POST">
+			<form method="POST" id="interest-rate-calculator-form">
 				<div class="form-group">
 					<label for="principal">Principal amount</label>
 					<div class="input-group">

@@ -6,7 +6,7 @@
 // t = the time the money is invested or borrowed for
 
 function calculate_interest(P, r, n, t) {
-    let amount = P * (1 + r / n) ** (n * t);
+    let amount = P * (1 + r / n / 100) ** (n * t);
     return "$".concat(amount.toLocaleString('us', {minimumFractionDigits: 2, maximumFractionDigits: 2}));
 }
 
@@ -14,4 +14,15 @@ $(() => {
     $('nav a.nav-link[href="' + location.pathname + '"]')
         .append('<span class="sr-only">(current)</span>')
         .parent().addClass('active')
+
+    $('#interest-rate-calculator-form').on('submit', e => {
+        const amount = calculate_interest(
+            $('#principal').val(),
+            $('#rate').val(),
+            $('#times').val(),
+            $('#years').val()
+        )
+        $('#interest-rate-calculator-amount-container > p.h1').text(amount)
+        return false
+    })
 })

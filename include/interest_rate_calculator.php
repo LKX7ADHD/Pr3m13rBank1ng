@@ -7,5 +7,5 @@
 // t = the time the money is invested or borrowed for
 
 function calculate_interest($P, $r, $n, $t) {
-    return '$' . number_format($P * (1 + $r / $n) ** ($n * $t), 2, '.', ',');
+    return '$' . number_format($P * (1 + $r / $n / 100) ** ($n * $t), 2, '.', ',');
 }
