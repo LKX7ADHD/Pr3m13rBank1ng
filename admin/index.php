@@ -1,6 +1,5 @@
 <?php
 require_once '../include/accounts.inc.php';
-require_once '../include/sessiontimeout.inc.php';
 
 $user = getAuthenticatedUser();
 $transfers = getTransfers();
@@ -62,6 +61,7 @@ if (!$user || !$user->admin) {
     </section>
 
 </main>
+<?php include "../include/sessionTimeout.inc.php" ?>
 <?php include "../include/footer.inc.php" ?>
 </body>
 
