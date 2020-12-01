@@ -27,7 +27,6 @@ if (!$user) {
 <body class="dashboard-body">
 <?php include '../include/navbar.inc.php' ?>
 
-
 <main class="container">
 	<ul class="list-group">
         <?php

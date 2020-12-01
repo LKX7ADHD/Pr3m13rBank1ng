@@ -10,11 +10,6 @@ if (!$user) {
 
 ?>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -30,7 +25,7 @@ and open the template in the editor.
 </header>
 <main class="container profile">
 	<p class="h1">Hello, <?php echo $user->username; ?></p>
-	<a class="btn btn-warning" href="../logout.php" role="button">Logout</a>
+	<a class="btn btn-warning btn-lg mt-4" href="../logout.php" role="button">Logout</a>
 </main>
 <?php include '../include/footer.inc.php' ?>
 </body>

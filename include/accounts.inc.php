@@ -150,7 +150,6 @@ function connectToDatabase() {
 //    $username = getenv('heroku_db_username');
 //    $password = getenv('heroku_db_password');
 //    $dbname = getenv('heroku_db_dbname');
-
 //    return new mysqli($servername, $username, $password, $dbname);
 }
 
@@ -184,7 +183,6 @@ function registerUser(User $user, string $hashed_password) {
     }
     $conn->close();
 }
-
 
 /**
  * Attempts to authenticate a user with an email-password pair
@@ -230,7 +228,7 @@ function authenticateUser(string $email, string $password) {
         $_SESSION['user'] = $user;
     }
 
-    $row = '';
+    $row = NULL;
     unset($row);
 
     return $authenticated;
@@ -484,13 +482,12 @@ function getTransfers(array $accounts = NULL) {
                 die('An unexpected error has occurred. Please try again later.');
             }
             $result = $stmt->get_result();
+            $stmt->close();
             $resultArray = $result->fetch_all(MYSQLI_ASSOC);
 
             if (!empty($resultArray)) {
                 array_push($transfers, ...$resultArray);
             }
-
-            $stmt->close();
         } else {
             foreach ($accounts as $acc) {
                 $stmt = $conn->prepare('SELECT T.transferTimestamp, T.transferValue, A.AccountID = T.ReceiverID AS deposit FROM Transfers T INNER JOIN Accounts A ON T.ReceiverID = A.AccountID OR T.SenderID = A.AccountID WHERE A.accountNumber = ?');
@@ -501,13 +498,12 @@ function getTransfers(array $accounts = NULL) {
                     die('An unexpected error has occurred. Please try again later.');
                 }
                 $result = $stmt->get_result();
+                $stmt->close();
                 $resultArray = $result->fetch_all(MYSQLI_ASSOC);
 
                 if (!empty($resultArray)) {
                     array_push($transfers, ...$resultArray);
                 }
-
-                $stmt->close();
             }
         }
     }
@@ -541,6 +537,5 @@ function sanitiseInput(string $data) {
     $data = htmlspecialchars($data);
     return $data;
 }
-
 
 ?>
