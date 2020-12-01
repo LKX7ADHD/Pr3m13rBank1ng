@@ -29,9 +29,7 @@ $applicationStatus = array('Pending', 'Approved', 'Rejected');
     <section class="transfers">
         <h3>Applications</h3>
 
-        <a class="btn btn-primary btn-lg my-4" href="newAccountApplication.php" role="button">Open new Account</a>
-
-        <ul class="list-group">
+        <ul class="list-group mt-4">
             <?php
             if (count($applications) == 0) {
                 echo '<p class="lead">No Applications</p>';
