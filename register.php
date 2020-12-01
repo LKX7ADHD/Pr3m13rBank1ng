@@ -6,8 +6,10 @@ $user = getAuthenticatedUser();
 if ($user) {
     if ($user->admin) {
         header("Location: /admin/");
+        exit();
     } else {
         header("Location: /personal_banking/");
+        exit();
     }
 }
 ?>

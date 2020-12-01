@@ -2,13 +2,13 @@
 require_once '../include/accounts.inc.php';
 
 $user = getAuthenticatedUser();
-$transfers = getTransfers();
 
 if (!$user || !$user->admin) {
     header('Location: ../login.php');
     exit();
 }
 
+$transfers = getTransfers();
 ?>
 <!DOCTYPE html>
 

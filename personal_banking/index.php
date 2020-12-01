@@ -2,8 +2,12 @@
 require_once '../include/accounts.inc.php';
 
 $user = getAuthenticatedUser();
-$accounts = getAccounts($user);
+if (!$user) {
+    header('Location: ../login.php');
+    exit();
+}
 
+$accounts = getAccounts($user);
 $transfers = getTransfers($accounts);
 
 if (!$user) {
@@ -27,17 +31,23 @@ if (!$user) {
 <?php include '../include/navbar.inc.php' ?>
 
 <main class="container">
-	<ul class="list-group">
-        <?php
-        if (count($accounts) == 0) {
-            echo '<p class="lead">No Accounts</p>';
-        } else {
-            foreach ($accounts as $account) {
-                echo '<li class="list-group-item"><p class="h3">' . $account->getBalanceRepresentation() . '</p>' . $account->accountName . '<p class="text-muted mt-1 mb-0">' . $account->getAccountNumberRepresentation() . '</p></li>';
+    <section class="transfers">
+        <h3>Accounts</h3>
+
+        <a class="btn btn-primary btn-lg my-4" href="newAccountApplication.php" role="button">Open new Account</a>
+
+        <ul class="list-group">
+            <?php
+            if (count($accounts) == 0) {
+                echo '<p class="lead">No Accounts</p>';
+            } else {
+                foreach ($accounts as $account) {
+                    echo '<li class="list-group-item"><p class="h3">' . $account->getBalanceRepresentation() . '</p>' . $account->accountName . '<p class="text-muted mt-1 mb-0">' . $account->getAccountNumberRepresentation() . '</p></li>';
+                }
             }
-        }
-        ?>
-	</ul>
+            ?>
+        </ul>
+    </section>
 
 	<section class="transfers">
 		<h3>Transaction History</h3>

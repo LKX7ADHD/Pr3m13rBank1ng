@@ -9,12 +9,6 @@
 		<div class="collapse navbar-collapse" id="navbar">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link" href="#">Credit Card Loans</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Bank Loan</a>
-				</li>
-				<li class="nav-item">
 					<a class="nav-link" href="/about.php">About Us</a>
 				</li>
 			</ul>

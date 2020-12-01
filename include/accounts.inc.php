@@ -428,6 +428,40 @@ function createAccount(User $user, string $accountName) {
 }
 
 /**
+ * Creates an application for a new account
+ * @param User $user the owner of the new account
+ * @param string $accountName name of the account to be created
+ */
+function createAccountApplication(User $user, string $accountName) {
+    $conn = connectToDatabase();
+
+    $findAccountNumber = true;
+    while ($findAccountNumber) {
+        $accountNumber = generateAccountNumber();
+        if (!getAccount($accountNumber)) {
+            $findAccountNumber = false;
+        }
+    }
+
+    if ($conn->connect_error) {
+        http_response_code(500);
+        die('An unexpected error has occurred. Please try again later.');
+    } else {
+        $timestamp = date('Y-m-d H:i:s');
+
+        $stmt = $conn->prepare('INSERT INTO AccountRequests (UserID, accountName, accountNumber, requestTimestamp) SELECT Users.UserID, ?, ?, ? FROM Users WHERE Users.username = ? LIMIT 1');
+        $stmt->bind_param('ssss', $accountName, $accountNumber, $timestamp, $user->username);
+
+        if (!$stmt->execute()) {
+            http_response_code(500);
+            die('An unexpected error has occurred. Please try again later.');
+        }
+        $stmt->close();
+    }
+    $conn->close();
+}
+
+/**
  * Generates a pseudo-random string for use as an account number
  *
  * WARNING:
@@ -517,6 +551,39 @@ function getTransfers(array $accounts = NULL) {
     return $transfers;
 }
 
+/**
+ * Retrieves account applications
+ * @param int $status status of applications to filter, default to PENDING
+ * @return array applications
+ */
+function getAccountApplications($status = 0) {
+    $conn = connectToDatabase();
+    $applications = array();
+
+    if ($conn->connect_error) {
+        http_response_code(500);
+        die('An unexpected error has occurred. Please try again later.');
+    } else {
+        if (empty($accounts)) {
+            $stmt = $conn->prepare('SELECT U.username, A.accountName, A.status, A.accountNumber, A.requestTimestamp FROM AccountRequests A, Users U WHERE A.UserID = U.UserID AND status = ?');
+            $stmt->bind_param("i", $status);
+
+            if (!$stmt->execute()) {
+                http_response_code(500);
+                die('An unexpected error has occurred. Please try again later.');
+            }
+            $result = $stmt->get_result();
+            $stmt->close();
+            $resultArray = $result->fetch_all(MYSQLI_ASSOC);
+
+            if (!empty($resultArray)) {
+                array_push($applications, ...$resultArray);
+            }
+        }
+    }
+    $conn->close();
+    return $applications;
+}
 
 function getTransferDescription() {
 

@@ -61,7 +61,7 @@ if ($success) {
         echo '<li class="list-group-item">' . $errorMessage . '</li>';
     }
     echo '</ul>';
-    echo '<a class="btn btn-warning" href="login.php" role="button">Return to Login</a>';
+    echo '<a class="btn btn-danger btn-lg mt-4" href="login.php" role="button">Return to Login</a>';
     ?>
 </main>
 

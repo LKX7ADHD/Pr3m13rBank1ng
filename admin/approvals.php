@@ -2,13 +2,13 @@
 require_once '../include/accounts.inc.php';
 
 $user = getAuthenticatedUser();
-$transfers = getTransfers();
 
 if (!$user || !$user->admin) {
     header('Location: ../login.php');
     exit();
 }
 
+$requests = getAccountApplications();
 ?>
 <!DOCTYPE html>
 
@@ -33,32 +33,26 @@ if (!$user || !$user->admin) {
             <thead>
             <tr>
                 <th scope="col">Date</th>
-                <th scope="col">Sending account</th>
-                <th scope="col">Receiving account</th>
-                <th scope="col">Transaction</th>
-                <th scope="col">Amount</th>
+                <th scope="col">User</th>
+                <th scope="col">Account name</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
 
             <?php
-            foreach ($transfers as $transfer) {
-                $value = new Currency($transfer['transferValue']);
-                $reversed = (bool)$transfer['reversed'];
+            foreach ($requests as $request) {
+                echo '<tr>';
+                echo '<td>' . date('d/m/Y', strtotime($request['requestTimestamp'])) . '</td>';
+                echo '<td>' . $request['username'] . '</td>';
+                echo '<td>' . $request['accountName'] . '</td>';
 
-                if ($reversed) {
-                    echo '<tr class="transfer-record-reversed">';
-                } else {
-                    echo '<tr>';
-                }
+                echo '<td><div class="btn-group" role="group" aria-label="Actions">';
 
-                echo '<td>' . date('d/m/Y', strtotime($transfer['transferTimestamp'])) . '</td>';
+                echo '<button type="button" class="btn btn-primary request-approval-btn" data-approve="true" data-requestNumber="' . $request['accountNumber'] . '">Approve</button>';
+                echo '<button type="button" class="btn btn-primary request-approval-btn" data-approve="false" data-requestNumber="' . $request['accountNumber'] . '">Reject</button>';
 
-                echo '<td>' . Account::getAccountNumberRepresentationFromString($transfer['Sender']) . '</td>';
-                echo '<td>' . Account::getAccountNumberRepresentationFromString($transfer['Receiver']) . '</td>';
-
-                echo '<td></td>';
-                echo '<td>' . $value->getRepresentation() . '</td>';
+                echo '</div></td>';
                 echo '</tr>';
             }
             ?>
@@ -67,6 +61,41 @@ if (!$user || !$user->admin) {
     </section>
 
 </main>
+
+<script>
+    $('.request-approval-btn').on('click', e => {
+        const requestNumber = e.target.getAttribute('data-requestNumber')
+        let approve
+
+        if (e.target.getAttribute('data-approve') === 'true') {
+            approve = true
+        } else if (e.target.getAttribute('data-approve') === 'false') {
+            approve = false
+        }
+
+        if (typeof(approve) !== 'undefined') {
+            e.target.setAttribute('disabled', '')
+
+            const formData = new FormData();
+            formData.append('requestNumber', requestNumber);
+            formData.append('approval', approve ? 'true' : 'false');
+
+            fetch('process_application.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data['success']) {
+                    $(e.target).parents('tr').remove()
+                } else {
+                    e.target.removeAttribute('disabled')
+                }
+            })
+        }
+    })
+</script>
+
 <?php include "../include/sessionTimeout.inc.php" ?>
 <?php include "../include/footer.inc.php" ?>
 </body>

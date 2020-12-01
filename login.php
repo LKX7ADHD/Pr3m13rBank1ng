@@ -1,4 +1,18 @@
-<?php require_once 'include/accounts.inc.php' ?>
+<?php
+require_once 'include/accounts.inc.php';
+
+$user = getAuthenticatedUser();
+
+if ($user) {
+    if ($user->admin) {
+        header("Location: /admin/");
+        exit();
+    } else {
+        header("Location: /personal_banking/");
+        exit();
+    }
+}
+?>
 
 <!DOCTYPE html>
 
@@ -30,7 +44,7 @@
 					<form action="process_login.php" method="POST">
 						<div class="form-title">
 							<h1 class="title">Sign In</h1>
-							<p>Enter your account details below:</p>
+							<p>Enter your details below:</p>
 						</div>
 						<div class="form-group">
 							<label for="email" class="text-muted">Email</label>
