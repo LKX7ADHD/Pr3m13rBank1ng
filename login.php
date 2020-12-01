@@ -56,6 +56,6 @@
 
 </main>
 
-<?php //include "include/footer.inc.php" ?>
+<?php include "include/sessionTimeout.inc.php" ?>
 </body>
 </html>

@@ -1,6 +1,5 @@
 <?php
 include_once '../include/accounts.inc.php';
-include_once "../include/sessiontimeout.inc.php";
 $user = getAuthenticatedUser();
 
 if (!$user) {
@@ -30,8 +29,9 @@ and open the template in the editor.
 </header>
 <main class="container profile">
 	<p class="h1">Hello, <?php echo $user->username; ?></p>
-	<a class="btn btn-warning" href="../logout.php" role="button">Logout</a>
+	<a class="btn btn-warning btn-lg mt-4" href="../logout.php" role="button">Logout</a>
 </main>
+<?php include "../include/sessionTimeout.inc.php" ?>
 <?php include '../include/footer.inc.php' ?>
 </body>
 </html>

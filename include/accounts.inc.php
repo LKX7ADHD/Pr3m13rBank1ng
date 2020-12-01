@@ -1,8 +1,15 @@
 <?php
 
-session_set_cookie_params(1200, '/', $_SERVER['HTTP_HOST'], true, true);
+$lifetime = 1200; // 20 minutes
+$expiry = time() + $lifetime;
+
+session_set_cookie_params($lifetime, '/', $_SERVER['HTTP_HOST'], true, true);
 session_name('session');
 session_start();
+
+// Renew cookie lifetime
+setcookie(session_name(), session_id(), $expiry, '/', $_SERVER['HTTP_HOST'], true, true);
+$_SESSION['session_expiry'] = $expiry;
 
 // TODO : REMOVE WHEN DONE
 
@@ -220,7 +227,6 @@ function authenticateUser(string $email, string $password) {
         $authenticated = true;
 
         $user = new User();
-        $user->userId = $row['UserID'];
         $user->username = $row['username'];
         $user->firstName = $row['firstName'];
         $user->lastName = $row['lastName'];

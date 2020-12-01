@@ -121,6 +121,7 @@ if ($readyToConvert) {
 	</div>
 </main>
 
+<?php include "include/sessionTimeout.inc.php" ?>
 <?php include "include/footer.inc.php" ?>
 </body>
 

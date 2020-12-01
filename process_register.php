@@ -91,9 +91,13 @@ if ($success) {
     $user->lastName = $formInput['lname'];
     $user->email = $formInput['email'];
     $user->username = $formInput['username'];
+    $user->admin = false;
 
     registerUser($user, $formInput['hashed_password']);
     createAccount($user, 'Basic Account');
+
+    // Automatically log in the new user
+    $_SESSION['user'] = $user;
 }
 
 ?>
@@ -108,14 +112,14 @@ if ($success) {
 <?php include "include/navbar.inc.php" ?>
 
 <header class="jumbotron text-center">
-	<h1 class="display-4">Open Account</h1>
+	<h1 class="display-4">Register</h1>
 </header>
 <main class="container process-register">
     <?php
     if ($success) {
         echo '<p class="h1">Your registration is successful!</p>';
         echo '<p class="lead">Thank you for signing up, ' . $user->username . '.</p>';
-        echo '<a class="btn btn-success" href="login.php" role="button">Proceed to Log in</a>';
+        echo '<a class="btn btn-success btn-lg mt-4" href="/personal_banking/" role="button">Proceed to Dashboard</a>';
     } else {
         echo '<p class="h1">Oops</p>';
         echo '<p class="lead">The following errors were detected:</p>';
@@ -124,11 +128,12 @@ if ($success) {
             echo '<li class="list-group-item">' . $errorMessage . '</li>';
         }
         echo '</ul>';
-        echo '<a class="btn btn-danger" href="register.php" role="button">Return to Sign up</a>';
+        echo '<a class="btn btn-danger btn-lg mt-4" href="register.php" role="button">Return to Register</a>';
     }
     ?>
 </main>
 
+<?php include "include/sessionTimeout.inc.php" ?>
 <?php include "include/footer.inc.php" ?>
 </body>
 </html>

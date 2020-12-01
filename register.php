@@ -124,7 +124,7 @@ and open the template in the editor.
 
 </main>
 
-
+<?php include "include/sessionTimeout.inc.php" ?>
 </body>
 
 </html>

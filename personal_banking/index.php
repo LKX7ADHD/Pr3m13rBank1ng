@@ -1,6 +1,5 @@
 <?php
 require_once '../include/accounts.inc.php';
-require_once '../include/sessiontimeout.inc.php';
 
 $user = getAuthenticatedUser();
 $accounts = getAccounts($user);
@@ -83,6 +82,7 @@ if (!$user) {
 	</section>
 
 </main>
+<?php include "../include/sessionTimeout.inc.php" ?>
 <?php include "../include/footer.inc.php" ?>
 </body>
 

@@ -30,9 +30,9 @@ $(() => {
         const pwd = e.target.value
 
         const lengthRequirement = pwd => pwd.length >= 8
-        const numberRequirement = pwd => !!~pwd.search(/\d/)
-        const uppercaseRequirement = pwd => !!~pwd.search(/[A-Z]/)
-        const specialRequirement = pwd => !!~pwd.search(/[!@#\$%\^\&*\)\(+=._-]/)
+        const numberRequirement = pwd => ~pwd.search(/\d/)
+        const uppercaseRequirement = pwd => ~pwd.search(/[A-Z]/)
+        const specialRequirement = pwd => ~pwd.search(/[!@#\$%\^\&*\)\(+=._-]/)
 
         const requirements = [lengthRequirement, numberRequirement, uppercaseRequirement, specialRequirement]
 

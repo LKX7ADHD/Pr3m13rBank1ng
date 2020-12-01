@@ -166,6 +166,7 @@ and open the template in the editor.
 </main>
 
 
+<?php include "include/sessionTimeout.inc.php" ?>
 <?php include "include/footer.inc.php" ?>
 </body>
 </html>
