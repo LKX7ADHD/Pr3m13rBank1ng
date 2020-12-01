@@ -19,7 +19,7 @@
 								</h4>
 								<ul class="footer__list">
 									<li>
-										<a href="#">Loan Calculator</a>
+										<a href="/interest_rate.php">Interest Rate Calculator</a>
 									</li>
 								</ul>
 							</div>
