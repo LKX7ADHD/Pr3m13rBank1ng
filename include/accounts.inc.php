@@ -543,5 +543,3 @@ function sanitiseInput(string $data) {
     $data = htmlspecialchars($data);
     return $data;
 }
-
-?>

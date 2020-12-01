@@ -15,4 +15,5 @@
 <link rel="stylesheet" href="/assets/css/style.css">
 
 <!-- Favicon -->
-<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+<link rel="icon" type="image/png" href="/favicon.png">
+<!--[if IE]><link rel="shortcut icon" href="/favicon.ico"/><![endif]-->
