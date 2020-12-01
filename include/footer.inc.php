@@ -7,7 +7,7 @@
 					<div class="footer__logo">
 						<h3>Premier Banking</h3>
 					</div>
-					<p>The Future of Banking. Your Satisfaction is our priority.</p>
+					<p>The Future of Banking. Your Satisfaction is our Priority.</p>
 				</div>
 				<div class="col-sm-12 col-md-8">
 					<div class="row">

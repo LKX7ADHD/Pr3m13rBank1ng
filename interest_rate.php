@@ -21,7 +21,6 @@ if ($readyToConvert) {
         $fields['t']
     );
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -31,13 +30,9 @@ if ($readyToConvert) {
 	<!-- Meta Tags -->
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <?php include 'include/imports.inc.php' ?>
-
 	<title>Premier Banking | Home</title>
-
 </head>
-
 <body>
 
 <?php include "include/navbar.inc.php" ?>

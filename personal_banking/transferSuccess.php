@@ -27,7 +27,7 @@ if (!$user) {
 </header>
 <main class="container process-login">
     <?php
-    echo '<p class="h1">Transferred Successful</p>';
+    echo '<p class="h1">Transferred Successfully!</p>';
 
     echo '</ul>';
     echo '<a class="btn btn-success btn-lg" href="/personal_banking/" role="button">Return to Dashboard</a>';

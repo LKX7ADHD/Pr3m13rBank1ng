@@ -1,20 +1,13 @@
 <?php require_once 'include/accounts.inc.php' ?>
-
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
 	<!-- Meta Tags -->
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <?php include 'include/imports.inc.php' ?>
-
 	<title>Premier Banking | Home</title>
-
 </head>
-
 <body>
 
 <?php include "include/navbar.inc.php" ?>
@@ -79,9 +72,9 @@
 
 				<div class="col-lg-6">
 					<div class="content">
-						<span class="mb-3 d-inline-block">Reliable. Effective. Efficient</span>
+						<span class="mb-3 d-inline-block">Reliable. Effective. Efficient.</span>
 						<h3>Fast Funding, like Tomorrow-fast.</h3>
-						<p>No-hassle funding. Most businesses are approved the very next day.</p>
+						<p>No-hassle funding. Most businesses are approved within the same day.</p>
 
 					</div>
 					<a href="register.php" title="Register Page">
@@ -101,7 +94,6 @@
 	</section>
 	<!--   End of Funding Section     -->
 
-
 	<!--   Start of Mobile Banking     -->
 	<section class="mobile-banking">
 		<div class="container">
@@ -115,14 +107,12 @@
 					<div class="mobile-banking__content">
 						<span class="mb-3 d-inline-block">Smart and Secure</span>
 						<h3>Smart & Safe Mobile Banking</h3>
-						<p>Fully Layered Security Mobile Banking with smooth and efficient experience.
+						<p>Fully-layered & secure mobile banking for a smooth and efficient experience.
 							No hiccups and the smoothness of mobile banking does not compromise the security of mobile
 							banking.
 						</p>
-
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</section>
@@ -141,10 +131,8 @@
 					<div class="benefits__content">
 						<span class="mb-3 d-inline-block">Transfer More. Worry Less.</span>
 						<h3>Send Money all over the world with no hidden fees.</h3>
-						<p>Send money to your family, your friends regardless of where they are. Transfer money with a
-							small fee of 0.5% for anything above $10,000. This means you can worry less and transfer
-							more
-							with our services.
+						<p>Send money to your family and friends regardless of where they are, with no fees at all. This
+							means you can worry less and transfer more with our services.
 						</p>
 
 					</div>
@@ -170,7 +158,7 @@
 						<h2 class="title">
 							Launch Your Business Quickly
 						</h2>
-						<p>Register to get your account started and launch your business effortlessly.</p>
+						<p>Register now to start your account and kick-start your business effortlessly.</p>
 						<div class="cta__btn">
 							<a href="register.php" title="Register Page">
 								<button class="btn">
@@ -184,7 +172,6 @@
 		</div>
 	</section>
 	<!--        End of Cta Section-->
-
 </main>
 
 

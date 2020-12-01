@@ -1,11 +1,6 @@
 <?php require_once 'include/accounts.inc.php' ?>
 
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -22,8 +17,8 @@ and open the template in the editor.
 		<div class="row">
 			<div class="col-lg-6">
 				<h1 class="title">About Us</h1>
-				<p class="about__text">A Bank for you and only you. We will make sure you will get the service you
-					deserved.</p>
+				<p class="about__text">A Bank for you and only you. We will make sure you get the service you
+					deserve.</p>
 			</div>
 		</div>
 	</div>
@@ -35,7 +30,7 @@ and open the template in the editor.
 			<div class="row">
 				<div class="mission__title">
 					<h2>
-						Our Mission is to make sure you will never lose sight of your money.
+						Our Mission is to make sure you never lose sight of your money.
 					</h2>
 					<div class="mission__paragraph">
 						<p>
@@ -68,7 +63,7 @@ and open the template in the editor.
 				<div class="col-lg-6 text-center">
 					<div class="team__title">
 						<h2>Meet The Team</h2>
-						<p>The Team that will make sure you will never regret your choice for banking with us.</p>
+						<p>The team that makes sure you never regret banking with us.</p>
 					</div>
 				</div>
 			</div>
@@ -160,7 +155,6 @@ and open the template in the editor.
 			</div>
 		</div>
 	</section>
-
 
 	<!--    End of Call To Action -->
 </main>
