@@ -26,16 +26,31 @@ if ($conn->connect_error) {
     if ($approve) {
         $stmt = $conn->prepare('INSERT INTO Accounts (UserID, accountName, accountValue, accountNumber) SELECT AccountRequests.UserID, AccountRequests.accountName, 0, ? FROM AccountRequests WHERE AccountRequests.accountNumber = ? LIMIT 1');
         $stmt->bind_param('ss', $accountNumber, $accountNumber);
-    } else {
-        $stmt = $conn->prepare('DELETE FROM AccountRequests WHERE accountNumber = ?');
+
+        if (!$stmt->execute()) {
+            http_response_code(500);
+            die('An unexpected error has occurred. Please try again later.');
+        }
+        $stmt->close();
+
+        $stmt = $conn->prepare('UPDATE AccountRequests SET status = 1 WHERE accountNumber = ?');
         $stmt->bind_param('s', $accountNumber);
+        if (!$stmt->execute()) {
+            http_response_code(500);
+            die('An unexpected error has occurred. Please try again later.');
+        }
+        $stmt->close();
+    } else {
+        $stmt = $conn->prepare('UPDATE AccountRequests SET status = 2 WHERE accountNumber = ?');
+        $stmt->bind_param('s', $accountNumber);
+        if (!$stmt->execute()) {
+            http_response_code(500);
+            die('An unexpected error has occurred. Please try again later.');
+        }
+        $stmt->close();
     }
 
-    if (!$stmt->execute()) {
-        http_response_code(500);
-        die('An unexpected error has occurred. Please try again later.');
-    }
-    $stmt->close();
+
 }
 $conn->close();
 

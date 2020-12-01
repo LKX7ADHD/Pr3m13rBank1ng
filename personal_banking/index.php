@@ -10,11 +10,6 @@ if (!$user) {
 $accounts = getAccounts($user);
 $transfers = getTransfers($accounts);
 
-if (!$user) {
-    header('Location: ../login.php');
-    exit();
-}
-
 ?>
 <!DOCTYPE html>
 

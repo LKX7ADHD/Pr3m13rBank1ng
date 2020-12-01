@@ -553,10 +553,11 @@ function getTransfers(array $accounts = NULL) {
 
 /**
  * Retrieves account applications
- * @param int $status status of applications to filter, default to PENDING
+ * @param User|null $user user to filter for, leave NULL for all users
+ * @param int|null $status status of applications to filter for, leave NULL for all statuses
  * @return array applications
  */
-function getAccountApplications($status = 0) {
+function getAccountApplications(User $user = NULL, int $status = NULL) {
     $conn = connectToDatabase();
     $applications = array();
 
@@ -564,21 +565,29 @@ function getAccountApplications($status = 0) {
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     } else {
-        if (empty($accounts)) {
+        if (!is_null($user) && !is_null($status)) {
+            $stmt = $conn->prepare('SELECT U.username, A.accountName, A.status, A.accountNumber, A.requestTimestamp FROM AccountRequests A, Users U WHERE A.UserID = U.UserID AND U.username = ? AND status = ?');
+            $stmt->bind_param("si", $user->username, $status);
+        } else if (!is_null($user)) {
+            $stmt = $conn->prepare('SELECT U.username, A.accountName, A.status, A.accountNumber, A.requestTimestamp FROM AccountRequests A, Users U WHERE A.UserID = U.UserID AND U.username = ?');
+            $stmt->bind_param("s", $user->username);
+        } else if (!is_null($status)) {
             $stmt = $conn->prepare('SELECT U.username, A.accountName, A.status, A.accountNumber, A.requestTimestamp FROM AccountRequests A, Users U WHERE A.UserID = U.UserID AND status = ?');
             $stmt->bind_param("i", $status);
+        } else {
+            $stmt = $conn->prepare('SELECT U.username, A.accountName, A.status, A.accountNumber, A.requestTimestamp FROM AccountRequests A, Users U WHERE A.UserID = U.UserID');
+        }
 
-            if (!$stmt->execute()) {
-                http_response_code(500);
-                die('An unexpected error has occurred. Please try again later.');
-            }
-            $result = $stmt->get_result();
-            $stmt->close();
-            $resultArray = $result->fetch_all(MYSQLI_ASSOC);
+        if (!$stmt->execute()) {
+            http_response_code(500);
+            die('An unexpected error has occurred. Please try again later.');
+        }
+        $result = $stmt->get_result();
+        $stmt->close();
+        $resultArray = $result->fetch_all(MYSQLI_ASSOC);
 
-            if (!empty($resultArray)) {
-                array_push($applications, ...$resultArray);
-            }
+        if (!empty($resultArray)) {
+            array_push($applications, ...$resultArray);
         }
     }
     $conn->close();

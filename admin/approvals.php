@@ -8,7 +8,7 @@ if (!$user || !$user->admin) {
     exit();
 }
 
-$requests = getAccountApplications();
+$requests = getAccountApplications(NULL, 0);
 ?>
 <!DOCTYPE html>
 
