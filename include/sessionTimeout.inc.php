@@ -11,8 +11,7 @@
                 <span>You will soon be logged out soon to protect your account as you have been inactive for some time. </span>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary"id="session-extension-button"
-                        data-dismiss="modal">Extend session</button>
+                <button type="button" class="btn btn-primary" id="session-extension-button">Extend session</button>
             </div>
         </div>
     </div>
@@ -20,13 +19,29 @@
 
 <script>
     function handleSessionExpiringSoon() {
-        $('#sessionExpiringModal').modal()
+        const button = $('#session-extension-button')
+        button.removeAttr('disabled')
+        button.text('Extend session')
+
+        $('#sessionExpiringModal').modal('show')
     }
 
     $('#session-extension-button').on('click', e => {
+        const button = $('#session-extension-button')
+        button.attr('disabled', '')
+        button.text('Extending session...')
+
         // make request to server to renew cookie
-        fetch('/')
-        setTimeout(handleSessionExpiringSoon, 1200000) // 20 minutes
+        fetch('/session_extend.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data['has_expired']) {
+                    window.location.href = '/logout.php'
+                } else {
+                    setTimeout(handleSessionExpiringSoon, data['expires_in'] * 1000)
+                    $('#sessionExpiringModal').modal('hide')
+                }
+            })
     })
 
     <?php
