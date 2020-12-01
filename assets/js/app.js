@@ -6,7 +6,8 @@
 // t = the time the money is invested or borrowed for
 
 function calculate_interest(P, r, n, t) {
-    return P * (1 + r / n) ** (n * t);
+    let amount = P * (1 + r / n) ** (n * t);
+    return "$".concat(amount.toLocaleString('us', {minimumFractionDigits: 2, maximumFractionDigits: 2}));
 }
 
 $(() => {
