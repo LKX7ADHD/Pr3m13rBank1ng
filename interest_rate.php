@@ -8,9 +8,9 @@ $readyToConvert = true;
 foreach ($fields as $field => $value) {
     if (!isset($_POST[$field]) || empty($_POST[$field])) {
         $readyToConvert = false;
+    } else {
+        $fields[$field] = $_POST[$field];
     }
-
-    $fields[$field] = $_POST[$field];
 }
 
 if ($readyToConvert) {
