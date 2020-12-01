@@ -66,7 +66,11 @@ class Account {
      * @return string
      */
     public function getAccountNumberRepresentation() {
-        return substr($this->accountNumber, 0, 3) . '-' . substr($this->accountNumber, 3, 5) . '-' . substr($this->accountNumber, -2);
+        return Account::getAccountNumberRepresentationFromString($this->accountNumber);
+    }
+
+    public static function getAccountNumberRepresentationFromString($accountNumberString) {
+        return substr($accountNumberString, 0, 3) . '-' . substr($accountNumberString, 3, 5) . '-' . substr($accountNumberString, -2);
     }
 }
 

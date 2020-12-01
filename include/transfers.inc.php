@@ -81,7 +81,6 @@ function performTransfer(Account $sender, Account $receiver, Currency $amount, a
  */
 function reverseTransfer(int $transferID) {
     // TODO : DOESNT ACTUALLY CREDIT THE TWO ACCOUNTS YET
-
     $reversed = true;
 
     $conn = connectToDatabase();
@@ -90,7 +89,7 @@ function reverseTransfer(int $transferID) {
         http_response_code(500);
         die('Unable to connect to the database');
     } else {
-        // Update the reverseTransfer status
+
         $stmt = $conn->prepare('UPDATE Transfers SET reverseTransfer = 1 WHERE TransferID = ?');
         $stmt->bind_param('i', $transferID);
 

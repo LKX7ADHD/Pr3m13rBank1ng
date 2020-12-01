@@ -28,7 +28,7 @@ if (!$user || !$user->admin) {
 
 <main class="container">
     <section class="transfers">
-        <h3>Review transfers</h3>
+        <h3>Pending approvals</h3>
 
         <table class="table table-bordered">
             <thead>
@@ -45,8 +45,14 @@ if (!$user || !$user->admin) {
             <?php
             foreach ($transfers as $transfer) {
                 $value = new Currency($transfer['transferValue']);
+                $reversed = (bool)$transfer['reversed'];
 
-                echo '<tr>';
+                if ($reversed) {
+                    echo '<tr class="transfer-record-reversed">';
+                } else {
+                    echo '<tr>';
+                }
+
                 echo '<td>' . date('d/m/Y', strtotime($transfer['transferTimestamp'])) . '</td>';
 
                 echo '<td>' . Account::getAccountNumberRepresentationFromString($transfer['Sender']) . '</td>';

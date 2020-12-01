@@ -8,7 +8,7 @@ $accounts = getAccounts($user);
 $transfers = getTransfers($accounts);
 
 if (!$user) {
-    header('Location: login.php');
+    header('Location: ../login.php');
     exit();
 }
 
@@ -61,7 +61,7 @@ if (!$user) {
                 $value = new Currency($transfer['transferValue']);
 
                 echo '<tr>';
-                echo '<td scope="row">' . date('d/m/Y', strtotime($transfer['transferTimestamp'])) . '</td>';
+                echo '<td>' . date('d/m/Y', strtotime($transfer['transferTimestamp'])) . '</td>';
 
                 foreach ($accounts as $account) {
                     echo '<td>' . $account->getAccountNumberRepresentation() . '</td>';

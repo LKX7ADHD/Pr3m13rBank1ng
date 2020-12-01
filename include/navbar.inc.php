@@ -1,9 +1,13 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/include/accounts.inc.php';
 
-if (getAuthenticatedUser()) {
+$user = getAuthenticatedUser();
+
+if (!$user) {
+    include $_SERVER['DOCUMENT_ROOT'] . '/include/home.navbar.inc.php';
+} else if(!$user->admin) {
     include $_SERVER['DOCUMENT_ROOT'] . '/include/personalBanking.navbar.inc.php';
 } else {
-    include $_SERVER['DOCUMENT_ROOT'] . '/include/home.navbar.inc.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/include/admin.navbar.inc.php';
 }
 ?>
