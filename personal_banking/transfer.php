@@ -225,10 +225,10 @@ and open the template in the editor.
                         if (caretPos === i + 1) {
                             caretPos++
                         }
-                    } else if (input.val().length === i + 1 && input.val()[i] === '-') {
+                    } elseif (input.val().length === i + 1 && input.val()[i] === '-') {
                         input.val(input.val().slice(0, i))
                     }
-                } else if (input.val()[i] === '-') {
+                } elseif (input.val()[i] === '-') {
                     input.val(input.val().slice(0, i) + input.val().slice(i + 1))
                 }
             }

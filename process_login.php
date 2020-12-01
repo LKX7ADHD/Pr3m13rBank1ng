@@ -24,7 +24,6 @@ if (isset($_POST['email']) && !empty($_POST['email'])) {
         $errorMessages[] = 'Password is required';
         $success = false;
     }
-
 } else {
     $errorMessages[] = 'Email is required';
     $success = false;
@@ -39,14 +38,12 @@ if ($success) {
         header("Location: /personal_banking/");
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 	<title>Premier Banking</title>
     <?php include 'include/imports.inc.php' ?>
 </head>
@@ -58,7 +55,7 @@ if ($success) {
 </header>
 <main class="container process-login">
     <?php
-    echo '<p class="h1">Oops</p>';
+    echo '<p class="h1">Oops!</p>';
     echo '<p class="lead">The following errors were detected:</p>';
     echo '<ul class="list-group list-group-flush">';
     foreach ($errorMessages as $errorMessage) {

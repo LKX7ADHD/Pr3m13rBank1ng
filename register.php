@@ -10,15 +10,9 @@ if ($user) {
         header("Location: /personal_banking/");
     }
 }
-
 ?>
 
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html lang="en">
 
 <head>
@@ -29,7 +23,6 @@ and open the template in the editor.
 </head>
 
 <body id="register-body">
-
 
 <main id="register">
 	<section class="container d-flex flex-column justify-content-start h-100">
@@ -49,7 +42,7 @@ and open the template in the editor.
 
 						<div class="form-title">
 							<h1 class="title">Register</h1>
-							<p>Enter your account details below</p>
+							<p>Enter your account details below:</p>
 						</div>
 
 						<div class="form-group">
@@ -74,33 +67,33 @@ and open the template in the editor.
 						</div>
 
 						<div class="form-group">
-                            <label for="email" class="text-muted">Email</label>
+							<label for="email" class="text-muted">Email</label>
 							<input class="form-control" type="email" id="email" name="email" aria-label="Email"
 							       placeholder="Enter email"
 							       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required/>
 						</div>
 
 						<div class="form-group">
-                            <label for="pwd_new" class="text-muted">Password</label>
+							<label for="pwd_new" class="text-muted">Password</label>
 							<input class="form-control" type="password" id="pwd_new" name="pwd" aria-label="Password"
 							       placeholder="Enter password" required/>
 						</div>
 
-                        <div class="border rounded p-2 m-4">
-                            <p class="lead">Password requirements</p>
-                            <ul class="pwd-requirement-list">
-                                <li class="pwd-requirement">Minimum 8 characters</li>
-                                <li class="pwd-requirement">At least one number</li>
-                                <li class="pwd-requirement">At least one uppercase letter</li>
-                                <li class="pwd-requirement">At least one special character</li>
-                            </ul>
-                        </div>
+						<div class="border rounded p-2 m-4">
+							<p class="lead">Password requirements</p>
+							<ul class="pwd-requirement-list">
+								<li class="pwd-requirement">Minimum 8 characters</li>
+								<li class="pwd-requirement">At least one number</li>
+								<li class="pwd-requirement">At least one uppercase letter</li>
+								<li class="pwd-requirement">At least one special character</li>
+							</ul>
+						</div>
 
 						<div class="form-group">
-                            <label for="pwd_confirm" class="text-muted">Confirm Password</label>
+							<label for="pwd_confirm" class="text-muted">Confirm Password</label>
 							<input class="form-control" type="password" id="pwd_confirm"
 							       aria-label="Confirmation of Password" name="pwd_confirm"
-							       placeholder="Confirm password" required/>
+							       placeholder="Enter password again" required/>
 						</div>
 
 						<div class="form-check" id="form-agree">
@@ -109,7 +102,6 @@ and open the template in the editor.
 								Agree to Premier Banking's terms and conditions.
 							</label>
 						</div>
-
 
 						<div class="form-group">
 							<button class="form-btn" type="submit">Register</button>
@@ -121,10 +113,6 @@ and open the template in the editor.
 			</div>
 		</div>
 	</section>
-
 </main>
-
-
 </body>
-
 </html>

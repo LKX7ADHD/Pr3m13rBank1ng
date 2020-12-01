@@ -1,13 +1,14 @@
 <?php
 require_once 'include/accounts.inc.php';
+
+$logOutDueToSessionExpiry = true;
+if (getAuthenticatedUser()) {
+    $logOutDueToSessionExpiry = false;
+}
+
 logOut();
 ?>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -21,8 +22,16 @@ and open the template in the editor.
 	<h1 class="display-4">Logout</h1>
 </header>
 <main class="container logout">
-	<p class="h1">Logout success</p>
-	<a class="btn btn-success" href="/" role="button">Return to Home</a>
+    <?php
+    if ($logOutDueToSessionExpiry) {
+        echo '<p class="h1">Session expired</p>';
+        echo '<p class="lead">You were logged out to protect your account as you were inactive for some time.</p>';
+        echo '<a class="btn btn-success btn-lg mt-4" href="/login.php" role="button">Log in again</a>';
+    } else {
+        echo '<p class="h1">Logout success</p>';
+        echo '<a class="btn btn-success btn-lg mt-4" href="/" role="button">Return to Home</a>';
+    }
+    ?>
 </main>
 
 <?php include "include/footer.inc.php" ?>

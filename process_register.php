@@ -10,7 +10,7 @@ $success = true;
 $errorMessages = array();
 
 if (!isset($_POST['agree'])) {
-    $errorMessages[] = 'Please agree to the terms and conditions';
+    $errorMessages[] = 'Please agree to the terms and conditions.';
     $success = false;
 }
 
@@ -26,8 +26,8 @@ $formInput = array();
 foreach ($fields as $field => $fieldLabel) {
     if (isset($_POST[$field]) && !empty($_POST[$field])) {
         $formInput[$field] = sanitiseInput($_POST[$field]);
-    } else if (isFieldRequired($field)) {
-        $errorMessages[] = $fieldLabel . ' is required';
+    } elseif (isFieldRequired($field)) {
+        $errorMessages[] = $fieldLabel . ' is required.';
         $success = false;
     } else {
         $formInput[$field] = '';
@@ -39,41 +39,41 @@ if (isset($formInput['email'])) {
         $errorMessages[] = 'Invalid email format';
         $success = false;
     } elseif (isEmailRegistered($formInput['email'])) {
-        $errorMessages[] = 'This email (' . $formInput['email'] . ') has been registered previously';
+        $errorMessages[] = 'This email (' . $formInput['email'] . ') has been registered previously.';
         $success = false;
     }
 }
 
 if (isset($formInput['username']) && isUsernameRegistered($formInput['username'])) {
-    $errorMessages[] = 'This username (' . $formInput['username'] . ') has been taken';
+    $errorMessages[] = 'This username (' . $formInput['username'] . ') has been taken.';
     $success = false;
 }
 
 if (isset($_POST['pwd'])) {
     if (strlen($_POST['pwd']) < 8) {
-        $errorMessages[] = 'Passwords should be at least 8 characters long';
+        $errorMessages[] = 'Passwords should be at least 8 characters long.';
         $success = false;
     }
 
     if (!preg_match('/\d/', $_POST['pwd'])) {
-        $errorMessages[] = 'Passwords should contain at least one number';
+        $errorMessages[] = 'Passwords should contain at least one number.';
         $success = false;
     }
 
     if (!preg_match('/[A-Z]/', $_POST['pwd'])) {
-        $errorMessages[] = 'Passwords should contain at least one uppercase letter';
+        $errorMessages[] = 'Passwords should contain at least one uppercase letter.';
         $success = false;
     }
 
-    if (!preg_match('/[!@#\$%\^\&*\)\(+=._-]/', $_POST['pwd'])) {
-        $errorMessages[] = 'Passwords should contain at least one special character';
+    if (!preg_match('/[!@#\$%^&*)(+=._-]/', $_POST['pwd'])) {
+        $errorMessages[] = 'Passwords should contain at least one special character.';
         $success = false;
     }
 }
 
 if (isset($_POST['pwd']) && isset($_POST['pwd_confirm'])) {
     if ($_POST['pwd'] !== $_POST['pwd_confirm']) {
-        $errorMessages[] = 'Passwords do not match';
+        $errorMessages[] = 'Passwords do not match.';
         $success = false;
     } else {
         $formInput['hashed_password'] = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
@@ -117,7 +117,7 @@ if ($success) {
         echo '<p class="lead">Thank you for signing up, ' . $user->username . '.</p>';
         echo '<a class="btn btn-success" href="login.php" role="button">Proceed to Log in</a>';
     } else {
-        echo '<p class="h1">Oops</p>';
+        echo '<p class="h1">Oops!</p>';
         echo '<p class="lead">The following errors were detected:</p>';
         echo '<ul class="list-group list-group-flush">';
         foreach ($errorMessages as $errorMessage) {
