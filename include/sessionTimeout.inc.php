@@ -11,7 +11,7 @@
                 <span>You will soon be logged out soon to protect your account as you have been inactive for some time. </span>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="session-extension-button"
+                <button type="button" class="btn btn-primary"id="session-extension-button"
                         data-dismiss="modal">Extend session</button>
             </div>
         </div>
