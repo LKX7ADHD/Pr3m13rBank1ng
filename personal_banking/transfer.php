@@ -24,10 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $readyToTransfer = false;
             $errors[] = 'Invalid sender account number';
         } else {
-            foreach ($accounts as $account) {
-                if ($senderAccountNumber === $account->accountNumber) {
-                    $senderAccount = $account;
-                }
+            foreach ($accounts as $account) if ($senderAccountNumber === $account->accountNumber) {
+                $senderAccount = $account;
             }
             if (!$senderAccount) {
                 $readyToTransfer = false;

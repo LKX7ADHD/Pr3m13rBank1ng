@@ -10,4 +10,3 @@ if (!$user) {
 } else {
     include $_SERVER['DOCUMENT_ROOT'] . '/include/admin.navbar.inc.php';
 }
-?>

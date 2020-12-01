@@ -1,4 +1,4 @@
-<?php require_once '../include/accounts.inc.php' ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/include/accounts.inc.php' ?>
 
 <div class="modal fade" id="sessionExpiringModal" tabindex="-1" role="dialog"
      aria-labelledby="sessionExpiringModalLabel" aria-hidden="true">
@@ -6,15 +6,13 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="sessionExpiringModalLabel">Your session is expiring</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <div class="modal-body">
-                <span>You will be logged out soon to protect your account as you have been inactive for some time. </span>
+                <span>You will soon be logged out soon to protect your account as you have been inactive for some time. </span>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Extend session</button>
+                <button type="button" class="btn btn-primary" id="session-extension-button"
+                        data-dismiss="modal">Extend session</button>
             </div>
         </div>
     </div>
@@ -22,8 +20,14 @@
 
 <script>
     function handleSessionExpiringSoon() {
-
+        $('#sessionExpiringModal').modal()
     }
+
+    $('#session-extension-button').on('click', e => {
+        // make request to server to renew cookie
+        fetch('/')
+        setTimeout(handleSessionExpiringSoon, 1200000) // 20 minutes
+    })
 
     <?php
     $loggedIn = (bool)getAuthenticatedUser();
