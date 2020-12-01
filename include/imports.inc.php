@@ -13,3 +13,6 @@
 
 <!-- Style CSS -->
 <link rel="stylesheet" href="/assets/css/style.css">
+
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
