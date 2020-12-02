@@ -60,6 +60,10 @@
 //mail($emailaddress, $emailsubject, $msg, $headers);
 //
 
+/**
+ * Generates and returns a code for purpose of 2fa
+ * @return string 2fa code
+ */
 function generate_2fa_code() {
     $length = 5;
     $randomBytes = openssl_random_pseudo_bytes($length);
@@ -71,29 +75,49 @@ function generate_2fa_code() {
     return $result;
 }
 
-function send_email($email, $username) {
+/**
+ * Verifies the email of a user
+ * @param $user User the user to verify
+ */
+function verify_email(User $user) {
+    $conn = connectToDatabase();
+    $code = generate_2fa_code();
+
+    if ($conn->connect_error) {
+        http_response_code(500);
+        die('An unexpected error has occurred. Please try again later.');
+    } else {
+        $stmt = $conn->prepare('INSERT INTO EmailVerification (UserID, code) SELECT UserID, ? FROM Users WHERE username = ? ON DUPLICATE KEY UPDATE code = ?');
+        $stmt->bind_param("sss", $code, $user->username, $code);
+        if (!$stmt->execute()) {
+            http_response_code(500);
+            die('An unexpected error has occurred. Please try again later.');
+        }
+        $stmt->close();
+    }
+    $conn->close();
+
     $url = 'https://api.mailgun.net/v3/premierbanking.tech/messages';
 
     $auth = base64_encode('api:22fc4d7ee2116d25e16256d342caea63-95f6ca46-697f0128');
-    $code = generate_2fa_code();
     $emailHTML = <<<EMAIL
 <html lang="en">
 <h1>Big text</h1>
 <em>Italicised</em>
-<p>Hello $username</p>
+<p>Hello $user->username</p>
 <p>Please enter the following code to activate your account.</p>
 <code>$code</code>
 </html>
 EMAIL;
 
     $data = array('from' => 'Premier Banking <cs@premierbanking.tech>',
-        'to' => $email,
-        'subject' => 'test',
+        'to' => $user->email,
+        'subject' => 'Verify your email',
         'html' => $emailHTML);
 
     $options = array(
         'http' => array(
-            'header' => "Authorization: Basic $auth",
+            'header' => "Authorization: Basic $auth\r\nContent-Type: application/x-www-form-urlencoded\r\n",
             'method' => 'POST',
             'content' => http_build_query($data)
         )
@@ -101,10 +125,44 @@ EMAIL;
     $context = stream_context_create($options);
     $result = file_get_contents($url, false, $context);
     if ($result === FALSE) {
-    	echo 'Error: Please try again.';
+        http_response_code(500);
+        die('An unexpected error has occurred. Please try again later.');
     }
-
-    var_dump($result);
 }
 
-send_email('leekaixuan2001@gmail.com', 'kx');
+function verify_code(User $user, string $code) {
+    $conn = connectToDatabase();
+
+    if ($conn->connect_error) {
+        http_response_code(500);
+        die('An unexpected error has occurred. Please try again later.');
+    } else {
+        $stmt = $conn->prepare('SELECT code FROM EmailVerification WHERE UserID = (SELECT UserID FROM Users WHERE username = ?)');
+        $stmt->bind_param('s', $user->username);
+
+        if (!$stmt->execute()) {
+            http_response_code(500);
+            die('An unexpected error has occurred. Please try again later.');
+        }
+
+        $result = $stmt->get_result();
+        $stmt->close();
+    }
+
+    while ($row = $result->fetch_assoc()) {
+        if ($code === $row['code']) {
+            $stmt = $conn->prepare('UPDATE Users SET isVerified = 1 WHERE username = ?');
+            $stmt->bind_param('s', $user->username);
+
+            if (!$stmt->execute()) {
+                http_response_code(500);
+                die('An unexpected error has occurred. Please try again later.');
+            }
+            $stmt->close();
+            $conn->close();
+            return true;
+        }
+    }
+    $conn->close();
+    return false;
+}

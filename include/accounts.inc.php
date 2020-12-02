@@ -25,6 +25,7 @@ class User {
     public $lastName;
     public $email;
     public $admin;
+    public $verified;
 }
 
 /**
@@ -205,7 +206,7 @@ function authenticateUser(string $email, string $password) {
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     } else {
-        $stmt = $conn->prepare('SELECT username, firstName, lastName, password, isAdmin FROM Users WHERE email = ?');
+        $stmt = $conn->prepare('SELECT username, firstName, lastName, password, isAdmin, isVerified FROM Users WHERE email = ?');
         $stmt->bind_param('s', $email);
 
         if (!$stmt->execute()) {
@@ -230,6 +231,7 @@ function authenticateUser(string $email, string $password) {
         $user->lastName = $row['lastName'];
         $user->email = $email;
         $user->admin = $row['isAdmin'];
+        $user->verified = $row['isVerified'];
 
         $_SESSION['user'] = $user;
     }
@@ -366,7 +368,7 @@ function getAccount(string $accountNumber) {
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     } else {
-        $stmt = $conn->prepare('SELECT A.accountName, A.accountValue, U.username, U.firstName, U.lastName, U.email, U.isAdmin FROM Accounts A INNER JOIN Users U ON A.UserID = U.UserID WHERE A.accountNumber = ?');
+        $stmt = $conn->prepare('SELECT A.accountName, A.accountValue, U.username, U.firstName, U.lastName, U.email, U.isAdmin, U.isVerified FROM Accounts A INNER JOIN Users U ON A.UserID = U.UserID WHERE A.accountNumber = ?');
         $stmt->bind_param('s', $accountNumber);
 
         if (!$stmt->execute()) {
@@ -385,6 +387,7 @@ function getAccount(string $accountNumber) {
         $user->lastName = $row['lastName'];
         $user->email = $row['email'];
         $user->admin = $row['isAdmin'];
+        $user->verified = $row['isVerified'];
 
         $account = new Account();
         $account->user = $user;

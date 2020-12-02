@@ -94,10 +94,11 @@ if ($success) {
     $user->admin = false;
 
     registerUser($user, $formInput['hashed_password']);
-    createAccount($user, 'Basic Account');
+    $_SESSION['user_to_verify'] = $user;
+    $_SESSION['request_code'] = true;
 
-    // Automatically log in the new user
-    $_SESSION['user'] = $user;
+    header('Location: verify_email.php');
+    exit();
 }
 
 ?>
@@ -116,11 +117,7 @@ if ($success) {
 </header>
 <main class="container process-register">
     <?php
-    if ($success) {
-        echo '<p class="h1">Your registration is successful!</p>';
-        echo '<p class="lead">Thank you for signing up, ' . $user->username . '.</p>';
-        echo '<a class="btn btn-success btn-lg mt-4" href="/personal_banking/" role="button">Proceed to Dashboard</a>';
-    } else {
+    if (!$success) {
         echo '<p class="h1">Oops!</p>';
         echo '<p class="lead">The following errors were detected:</p>';
         echo '<ul class="list-group list-group-flush">';
