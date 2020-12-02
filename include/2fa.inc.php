@@ -110,44 +110,30 @@ function verify_email(User $user) {
     <style>
         body {
             font-family: 'Public Sans', sans-serif;
-     }
+        }
+        
         img {
             width: 100%;
         }
+        
         .email-logo {
             width: 10%;
         }
-        .header-image-container {
-            display: flex;
-            justify-content: center;
-            background-color: #5B73A8;
-        }
+        
         .header-image {
             width: 20%;
             padding: 5% 0;
+            margin: 0 auto;
+            display: block;
         }
+        
         .email-main {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             padding: 5% 30%;
             text-align: center;
         }
-
-        a {
-            text-decoration: none;
-            padding: 1em 2em;
-            background-color: #5B73A8;
-            border-radius: 20px;
-            color: #fff;
-        }
-        #email-confirmation {
-            margin-top: 5%;
-            transition: .3s cubic-bezier(0.075, 0.82, 0.165, 1);
-        }
-        #email-confirmation:hover {
-            transform: scale(1.1);
+        
+        code {
+            font-size: 2em;
         }
     </style>
     <title>Email</title>
@@ -156,15 +142,16 @@ function verify_email(User $user) {
     <header>
         <nav>
             <div class="email-logo">
-                <img alt="logo" src="Premier banking Favicon.png">
+                <img alt="Premier Banking Logo" src="https://premierbanking.tech/assets/img/logo.png">
             </div>
 
         </nav>
         <div class="header-image-container">
-        <img alt="" class="header-image" src="undraw_arrived_f58d.svg"></div>
+            <img alt="" class="header-image" src="https://premierbanking.tech/assets/img/undraw_arrived_f58d.png">
+        </div>
     </header>
     <main class="email-main">
-        <h1>Email Confirmation</h1>
+        <h1>One last step</h1>
         <p>Hey $user->username, you're almost ready to start changing your financial life. Please enter the following code to verify your email.</p>
         <code>$code</code>
     </main>

@@ -63,7 +63,7 @@ if (isset($_POST['code']) && !empty($_POST['code'])) {
                             <div class="form-title">
                                 <h1 class="title">Verify Email</h1>
                                 <p>An email was sent to <b><?php echo $user->email ?></b> with your verification code.
-                                    Did not receive it? Check your spam or <a href="#">request a resend</a>.</p>
+                                    Can&apos;t find it? It may be in your spam.</p>
                             </div>
 
                             <?php

@@ -158,4 +158,36 @@ $(() => {
 
         return valid
     })
+
+    $('#approvals-table .request-approval-btn').on('click', e => {
+        const requestNumber = e.target.getAttribute('data-requestNumber')
+        let approve
+
+        if (e.target.getAttribute('data-approve') === 'true') {
+            approve = true
+        } else if (e.target.getAttribute('data-approve') === 'false') {
+            approve = false
+        }
+
+        if (typeof(approve) !== 'undefined') {
+            e.target.setAttribute('disabled', '')
+
+            const formData = new FormData();
+            formData.append('requestNumber', requestNumber);
+            formData.append('approval', approve ? 'true' : 'false');
+
+            fetch('process_application.php', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data['success']) {
+                        $(e.target).parents('tr').remove()
+                    } else {
+                        e.target.removeAttribute('disabled')
+                    }
+                })
+        }
+    })
 })
