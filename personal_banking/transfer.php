@@ -190,7 +190,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label class="form-check-label" for="verified">I have checked that the accounts and amount entered is correct</label>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-lg mt-4 mb-3">Transfer</button>
+            <button type="submit" class="btn btn__primary btn-lg mt-4 mb-3">Transfer</button>
         </form>
     </section>
 </main>
