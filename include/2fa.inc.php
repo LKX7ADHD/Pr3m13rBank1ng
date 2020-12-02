@@ -81,13 +81,13 @@ function generate_2fa_code() {
  */
 function verify_email(User $user) {
     $conn = connectToDatabase();
-    $code = generate_2fa_code();
 
     if ($conn->connect_error) {
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     } else {
         $stmt = $conn->prepare('INSERT INTO EmailVerification (UserID, code) SELECT UserID, ? FROM Users WHERE username = ? ON DUPLICATE KEY UPDATE code = ?');
+        $code = generate_2fa_code();
         $stmt->bind_param("sss", $code, $user->username, $code);
         if (!$stmt->execute()) {
             http_response_code(500);
@@ -98,15 +98,77 @@ function verify_email(User $user) {
     $conn->close();
 
     $url = 'https://api.mailgun.net/v3/premierbanking.tech/messages';
-
     $auth = base64_encode('api:22fc4d7ee2116d25e16256d342caea63-95f6ca46-697f0128');
     $emailHTML = <<<EMAIL
+<!DOCTYPE html>
 <html lang="en">
-<h1>Big text</h1>
-<em>Italicised</em>
-<p>Hello $user->username</p>
-<p>Please enter the following code to activate your account.</p>
-<code>$code</code>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans&display=swap" rel="stylesheet"> 
+    <style>
+        body {
+            font-family: 'Public Sans', sans-serif;
+     }
+        img {
+            width: 100%;
+        }
+        .email-logo {
+            width: 10%;
+        }
+        .header-image-container {
+            display: flex;
+            justify-content: center;
+            background-color: #5B73A8;
+        }
+        .header-image {
+            width: 20%;
+            padding: 5% 0;
+        }
+        .email-main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5% 30%;
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+            padding: 1em 2em;
+            background-color: #5B73A8;
+            border-radius: 20px;
+            color: #fff;
+        }
+        #email-confirmation {
+            margin-top: 5%;
+            transition: .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+        #email-confirmation:hover {
+            transform: scale(1.1);
+        }
+    </style>
+    <title>Email</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="email-logo">
+                <img alt="logo" src="Premier banking Favicon.png">
+            </div>
+
+        </nav>
+        <div class="header-image-container">
+        <img alt="" class="header-image" src="undraw_arrived_f58d.svg"></div>
+    </header>
+    <main class="email-main">
+        <h1>Email Confirmation</h1>
+        <p>Hey $user->username, you're almost ready to start changing your financial life. Please enter the following code to verify your email.</p>
+        <code>$code</code>
+    </main>
+</body>
 </html>
 EMAIL;
 
