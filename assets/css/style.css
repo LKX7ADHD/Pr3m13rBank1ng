@@ -1,13 +1,11 @@
 
 :root {
-
     --secondary-color: #313e5b;
     --white-color: #ffffff;
     --white-light-color: #eff1fe;
     --body-text: #525f81;
     --white-background: #f7f8fa;
     --btn-hover: #5B73A8;
-
 }
 
 * {
@@ -32,9 +30,7 @@ footer {
     margin-top: auto;
 }
 
-h1,
-h2,
-h3, h4 {
+h1, h2, h3, h4 {
     font-family: 'Roboto', sans-serif;
     line-height: 1.2;
     font-size: 4rem;
@@ -98,7 +94,6 @@ button.navbar-toggler {
     color: rgba(0, 0, 0, 0.8);
 }
 
-
 /* New Hero Section */
 .hero-section {
     background-color: #f7f8fa;
@@ -126,7 +121,6 @@ button.navbar-toggler {
 }
 
 .hero__button .btn {
-
     color: rgb(255, 255, 255);
     text-decoration: none;
     background-color: var(--secondary-color);
@@ -142,7 +136,6 @@ button.navbar-toggler {
     border: none;
     font-size: 1.3em;
     font-family: 'Public Sans', sans-serif;
-
 }
 
 .hero__button .btn:hover {
@@ -328,7 +321,6 @@ button.navbar-toggler {
 
 
 .btn__funding {
-
     display: inline-block;
     color: var(--white-light-color);
     background-color: var(--secondary-color);
@@ -437,7 +429,6 @@ button.navbar-toggler {
     text-decoration: none;
 }
 
-
 .form-container {
     background-color: #fff;
     padding: 3.3em 3.6em 3.1em;
@@ -451,7 +442,6 @@ button.navbar-toggler {
     border-radius: 10px;
     width: 100%;
     margin-bottom: 5em;
-
 }
 
 /* Inputs */
@@ -472,7 +462,6 @@ input.form-control {
     margin-bottom: 17px;
     letter-spacing: -0.56px;
 }
-
 
 /* Form Title */
 
@@ -506,16 +495,13 @@ input.form-control {
     margin-bottom: 0;
 }
 
-
 /* Register */
 #register-body {
     height: 100vh;
 }
 
-
 #register {
     background-color: #f7f8fa;
-
 }
 
 #register .brand {
@@ -829,8 +815,16 @@ body {
     color: #0ac60a;
 }
 
+.pwd-requirement.pwd-requirement-valid::before {
+    content: '✓ ';
+}
+
 .pwd-requirement.pwd-requirement-invalid {
     color: #9f1a1a;
+}
+
+.pwd-requirement.pwd-requirement-invalid::before {
+    content: '× ';
 }
 
 .visually-hidden {
