@@ -162,7 +162,7 @@
 						<div class="cta__btn">
 							<a href="register.php" title="Register Page">
 								<button class="btn">
-									Check Job Openings
+									Register now!
 								</button>
 							</a>
 						</div>

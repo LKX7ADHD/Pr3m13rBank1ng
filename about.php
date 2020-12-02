@@ -144,11 +144,13 @@
 						<h2 class="title">
 							Want to Join?
 						</h2>
-						<p>Are you interested in joining our team? Check out our job openings!</p>
+						<p>Are you interested in joining our bank? Create an account to get started!</p>
 						<div class="cta__btn">
-							<button class="btn">
-								Check Job Openings
-							</button>
+							<a href="register.php" title="Register Page">
+								<button class="btn">
+									Register now!
+								</button>
+							</a>
 						</div>
 					</div>
 				</div>

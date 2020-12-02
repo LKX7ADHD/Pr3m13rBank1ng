@@ -53,6 +53,10 @@ $transfers = getTransfers($accounts);
 				<th scope="col">Date</th>
 				<th scope="col">Account</th>
 				<th scope="col">Transaction</th>
+<!--				Order is wrong btw, roy change-->
+				<th scope="col"></th>
+				<th scope="col"></th>
+				<th scope="col"></th>
 				<th scope="col">Deposit</th>
 				<th scope="col">Withdrawal</th>
 			</tr>
@@ -69,8 +73,6 @@ $transfers = getTransfers($accounts);
                 foreach ($accounts as $account) {
                     echo '<td>' . $account->getAccountNumberRepresentation() . '</td>';
                 }
-
-                echo '<td></td>';
                 if ($transfer['deposit']) {
                     echo "<td>" . $value->getRepresentation() . "</td>";
                     echo "<td>-</td>";

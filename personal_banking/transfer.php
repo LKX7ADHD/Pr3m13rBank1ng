@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				<span class="dropdown-header">My accounts</span>
                 <?php
                 foreach ($accounts as $account) {
-                    echo '<a class="dropdown-item" href="#" data-accountNumber="' . $account->accountNumber . '">' . $account->accountName . '</a>';
+                    echo '<a class="dropdown-item" data-accountNumber="' . $account->accountNumber . '">' . $account->accountName . '</a>';
                 }
                 ?>
 			</div>
@@ -148,11 +148,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				<span class="dropdown-header">My accounts</span>
                 <?php
                 foreach ($accounts as $account) {
-                    echo '<a class="dropdown-item" href="#" data-accountNumber="' . $account->accountNumber . '">' . $account->accountName . '</a>';
+                    echo '<a class="dropdown-item" data-accountNumber="' . $account->accountNumber . '">' . $account->accountName . '</a>';
                 }
                 ?>
 				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="#" data-otherAccount>Other account</a>
+				<a class="dropdown-item" data-otherAccount>Other account</a>
 			</div>
 		</div>
 
