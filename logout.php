@@ -21,17 +21,21 @@ logOut();
 <header class="jumbotron text-center">
 	<h1 class="display-4">Logout</h1>
 </header>
-<main class="container logout">
-    <?php
-    if ($logOutDueToSessionExpiry) {
-        echo '<p class="h1">Session expired</p>';
-        echo '<p class="lead">You were logged out to protect your account as you were inactive for some time.</p>';
-        echo '<a class="btn btn-success btn-lg mt-4" href="/login.php" role="button">Log in again</a>';
-    } else {
-        echo '<p class="h1">Logout success</p>';
-        echo '<a class="btn btn-success btn-lg mt-4" href="/" role="button">Return to Home</a>';
-    }
-    ?>
+<main class="container logout px-4">
+    <section class="row">
+        <div class="col">
+            <?php
+            if ($logOutDueToSessionExpiry) {
+                echo '<p class="h1">Session expired</p>';
+                echo '<p class="lead">You were logged out to protect your account as you were inactive for some time.</p>';
+                echo '<a class="btn btn-success btn-lg mt-4" href="/login.php" role="button">Log in again</a>';
+            } else {
+                echo '<p class="h1">Logout success</p>';
+                echo '<a class="btn btn-success btn-lg mt-4" href="/" role="button">Return to Home</a>';
+            }
+            ?>
+        </div>
+    </section>
 </main>
 
 <?php include "include/sessionTimeout.inc.php" ?>

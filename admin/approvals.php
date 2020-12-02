@@ -29,35 +29,37 @@ $requests = getAccountApplications(NULL, 0);
     <section class="transfers">
         <h3>Pending approvals</h3>
 
-        <table class="table table-bordered" id="approvals-table">
-            <thead>
-            <tr>
-                <th scope="col">Date</th>
-                <th scope="col">User</th>
-                <th scope="col">Account name</th>
-                <th scope="col"></th>
-            </tr>
-            </thead>
-            <tbody>
+        <div class="table-responsive">
+            <table class="table table-bordered" id="approvals-table">
+                <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Account name</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
 
-            <?php
-            foreach ($requests as $request) {
-                echo '<tr>';
-                echo '<td>' . date('d/m/Y', strtotime($request['requestTimestamp'])) . '</td>';
-                echo '<td>' . $request['username'] . '</td>';
-                echo '<td>' . $request['accountName'] . '</td>';
+                <?php
+                foreach ($requests as $request) {
+                    echo '<tr>';
+                    echo '<td>' . date('d/m/Y', strtotime($request['requestTimestamp'])) . '</td>';
+                    echo '<td>' . $request['username'] . '</td>';
+                    echo '<td>' . $request['accountName'] . '</td>';
 
-                echo '<td><div class="btn-group" role="group" aria-label="Actions">';
+                    echo '<td><div class="btn-group" role="group" aria-label="Actions">';
 
-                echo '<button type="button" class="btn btn-primary request-approval-btn" data-approve="true" data-requestNumber="' . $request['accountNumber'] . '">Approve</button>';
-                echo '<button type="button" class="btn btn-primary request-approval-btn" data-approve="false" data-requestNumber="' . $request['accountNumber'] . '">Reject</button>';
+                    echo '<button type="button" class="btn btn-primary request-approval-btn" data-approve="true" data-requestNumber="' . $request['accountNumber'] . '">Approve</button>';
+                    echo '<button type="button" class="btn btn-primary request-approval-btn" data-approve="false" data-requestNumber="' . $request['accountNumber'] . '">Reject</button>';
 
-                echo '</div></td>';
-                echo '</tr>';
-            }
-            ?>
-            </tbody>
-        </table>
+                    echo '</div></td>';
+                    echo '</tr>';
+                }
+                ?>
+                </tbody>
+            </table>
+        </div>
     </section>
 </main>
 

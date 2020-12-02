@@ -1,6 +1,6 @@
 <?php
 
-require_once 'include/interest_rate_calculator.php';
+require_once 'include/interest_rate_calculator.inc.php';
 require_once 'include/accounts.inc.php';
 
 $fields = array("P" => NULL, "n" => NULL, "r" => NULL, "t" => NULL);
@@ -43,7 +43,7 @@ if ($readyToConvert) {
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col-lg-6">
-					<div class="banner__content mb-2">
+					<div class="banner__content mt-5 mb-2">
 						<h1>Interest Rate Calculator</h1>
 						<p>Calculate your interest rate using compound interest rates!</p>
 					</div>

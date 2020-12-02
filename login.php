@@ -49,12 +49,12 @@ if ($user) {
 						<div class="form-group">
 							<label for="email" class="text-muted visually-hidden">Email</label>
 							<input type="email" class="form-control" id="email" placeholder="Enter your Email"
-							       name="email" aria-label="Email" required>
+							       name="email" aria-label="Email" autocomplete="email" required>
 						</div>
 						<div class="form-group">
 							<label for="pwd" class="text-muted visually-hidden">Password</label>
 							<input type="password" class="form-control" placeholder="Enter Your Password" name="pwd"
-							       aria-label="Password" id="pwd" required>
+							       aria-label="Password" id="pwd" autocomplete="current-password" required>
 						</div>
 						<div class="form-group">
 							<button class="form-btn" type="submit">Sign In</button>

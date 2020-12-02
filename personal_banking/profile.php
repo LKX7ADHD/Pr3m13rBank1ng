@@ -22,9 +22,13 @@ if (!$user) {
 <header class="jumbotron text-center">
 	<h1 class="display-4">Profile</h1>
 </header>
-<main class="container profile">
-	<p class="h1">Hello, <?php echo $user->username; ?></p>
-	<a class="btn btn-warning btn-lg mt-4" href="../logout.php" role="button">Logout</a>
+<main class="container profile px-4">
+    <section class="row">
+        <div class="col">
+            <p class="h1">Hello, <?php echo $user->username; ?></p>
+            <a class="btn btn-warning btn-lg mt-4" href="../logout.php" role="button">Logout</a>
+        </div>
+    </section>
 </main>
 <?php include "../include/sessionTimeout.inc.php" ?>
 <?php include '../include/footer.inc.php' ?>

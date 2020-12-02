@@ -115,19 +115,21 @@ if ($success) {
 <header class="jumbotron text-center">
 	<h1 class="display-4">Register</h1>
 </header>
-<main class="container process-register">
-    <?php
-    if (!$success) {
-        echo '<p class="h1">Oops!</p>';
-        echo '<p class="lead">The following errors were detected:</p>';
-        echo '<ul class="list-group list-group-flush">';
-        foreach ($errorMessages as $errorMessage) {
-            echo '<li class="list-group-item">' . $errorMessage . '</li>';
-        }
-        echo '</ul>';
-        echo '<a class="btn btn-danger btn-lg mt-4" href="register.php" role="button">Return to Register</a>';
-    }
-    ?>
+<main class="container process-register px-4">
+    <section class="row">
+        <div class="col">
+            <p class="h1">Oops!</p>
+            <p class="lead">The following errors were detected:</p>
+            <ul class="list-group list-group-flush">
+            <?php
+                foreach ($errorMessages as $errorMessage) {
+                    echo '<li class="list-group-item">' . $errorMessage . '</li>';
+                }
+            ?>
+            </ul>
+            <a class="btn btn-danger btn-lg mt-4" href="register.php" role="button">Return to Register</a>
+        </div>
+    </section>
 </main>
 
 <?php include "include/sessionTimeout.inc.php" ?>

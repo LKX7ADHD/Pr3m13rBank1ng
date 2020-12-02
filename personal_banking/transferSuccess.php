@@ -25,13 +25,13 @@ if (!$user) {
 <header class="jumbotron text-center">
 	<h1 class="display-4">Transfer Result</h1>
 </header>
-<main class="container process-login">
-    <?php
-    echo '<p class="h1">Transferred Successfully!</p>';
-
-    echo '</ul>';
-    echo '<a class="btn btn-success btn-lg" href="/personal_banking/" role="button">Return to Dashboard</a>';
-    ?>
+<main class="container process-login px-4">
+    <section class="row">
+        <div class="col">
+            <p class="h1">Transfer success</p>
+            <a class="btn btn-success btn-lg" href="/personal_banking/" role="button">Return to Dashboard</a>
+        </div>
+    </section>
 </main>
 
 <?php include "../include/sessionTimeout.inc.php" ?>

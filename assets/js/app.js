@@ -109,14 +109,10 @@ $(() => {
                     if (caretPos === i + 1) {
                         caretPos++
                     }
-                }
-                elseif(input.val().length === i + 1 && input.val()[i] === '-')
-                {
+                } else if (input.val().length === i + 1 && input.val()[i] === '-') {
                     input.val(input.val().slice(0, i))
                 }
-            }
-            elseif(input.val()[i] === '-')
-            {
+            } else if (input.val()[i] === '-') {
                 input.val(input.val().slice(0, i) + input.val().slice(i + 1))
             }
         }
@@ -169,7 +165,7 @@ $(() => {
             approve = false
         }
 
-        if (typeof(approve) !== 'undefined') {
+        if (typeof (approve) !== 'undefined') {
             e.target.setAttribute('disabled', '')
 
             const formData = new FormData();

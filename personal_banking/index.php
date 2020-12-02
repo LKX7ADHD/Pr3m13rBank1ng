@@ -16,10 +16,11 @@ $transfers = getTransfers($accounts);
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<title>Premier Banking | Dashboard</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="A page where all your transactions and accounts are listed. This page allows you to open accounts too.">
+    <meta charset="UTF-8">
+    <title>Premier Banking | Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+          content="A page where all your transactions and accounts are listed. This page allows you to open accounts too.">
     <?php include "../include/imports.inc.php" ?>
 </head>
 
@@ -45,45 +46,45 @@ $transfers = getTransfers($accounts);
         </ul>
     </section>
 
-	<section class="transfers">
-		<h3>Transaction History</h3>
-<div class="table-responsive">
-		<table class="table table-bordered">
-			<thead>
-			<tr>
-				<th scope="col">Date</th>
-				<th scope="col">Sending Account</th>
-				<th scope="col">Receiving Accunt</th>
-				<th scope="col">Deposit</th>
-				<th scope="col">Withdrawal</th>
-			</tr>
-			</thead>
-			<tbody>
+    <section class="transfers">
+        <h3>Transaction History</h3>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Sending Account</th>
+                    <th scope="col">Receiving Accunt</th>
+                    <th scope="col">Deposit</th>
+                    <th scope="col">Withdrawal</th>
+                </tr>
+                </thead>
+                <tbody>
 
-            <?php
-            foreach ($transfers as $transfer) {
-                $value = new Currency($transfer['transferValue']);
+                <?php
+                foreach ($transfers as $transfer) {
+                    $value = new Currency($transfer['transferValue']);
 
-                echo '<tr>';
-                echo '<td>' . date('d/m/Y', strtotime($transfer['transferTimestamp'])) . '</td>';
+                    echo '<tr>';
+                    echo '<td>' . date('d/m/Y', strtotime($transfer['transferTimestamp'])) . '</td>';
 
-                echo '<td>' . Account::getAccountNumberRepresentationFromString($transfer['Sender']) . '</td>';
-                echo '<td>' . Account::getAccountNumberRepresentationFromString($transfer['Receiver']) . '</td>';
+                    echo '<td>' . Account::getAccountNumberRepresentationFromString($transfer['Sender']) . '</td>';
+                    echo '<td>' . Account::getAccountNumberRepresentationFromString($transfer['Receiver']) . '</td>';
 
-                if ($transfer['deposit']) {
-                    echo "<td>" . $value->getRepresentation() . "</td>";
-                    echo "<td>-</td>";
-                } else {
-                    echo "<td>-</td>";
-                    echo "<td>" . $value->getRepresentation() . "</td>";
+                    if ($transfer['deposit']) {
+                        echo "<td>" . $value->getRepresentation() . "</td>";
+                        echo "<td>-</td>";
+                    } else {
+                        echo "<td>-</td>";
+                        echo "<td>" . $value->getRepresentation() . "</td>";
+                    }
+                    echo '</tr>';
                 }
-                echo '</tr>';
-            }
-            ?>
-			</tbody>
-		</table>
-</div>
-	</section>
+                ?>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
 </main>
 <?php include "../include/sessionTimeout.inc.php" ?>

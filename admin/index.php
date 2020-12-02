@@ -29,33 +29,35 @@ $transfers = getTransfers();
     <section class="transfers">
         <h3>Review transfers</h3>
 
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Sending account</th>
-                <th scope="col">Receiving account</th>
-                <th scope="col">Amount</th>
-            </tr>
-            </thead>
-            <tbody>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Sending account</th>
+                    <th scope="col">Receiving account</th>
+                    <th scope="col">Amount</th>
+                </tr>
+                </thead>
+                <tbody>
 
-            <?php
-            foreach ($transfers as $transfer) {
-                $value = new Currency($transfer['transferValue']);
+                <?php
+                foreach ($transfers as $transfer) {
+                    $value = new Currency($transfer['transferValue']);
 
-                echo '<tr>';
-                echo '<td>' . date('d/m/Y', strtotime($transfer['transferTimestamp'])) . '</td>';
+                    echo '<tr>';
+                    echo '<td>' . date('d/m/Y', strtotime($transfer['transferTimestamp'])) . '</td>';
 
-                echo '<td>' . Account::getAccountNumberRepresentationFromString($transfer['Sender']) . '</td>';
-                echo '<td>' . Account::getAccountNumberRepresentationFromString($transfer['Receiver']) . '</td>';
+                    echo '<td>' . Account::getAccountNumberRepresentationFromString($transfer['Sender']) . '</td>';
+                    echo '<td>' . Account::getAccountNumberRepresentationFromString($transfer['Receiver']) . '</td>';
 
-                echo '<td>' . $value->getRepresentation() . '</td>';
-                echo '</tr>';
-            }
-            ?>
-            </tbody>
-        </table>
+                    echo '<td>' . $value->getRepresentation() . '</td>';
+                    echo '</tr>';
+                }
+                ?>
+                </tbody>
+            </table>
+        </div>
     </section>
 
 </main>

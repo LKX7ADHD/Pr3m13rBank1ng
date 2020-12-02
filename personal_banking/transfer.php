@@ -14,6 +14,11 @@ $readyToTransfer = true;
 $errors = array();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!isset($_POST['agree'])) {
+        $errors[] = 'The transfer was not performed as you did not verify your intention';
+        $readyToTransfer = false;
+    }
+
     if (!isset($_POST['senderAccountNumber']) || empty($_POST['senderAccountNumber'])) {
         $readyToTransfer = false;
         $errors[] = 'No sender account number specified';
@@ -84,17 +89,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>Premier Banking | Transfer</title>
+    <title>Premier Banking | Transfer</title>
     <?php include '../include/imports.inc.php' ?>
 </head>
 
 <body>
 <?php include '../include/navbar.inc.php' ?>
 <header class="jumbotron text-center">
-	<h1 class="display-4">Transfer</h1>
+    <h1 class="display-4">Transfer</h1>
 </header>
 
 <main class="container">
@@ -107,81 +112,86 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     ?>
-	<form method="POST" id="transfer-form">
-		<p class="lead">Sending account</p>
+    <form method="POST" id="transfer-form">
+        <p class="lead">Sending account</p>
 
-		<div class="dropdown account-dropdown mb-3" id="senderDropdown">
-			<button type="button" class="btn btn-light dropdown-toggle" id="senderDropdownButton"
-			        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				Select sending account
-			</button>
-			<div class="dropdown-menu" aria-labelledby="senderDropdownButton">
-				<span class="dropdown-header">My accounts</span>
+        <div class="dropdown account-dropdown mb-3" id="senderDropdown">
+            <button type="button" class="btn btn-light dropdown-toggle" id="senderDropdownButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select sending account
+            </button>
+            <div class="dropdown-menu" aria-labelledby="senderDropdownButton">
+                <span class="dropdown-header">My accounts</span>
                 <?php
                 foreach ($accounts as $account) {
                     echo '<a class="dropdown-item" data-accountNumber="' . $account->accountNumber . '">' . $account->accountName . '</a>';
                 }
                 ?>
-			</div>
-		</div>
+            </div>
+        </div>
 
-		<div class="form-group mb-3 d-none">
-			<div class="input-group">
-				<div class="input-group-prepend">
-					<span class="input-group-text" id="account-number-from">Send from</span>
-				</div>
-				<input type="text" class="form-control" aria-label="Send from" aria-describedby="account-number-from"
-				       placeholder="Account number" name="senderAccountNumber" minlength="12" maxlength="12">
-			</div>
-		</div>
+        <div class="form-group mb-3 d-none">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="account-number-from">Send from</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Send from" aria-describedby="account-number-from"
+                       placeholder="Account number" name="senderAccountNumber" minlength="12" maxlength="12">
+            </div>
+        </div>
 
-		<p id="sending-account-invalid-warning" class="text-danger d-none mb-4">Please specify an account to transfer
-			from</p>
-		<p class="lead">Recipient account</p>
+        <p id="sending-account-invalid-warning" class="text-danger d-none mb-4">Please specify an account to transfer
+            from</p>
+        <p class="lead">Recipient account</p>
 
-		<div class="dropdown account-dropdown mb-3" id="receiverDropdown">
-			<button type="button" class="btn btn-light dropdown-toggle" id="receiverDropdownButton"
-			        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				Select recipient account
-			</button>
-			<div class="dropdown-menu" aria-labelledby="receiverDropdownButton">
-				<span class="dropdown-header">My accounts</span>
+        <div class="dropdown account-dropdown mb-3" id="receiverDropdown">
+            <button type="button" class="btn btn-light dropdown-toggle" id="receiverDropdownButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select recipient account
+            </button>
+            <div class="dropdown-menu" aria-labelledby="receiverDropdownButton">
+                <span class="dropdown-header">My accounts</span>
                 <?php
                 foreach ($accounts as $account) {
                     echo '<a class="dropdown-item" data-accountNumber="' . $account->accountNumber . '">' . $account->accountName . '</a>';
                 }
                 ?>
-				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" data-otherAccount>Other account</a>
-			</div>
-		</div>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" data-otherAccount>Other account</a>
+            </div>
+        </div>
 
-		<div class="form-group mb-3 d-none">
-			<div class="input-group">
-				<div class="input-group-prepend">
-					<span class="input-group-text" id="account-number-to">Send to</span>
-				</div>
-				<input type="text" class="form-control" aria-label="Send to" aria-describedby="account-number-to"
-				       placeholder="Account number" name="receiverAccountNumber" minlength="12" maxlength="12">
-			</div>
-		</div>
+        <div class="form-group mb-3 d-none">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="account-number-to">Send to</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Send to" aria-describedby="account-number-to"
+                       placeholder="Account number" name="receiverAccountNumber" minlength="12" maxlength="12">
+            </div>
+        </div>
 
-		<p id="recipent-account-invalid-warning" class="text-danger d-none mb-4">Please specify an account to transfer
-			to</p>
-		<label for="amount" class="d-block lead">Amount to send</label>
+        <p id="recipent-account-invalid-warning" class="text-danger d-none mb-4">Please specify an account to transfer
+            to</p>
+        <label for="amount" class="d-block lead">Amount to send</label>
 
-		<div class="form-group mb-3">
-			<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<span class="input-group-text">$</span>
-				</div>
-				<input type="number" class="form-control" aria-label="Amount" placeholder="Amount" id="amount"
-				       name="amount" min="0.01" step="0.01" required>
-			</div>
-		</div>
+        <div class="form-group mb-3">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                </div>
+                <input type="number" class="form-control" aria-label="Amount" placeholder="Amount" id="amount"
+                       name="amount" min="0.01" step="0.01" autocomplete="transaction-amount" required>
+            </div>
+        </div>
 
-		<button type="submit" class="btn btn-primary btn-lg mb-3">Transfer</button>
-	</form>
+        <div class="form-check" id="form-agree">
+            <input class="form-check-input" type="checkbox" name="verified" aria-label="Checkbox" id="verified" required/>
+            <label class="form-check-label" for="verified">I have checked that the accounts and amount entered is correct</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg mt-4 mb-3">Transfer</button>
+    </form>
 </main>
 <?php include "../include/sessionTimeout.inc.php" ?>
 <?php include '../include/footer.inc.php' ?>

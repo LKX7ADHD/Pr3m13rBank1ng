@@ -77,8 +77,8 @@ if (isset($_POST['code']) && !empty($_POST['code'])) {
                             <div class="form-group">
                                 <label for="code" class="text-muted">Verification code</label>
                                 <input type="text" class="form-control" id="code"
-                                       placeholder="Enter the verification code"
-                                       name="code" aria-label="Verification code" required>
+                                       placeholder="Enter the verification code" name="code"
+                                       aria-label="Verification code" autocomplete="one-time-code" required>
                             </div>
 
                             <div class="form-group">
