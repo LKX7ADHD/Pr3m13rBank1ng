@@ -35,7 +35,6 @@ $transfers = getTransfers();
                 <th scope="col">Date</th>
                 <th scope="col">Sending account</th>
                 <th scope="col">Receiving account</th>
-                <th scope="col">Transaction</th>
                 <th scope="col">Amount</th>
             </tr>
             </thead>
@@ -51,7 +50,6 @@ $transfers = getTransfers();
                 echo '<td>' . Account::getAccountNumberRepresentationFromString($transfer['Sender']) . '</td>';
                 echo '<td>' . Account::getAccountNumberRepresentationFromString($transfer['Receiver']) . '</td>';
 
-                echo '<td></td>';
                 echo '<td>' . $value->getRepresentation() . '</td>';
                 echo '</tr>';
             }
