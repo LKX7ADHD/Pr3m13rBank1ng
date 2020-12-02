@@ -44,12 +44,12 @@
 			<div class="row">
 				<div class="col-lg-4 col-md-5">
 					<div class="img-container">
-						<img src="./assets/img/linkedin-sales-navigator-hrhjn6ZTgrM-unsplash.jpg" alt="">
+						<img src="./assets/img/linkedin-sales-navigator-hrhjn6ZTgrM-unsplash.jpg" alt="A guy conversing with another guy on a laptop">
 					</div>
 				</div>
 				<div class="col-lg-8 col-md-7">
 					<div class="img-container">
-						<img src="./assets/img/campaign-creators-qCi_MzVODoU-unsplash.jpg" alt="">
+						<img src="./assets/img/campaign-creators-qCi_MzVODoU-unsplash.jpg" alt="A business office with two girls and two guys seated down discussing">
 					</div>
 				</div>
 			</div>
