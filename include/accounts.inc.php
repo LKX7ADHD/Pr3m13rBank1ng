@@ -530,8 +530,8 @@ function getTransfers(array $accounts = NULL) {
             }
         } else {
             foreach ($accounts as $acc) {
-                $stmt = $conn->prepare('SELECT T.transferTimestamp, T.transferValue, A.AccountID = T.ReceiverID AS deposit FROM Transfers T INNER JOIN Accounts A ON T.ReceiverID = A.AccountID OR T.SenderID = A.AccountID WHERE A.accountNumber = ?');
-                $stmt->bind_param("s", $acc->accountNumber);
+                $stmt = $conn->prepare('SELECT T.transferTimestamp, T.transferValue, SA.accountNumber AS Sender, RA.accountNumber AS Receiver, RA.accountNumber = ? AS deposit FROM Transfers T JOIN Accounts SA JOIN Accounts RA ON T.ReceiverID = RA.AccountID AND T.SenderID = SA.AccountID WHERE RA.accountNumber = ? OR SA.accountNumber = ?');
+                $stmt->bind_param("sss", $acc->accountNumber, $acc->accountNumber, $acc->accountNumber);
 
                 if (!$stmt->execute()) {
                     http_response_code(500);

@@ -51,12 +51,8 @@ $transfers = getTransfers($accounts);
 			<thead>
 			<tr>
 				<th scope="col">Date</th>
-				<th scope="col">Account</th>
-				<th scope="col">Transaction</th>
-<!--				Order is wrong btw, roy change-->
-				<th scope="col"></th>
-				<th scope="col"></th>
-				<th scope="col"></th>
+				<th scope="col">Sending Account</th>
+				<th scope="col">Receiving Accunt</th>
 				<th scope="col">Deposit</th>
 				<th scope="col">Withdrawal</th>
 			</tr>
@@ -70,9 +66,9 @@ $transfers = getTransfers($accounts);
                 echo '<tr>';
                 echo '<td>' . date('d/m/Y', strtotime($transfer['transferTimestamp'])) . '</td>';
 
-                foreach ($accounts as $account) {
-                    echo '<td>' . $account->getAccountNumberRepresentation() . '</td>';
-                }
+                echo '<td>' . Account::getAccountNumberRepresentationFromString($transfer['Sender']) . '</td>';
+                echo '<td>' . Account::getAccountNumberRepresentationFromString($transfer['Receiver']) . '</td>';
+
                 if ($transfer['deposit']) {
                     echo "<td>" . $value->getRepresentation() . "</td>";
                     echo "<td>-</td>";
