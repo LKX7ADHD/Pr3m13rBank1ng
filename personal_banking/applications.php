@@ -17,7 +17,7 @@ $applicationStatus = array('Pending', 'Approved', 'Rejected');
 
 <head>
     <meta charset="UTF-8">
-    <title>Premier Banking | Dashboard</title>
+    <title>Premier Banking | Applications</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php include "../include/imports.inc.php" ?>
 </head>
@@ -26,8 +26,9 @@ $applicationStatus = array('Pending', 'Approved', 'Rejected');
 <?php include '../include/navbar.inc.php' ?>
 
 <main class="container">
-    <section class="transfers">
+    <section>
         <h1>Applications</h1>
+        <p class="lead">Review applications you have made</p>
 
         <ul class="list-group mt-4">
             <?php
@@ -41,3 +42,8 @@ $applicationStatus = array('Pending', 'Approved', 'Rejected');
             ?>
         </ul>
     </section>
+</main>
+<?php include "../include/sessionTimeout.inc.php" ?>
+<?php include "../include/footer.inc.php" ?>
+</body>
+</html>
