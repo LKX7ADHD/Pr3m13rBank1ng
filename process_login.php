@@ -31,10 +31,20 @@ if (isset($_POST['email']) && !empty($_POST['email'])) {
 if ($success) {
     $user = getAuthenticatedUser();
 
+    if (!$user->verified) {
+        unset($_SESSION['user']);
+        $_SESSION['user_to_verify'] = $user;
+
+        header('Location: verify_email.php');
+        exit();
+    }
+
     if ($user->admin) {
         header("Location: /admin/");
+        exit();
     } else {
         header("Location: /personal_banking/");
+        exit();
     }
 }
 ?>
