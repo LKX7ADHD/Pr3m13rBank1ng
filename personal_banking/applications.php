@@ -35,7 +35,7 @@ $applicationStatus = array('Pending', 'Approved', 'Rejected');
                 echo '<p class="lead">No Applications</p>';
             } else {
                 foreach ($applications as $application) {
-                    echo '<li class="list-group-item"><h3>' . $application['accountName'] . '</h3>' . $applicationStatus[$application['status']] . '<p class="text-muted mt-1 mb-0">' . date('d/m/Y', strtotime($application['requestTimestamp'])) . '</p></li>';
+                    echo '<li class="list-group-item"><p class="h3">' . $application['accountName'] . '</p>' . $applicationStatus[$application['status']] . '<p class="text-muted mt-1 mb-0">' . date('d/m/Y', strtotime($application['requestTimestamp'])) . '</p></li>';
                 }
             }
             ?>
