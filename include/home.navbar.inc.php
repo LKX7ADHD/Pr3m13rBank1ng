@@ -6,7 +6,7 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
-		<div class="collapse navbar-collapse" id="navbar">
+		<div class="collapse navbar-collapse ml-sm-2" id="navbar">
 			<ul class="navbar-nav">
 				<li class="nav-item">
 					<a class="nav-link" href="/about.php">About Us</a>

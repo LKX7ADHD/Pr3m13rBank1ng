@@ -5,6 +5,7 @@
 	<!-- Meta Tags -->
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Premier Banking is a website where you can safely bank. You will be presented with different accounts for your needs and an extensive dashboard.">
     <?php include 'include/imports.inc.php' ?>
 	<title>Premier Banking | Home</title>
 </head>
@@ -25,10 +26,8 @@
 						Understand Your Finance Clearly
 					</h1>
 					<div class="hero__button">
-						<a href="register.php" title="Register Page">
-							<button class="btn">
+						<a href="register.php" title="Register Page" class="btn">
 								Get Started
-							</button>
 						</a>
 					</div>
 				</div>
@@ -77,10 +76,8 @@
 						<p>No-hassle funding. Most businesses are approved within the same day.</p>
 
 					</div>
-					<a href="register.php" title="Register Page">
-						<button class="btn btn__funding">
+					<a href="register.php" title="Register Page" class="btn btn__funding">
 							Fund Your Business
-						</button>
 					</a>
 				</div>
 				<div class="col-lg-6">
@@ -136,10 +133,8 @@
 						</p>
 
 					</div>
-					<a href="register.php" title="Register Page">
-						<button class="btn btn__benefits">
+					<a href="register.php" title="Register Page" class="btn btn__benefits">
 							Get Started
-						</button>
 					</a>
 				</div>
 
@@ -160,10 +155,8 @@
 						</h2>
 						<p>Register now to start your account and kick-start your business effortlessly.</p>
 						<div class="cta__btn">
-							<a href="register.php" title="Register Page">
-								<button class="btn">
+							<a href="register.php" title="Register Page" class="btn btn__register">
 									Register now!
-								</button>
 							</a>
 						</div>
 					</div>

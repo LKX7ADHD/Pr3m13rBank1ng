@@ -12,7 +12,7 @@ logOut();
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title></title>
+	<title>Premier Banking | Logout</title>
     <?php include 'include/imports.inc.php' ?>
 </head>
 <body>

@@ -70,64 +70,64 @@
 
 			<div class="row">
 				<div class="col-lg-3">
-					<div class="team-container">
+					<figure class="team-container">
 						<div class="team-image">
-							<img src="./assets/img/joseph-gonzalez-iFgRcqHznqg-unsplash.jpg" alt="">
+							<img src="./assets/img/kx-mugshot.png" alt="">
 						</div>
-						<div class="team-text">
+						<figcaption class="team-text">
 							<h3 class="title">
-								Kai Huan
+								Kai Xuan
 							</h3>
 							<span class="subtitle">
                                 Founder & CEO
                             </span>
-						</div>
-					</div>
+						</figcaption>
+					</figure>
 				</div>
 				<div class="col-lg-3">
-					<div class="team-container">
+					<figure class="team-container">
 						<div class="team-image">
-							<img src="./assets/img/joseph-gonzalez-iFgRcqHznqg-unsplash.jpg" alt="">
+							<img src="./assets/img/roy-mugshot.jpg" alt="">
 						</div>
-						<div class="team-text">
+						<figcaption class="team-text">
 							<h3 class="title">
-								Kai Huan
+								Roy
 							</h3>
 							<span class="subtitle">
-                                Founder & CEO
+                                CTO
                             </span>
-						</div>
-					</div>
+						</figcaption>
+					</figure>
 				</div>
 				<div class="col-lg-3">
-					<div class="team-container">
+					<figure class="team-container">
 						<div class="team-image">
-							<img src="./assets/img/joseph-gonzalez-iFgRcqHznqg-unsplash.jpg" alt="">
+							<img src="./assets/img/sebastian-mugshot.jpg" alt="">
 						</div>
-						<div class="team-text">
+						<figcaption class="team-text">
 							<h3 class="title">
-								Kai Huan
+								Sebastian
 							</h3>
 							<span class="subtitle">
-                                Founder & CEO
+                                Lead Programmer
                             </span>
-						</div>
-					</div>
+						</figcaption>
+					</figure>
 				</div>
 				<div class="col-lg-3">
-					<div class="team-container">
+					<figure class="team-container">
 						<div class="team-image">
 							<img src="./assets/img/joseph-gonzalez-iFgRcqHznqg-unsplash.jpg" alt="">
 						</div>
-						<div class="team-text">
+						<figcaption class="team-text">
 							<h3 class="title">
-								Kai Huan
+								Eddie
 							</h3>
 							<span class="subtitle">
-                                Founder & CEO
+                                Second Lead Programmer
                             </span>
-						</div>
-					</div>
+						</figcaption>
+					</figure>
 				</div>
 			</div>
 		</div>

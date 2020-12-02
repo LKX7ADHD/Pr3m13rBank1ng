@@ -19,6 +19,7 @@ $transfers = getTransfers($accounts);
 	<meta charset="UTF-8">
 	<title>Premier Banking | Dashboard</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A page where all your transactions and accounts are listed. This page allows you to open accounts too.">
     <?php include "../include/imports.inc.php" ?>
 </head>
 
@@ -29,7 +30,7 @@ $transfers = getTransfers($accounts);
     <section class="transfers">
         <h3>Accounts</h3>
 
-        <a class="btn btn-primary btn-lg my-4" href="newAccountApplication.php" role="button">Open new Account</a>
+        <a class="btn btn__primary btn-lg my-4" href="newAccountApplication.php" role="button">Open new Account</a>
 
         <ul class="list-group">
             <?php
@@ -46,7 +47,7 @@ $transfers = getTransfers($accounts);
 
 	<section class="transfers">
 		<h3>Transaction History</h3>
-
+<div class="table-responsive">
 		<table class="table table-bordered">
 			<thead>
 			<tr>
@@ -81,6 +82,7 @@ $transfers = getTransfers($accounts);
             ?>
 			</tbody>
 		</table>
+</div>
 	</section>
 
 </main>

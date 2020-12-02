@@ -98,7 +98,7 @@ if ($readyToConvert) {
 					       placeholder="Enter duration in years" name="t" required>
 				</div>
 
-				<button type="submit" class="btn btn-primary btn-lg">Calculate</button>
+				<button type="submit" class="btn btn__primary btn-lg">Calculate</button>
 			</form>
 		</section>
 		<section class="col-md-6 col-sm-12 mt-5">
