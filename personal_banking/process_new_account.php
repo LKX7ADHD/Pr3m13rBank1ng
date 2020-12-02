@@ -40,7 +40,7 @@ if ($success) {
     <?php
     if ($success) {
         echo '<p class="h1">Successfully applied</p>';
-        echo '<p class="lead">Your application has been received by our admins and will be processed within 5 business days.</p>';
+        echo '<p class="lead">Your application has been received by our admins and will be processed within 3 business days.</p>';
         echo '<a class="btn btn-success btn-lg mt-4" href="/personal_banking/" role="button">Return to Dashboard</a>';
     } else {
         echo '<p class="h1">Oops!</p>';
