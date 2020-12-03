@@ -11,33 +11,35 @@ if (!$user || !$user->admin) {
 $transfers = getTransfers();
 ?>
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<title>Premier Banking | Admin</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <title>Premier Banking | Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php include "../include/imports.inc.php" ?>
 </head>
 
 <body class="dashboard-body">
 <?php include '../include/navbar.inc.php' ?>
 
-<main class="container">
-	<section class="transfers">
-		<h3>Review transfers</h3>
 
-		<div class="table-responsive">
-			<table class="table table-bordered">
-				<thead>
-				<tr>
-					<th scope="col">Date</th>
-					<th scope="col">Sending account</th>
-					<th scope="col">Receiving account</th>
-					<th scope="col">Amount</th>
-				</tr>
-				</thead>
-				<tbody>
+<main class="container">
+    <section class="transfers">
+        <h3>Review transfers</h3>
+
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Sending account</th>
+                    <th scope="col">Receiving account</th>
+                    <th scope="col">Amount</th>
+                </tr>
+                </thead>
+                <tbody>
 
                 <?php
                 foreach ($transfers as $transfer) {
@@ -53,10 +55,10 @@ $transfers = getTransfers();
                     echo '</tr>';
                 }
                 ?>
-				</tbody>
-			</table>
-		</div>
-	</section>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
 </main>
 <?php include "../include/sessionTimeout.inc.php" ?>

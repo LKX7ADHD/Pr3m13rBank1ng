@@ -72,10 +72,10 @@
 			</div>
 
 			<div class="row">
-				<div class="col-lg-3">
+				<div class="col-lg-2">
 					<figure class="team-container">
 						<div class="team-image">
-							<img src="./assets/img/kx-mugshot.png" alt="">
+							<img src="./assets/img/kx-mugshot.png" alt="Founder & CEO of Premier Banking, Kai Xuan">
 						</div>
 						<figcaption class="team-text">
 							<h3 class="title">
@@ -87,10 +87,10 @@
 						</figcaption>
 					</figure>
 				</div>
-				<div class="col-lg-3">
+				<div class="col-lg-2">
 					<figure class="team-container">
 						<div class="team-image">
-							<img src="./assets/img/roy-mugshot.jpg" alt="">
+							<img src="./assets/img/roy-mugshot.jpg" alt="CTO of Premier Banking, Roy">
 						</div>
 						<figcaption class="team-text">
 							<h3 class="title">
@@ -102,10 +102,10 @@
 						</figcaption>
 					</figure>
 				</div>
-				<div class="col-lg-3">
+				<div class="col-lg-2">
 					<figure class="team-container">
 						<div class="team-image">
-							<img src="./assets/img/sebastian-mugshot.jpg" alt="">
+							<img src="./assets/img/sebastian-mugshot.jpg" alt="Lead Programmer of Premier Banking, Sebastian">
 						</div>
 						<figcaption class="team-text">
 							<h3 class="title">
@@ -117,10 +117,10 @@
 						</figcaption>
 					</figure>
 				</div>
-				<div class="col-lg-3">
+				<div class="col-lg-2">
 					<figure class="team-container">
 						<div class="team-image">
-							<img src="./assets/img/joseph-gonzalez-iFgRcqHznqg-unsplash.jpg" alt="">
+							<img src="./assets/img/eddie-mugshot.png" alt="Second Lead Programmer of Premier Banking, Eddie">
 						</div>
 						<figcaption class="team-text">
 							<h3 class="title">
@@ -128,6 +128,21 @@
 							</h3>
 							<span class="subtitle">
                                 Second Lead Programmer
+                            </span>
+						</figcaption>
+					</figure>
+				</div>
+				<div class="col-lg-2">
+					<figure class="team-container">
+						<div class="team-image">
+							<img src="./assets/img/jerome-mugshot.png" alt="Programmer of Premier Banking, Jerome">
+						</div>
+						<figcaption class="team-text">
+							<h3 class="title">
+								Jerome
+							</h3>
+							<span class="subtitle">
+                                Programmer
                             </span>
 						</figcaption>
 					</figure>

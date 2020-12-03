@@ -14,9 +14,9 @@
 				<li class="nav-item">
 					<a class="nav-link" href="/personal_banking/transfer.php">Transfer</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/personal_banking/applications.php">View Applications</a>
-				</li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/personal_banking/applications.php">View Applications</a>
+                </li>
 			</ul>
 			<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 				<li class="nav-item">

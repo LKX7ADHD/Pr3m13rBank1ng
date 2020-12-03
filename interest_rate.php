@@ -38,8 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<!-- Meta Tags -->
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description"
-	      content="Premier Banking's interest rate calculator automatically calculates the compounded interest rate for you, allowing you to plan your financial needs accordingly.">
     <?php include 'include/imports.inc.php' ?>
 	<title>Premier Banking | Interest Rate Calculator</title>
 </head>

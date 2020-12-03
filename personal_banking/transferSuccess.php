@@ -16,7 +16,7 @@ if (!$user) {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>Premier Banking | Transfer</title>
+	<title>Premier Banking|Transfers</title>
     <?php include '../include/imports.inc.php' ?>
 </head>
 <body>
@@ -26,12 +26,12 @@ if (!$user) {
 	<h1 class="display-4">Transfer Result</h1>
 </header>
 <main class="container process-login px-4">
-	<section class="row">
-		<div class="col">
-			<p class="h1">Transfer success</p>
-			<a class="btn btn-success btn-lg" href="/personal_banking/" role="button">Return to Dashboard</a>
-		</div>
-	</section>
+    <section class="row">
+        <div class="col">
+            <p class="h1">Transfer success</p>
+            <a class="btn btn-success btn-lg" href="/personal_banking/" role="button">Return to Dashboard</a>
+        </div>
+    </section>
 </main>
 
 <?php include "../include/sessionTimeout.inc.php" ?>

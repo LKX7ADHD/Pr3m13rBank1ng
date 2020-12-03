@@ -2,19 +2,19 @@
 
 <div class="modal fade" id="sessionExpiringModal" tabindex="-1" role="dialog"
      aria-labelledby="sessionExpiringModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="sessionExpiringModalLabel">Your session is expiring</h5>
-			</div>
-			<div class="modal-body">
-				<span>You will soon be logged out soon to protect your account as you have been inactive for some time. </span>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" id="session-extension-button">Extend session</button>
-			</div>
-		</div>
-	</div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="sessionExpiringModalLabel">Your session is expiring</h5>
+            </div>
+            <div class="modal-body">
+                <span>You will soon be logged out soon to protect your account as you have been inactive for some time. </span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="session-extension-button">Extend session</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>

@@ -571,10 +571,10 @@ function getAccountApplications(User $user = NULL, int $status = NULL) {
         if (!is_null($user) && !is_null($status)) {
             $stmt = $conn->prepare('SELECT U.username, A.accountName, A.status, A.accountNumber, A.requestTimestamp FROM AccountRequests A, Users U WHERE A.UserID = U.UserID AND U.username = ? AND status = ?');
             $stmt->bind_param("si", $user->username, $status);
-        } elseif (!is_null($user)) {
+        } else if (!is_null($user)) {
             $stmt = $conn->prepare('SELECT U.username, A.accountName, A.status, A.accountNumber, A.requestTimestamp FROM AccountRequests A, Users U WHERE A.UserID = U.UserID AND U.username = ?');
             $stmt->bind_param("s", $user->username);
-        } elseif (!is_null($status)) {
+        } else if (!is_null($status)) {
             $stmt = $conn->prepare('SELECT U.username, A.accountName, A.status, A.accountNumber, A.requestTimestamp FROM AccountRequests A, Users U WHERE A.UserID = U.UserID AND status = ?');
             $stmt->bind_param("i", $status);
         } else {

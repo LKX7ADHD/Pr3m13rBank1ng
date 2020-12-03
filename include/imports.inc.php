@@ -22,5 +22,4 @@
 
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="/favicon.png">
-<!--[if IE]>
-<link rel="shortcut icon" href="/favicon.ico"/><![endif]-->
+<!--[if IE]><link rel="shortcut icon" href="/favicon.ico"/><![endif]-->

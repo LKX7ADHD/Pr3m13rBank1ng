@@ -16,7 +16,7 @@ if (!$user) {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content="Open a New account page">
-	<title>Premier Banking | Open new Account</title>
+	<title>Premier Banking | Open New Account</title>
     <?php include '../include/imports.inc.php' ?>
 </head>
 <body id="register-body">
@@ -36,12 +36,12 @@ if (!$user) {
 				<div class="form-container text-center align-self-center">
 					<form action="process_new_account.php" method="POST">
 						<div class="form-title">
-							<h1 class="title">Open new Account</h1>
+							<h1 class="title newaccount-title">Open New Account</h1>
 							<p>Your application will be processed by our admins within 3 business days.</p>
 						</div>
 
 						<div class="form-group">
-							<label for="account-name" class="text-muted">Account name</label>
+							<label for="account-name" class="text-muted sr-only">Account name</label>
 							<input type="text" class="form-control" id="account-name"
 							       placeholder="Enter your preferred name for this account"
 							       name="name" aria-label="Account name" required>

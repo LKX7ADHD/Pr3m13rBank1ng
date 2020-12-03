@@ -13,7 +13,7 @@ if (!$user) {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="View your profile for Premier Banking.">
+
 	<title>Premier Banking | Profile</title>
     <?php include '../include/imports.inc.php' ?>
 </head>
@@ -23,12 +23,12 @@ if (!$user) {
 	<h1 class="display-4">Profile</h1>
 </header>
 <main class="container profile px-4">
-	<section class="row">
-		<div class="col">
-			<p class="h1">Hello, <?php echo $user->username; ?></p>
-			<a class="btn btn-warning btn-lg mt-4" href="../logout.php" role="button">Logout</a>
-		</div>
-	</section>
+    <section class="row">
+        <div class="col">
+            <p class="h1">Hello, <?php echo $user->username; ?></p>
+            <a class="btn btn-warning btn-lg mt-4" href="../logout.php" role="button">Logout</a>
+        </div>
+    </section>
 </main>
 <?php include "../include/sessionTimeout.inc.php" ?>
 <?php include '../include/footer.inc.php' ?>

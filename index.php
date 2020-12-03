@@ -5,8 +5,7 @@
 	<!-- Meta Tags -->
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description"
-	      content="Premier Banking is a website where you can safely bank. You will be presented with different accounts for your needs and an extensive dashboard.">
+    <meta name="description" content="Premier Banking is a website where you can safely bank. You will be presented with different accounts for your needs and an extensive dashboard.">
     <?php include 'include/imports.inc.php' ?>
 	<title>Premier Banking | Home</title>
 </head>
@@ -28,7 +27,7 @@
 					</h1>
 					<div class="hero__button">
 						<a href="register.php" title="Register Page" class="btn">
-							Get Started
+								Get Started
 						</a>
 					</div>
 				</div>
@@ -78,7 +77,7 @@
 
 					</div>
 					<a href="register.php" title="Register Page" class="btn btn__funding">
-						Fund Your Business
+							Fund Your Business
 					</a>
 				</div>
 				<div class="col-lg-6">
@@ -135,7 +134,7 @@
 
 					</div>
 					<a href="register.php" title="Register Page" class="btn btn__benefits">
-						Get Started
+							Get Started
 					</a>
 				</div>
 
@@ -157,7 +156,7 @@
 						<p>Register now to start your account and kick-start your business effortlessly.</p>
 						<div class="cta__btn">
 							<a href="register.php" title="Register Page" class="btn btn__register">
-								Register now!
+									Register now!
 							</a>
 						</div>
 					</div>

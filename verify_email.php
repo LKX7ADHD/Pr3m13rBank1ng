@@ -28,68 +28,71 @@ if (isset($_POST['code']) && !empty($_POST['code'])) {
     } else {
         $errors[] = 'Invalid code';
     }
-} elseif (isset($_SESSION['request_code']) && $_SESSION['request_code']) {
+} else if (isset($_SESSION['request_code']) && $_SESSION['request_code']) {
     verify_email($user);
     $_SESSION['request_code'] = false;
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Verify your email to continue managing your accounts with Premier Banking.">
-	<title>Premier Banking | Verify Email</title>
-    <?php include 'include/imports.inc.php' ?>
-</head>
-<body id="register-body">
-<main id="register" class="h-100">
-	<section class="container d-flex flex-column justify-content-start h-100">
-		<div class="row justify-content-center">
-			<div class="col-lg-7 col-xl-6">
-				<div class="brand text-center mt-5">
-					<a href="/">
-						Premier Banking
-					</a>
-				</div>
-			</div>
-		</div>
-		<div class="row justify-content-center">
-			<div class="col-lg-7 col-xl-6">
-				<div class="form-container text-center align-self-center">
-					<form method="POST">
-						<div class="form-title">
-							<h1 class="title">Verify Email</h1>
-							<p>An email was sent to <b><?php echo $user->email ?></b> with your verification code.
-								Can&apos;t find it? It may be in your spam.</p>
-						</div>
 
-                        <?php
-                        if (!empty($errors)) {
-                            foreach ($errors as $error) {
-                                echo '<div class="alert alert-danger" role="alert">' . $error . '</div>';
+    <!DOCTYPE html>
+
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>Premier Banking | Verify Email</title>
+        <?php include 'include/imports.inc.php' ?>
+    </head>
+    <body id="register-body">
+    <main id="register" class="h-100">
+        <section class="container d-flex flex-column justify-content-start h-100">
+            <div class="row justify-content-center">
+                <div class="col-lg-7 col-xl-6">
+                    <div class="brand text-center mt-5">
+                        <a href="index.php">
+                            Premier Banking
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-7 col-xl-6">
+                    <div class="form-container text-center align-self-center">
+                        <form method="POST">
+                            <div class="form-title">
+                                <h1 class="title">Verify Email</h1>
+                                <p>An email was sent to <b><?php echo $user->email ?></b> with your verification code.
+                                    Can&apos;t find it? It may be in your spam.</p>
+                            </div>
+
+                            <?php
+                            if (!empty($errors)) {
+                                foreach ($errors as $error) {
+                                    echo '<div class="alert alert-danger" role="alert">' . $error . '</div>';
+                                }
                             }
-                        }
-                        ?>
+                            ?>
 
-						<div class="form-group">
-							<label for="code" class="text-muted">Verification code</label>
-							<input type="text" class="form-control" id="code"
-							       placeholder="Enter the verification code" name="code"
-							       aria-label="Verification code" autocomplete="one-time-code" required>
-						</div>
+                            <div class="form-group">
+                                <label for="code" class="text-muted">Verification code</label>
+                                <input type="text" class="form-control" id="code"
+                                       placeholder="Enter the verification code" name="code"
+                                       aria-label="Verification code" autocomplete="one-time-code" required>
+                            </div>
 
-						<div class="form-group">
-							<button class="form-btn" type="submit">Verify email</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</section>
+                            <div class="form-group">
+                                <button class="form-btn" type="submit">Verify email</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-</main>
+    </main>
 
-<?php include "include/sessionTimeout.inc.php" ?>
-</body>
-</html>
+    <?php include "include/sessionTimeout.inc.php" ?>
+    </body>
+    </html>
+<?php

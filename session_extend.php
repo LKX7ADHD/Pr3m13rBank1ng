@@ -10,3 +10,4 @@ if ($loggedIn) {
 }
 
 echo json_encode($json);
+?>
