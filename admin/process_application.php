@@ -49,11 +49,8 @@ if ($conn->connect_error) {
         }
         $stmt->close();
     }
-
-
 }
 $conn->close();
 
 $json['success'] = true;
 echo json_encode($json);
-?>

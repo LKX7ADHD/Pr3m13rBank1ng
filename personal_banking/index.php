@@ -54,7 +54,7 @@ $transfers = getTransfers($accounts);
                 <tr>
                     <th scope="col">Date</th>
                     <th scope="col">Sending Account</th>
-                    <th scope="col">Receiving Accunt</th>
+                    <th scope="col">Receiving Account</th>
                     <th scope="col">Deposit</th>
                     <th scope="col">Withdrawal</th>
                 </tr>

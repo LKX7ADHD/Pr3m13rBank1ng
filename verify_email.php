@@ -40,7 +40,7 @@ if (isset($_POST['code']) && !empty($_POST['code'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+		<meta name="description" content="Verify your email to continue managing your accounts with Premier Banking.">
         <title>Premier Banking | Verify Email</title>
         <?php include 'include/imports.inc.php' ?>
     </head>
@@ -50,7 +50,7 @@ if (isset($_POST['code']) && !empty($_POST['code'])) {
             <div class="row justify-content-center">
                 <div class="col-lg-7 col-xl-6">
                     <div class="brand text-center mt-5">
-                        <a href="index.php">
+                        <a href="/">
                             Premier Banking
                         </a>
                     </div>
@@ -95,4 +95,3 @@ if (isset($_POST['code']) && !empty($_POST['code'])) {
     <?php include "include/sessionTimeout.inc.php" ?>
     </body>
     </html>
-<?php

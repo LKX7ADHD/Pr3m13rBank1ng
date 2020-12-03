@@ -43,7 +43,7 @@ if ($success) {
             if ($success) {
                 echo '<p class="h1">Successfully applied</p>';
                 echo '<p class="lead">Your application has been received by our admins and will be processed within 3 business days.</p>';
-                echo '<a class="btn btn-success btn-lg mt-4" href="/personal_banking/" role="button">Return to Dashboard</a>';
+                echo '<a class="btn btn-success btn-lg mt-4 mb-3" href="/personal_banking/" role="button">Return to Dashboard</a>';
             } else {
                 echo '<p class="h1">Oops!</p>';
                 echo '<p class="lead">The following errors were detected:</p>';
@@ -52,7 +52,7 @@ if ($success) {
                     echo '<li class="list-group-item">' . $errorMessage . '</li>';
                 }
                 echo '</ul>';
-                echo '<a class="btn btn-danger btn-lg mt-4" href="newAccountApplication.php" role="button">Return to Application</a>';
+                echo '<a class="btn btn-danger btn-lg mt-4 mb-3" href="newAccountApplication.php" role="button">Return to Application</a>';
             }
             ?>
         </div>
