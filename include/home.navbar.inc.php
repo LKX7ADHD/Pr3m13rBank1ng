@@ -17,11 +17,11 @@
 					<a class="nav-link" href="/login.php">Login</a>
 				</li>
 				<li class="nav-item">
-					<a href="/register.php">
-						<button class="btn btn__primary">Open Account</button>
-					</a>
+                    <form action="register.php" method="get">
+                        <button class="btn btn__primary">Open Account</button>
+                    </form>
 				</li>
 			</ul>
 		</div>
-	</div>
+	</div>  
 </nav>
