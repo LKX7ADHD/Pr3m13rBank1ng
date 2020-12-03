@@ -19,7 +19,8 @@ $applicationStatus = array('Pending', 'Approved', 'Rejected');
 	<meta charset="UTF-8">
 	<title>Premier Banking | Applications</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <?php include "../include/imports.inc.php" ?>
+    <meta name="description" content="Review your account applications under Premier Banking!">
+	<?php include "../include/imports.inc.php" ?>
 </head>
 
 <body class="dashboard-body">

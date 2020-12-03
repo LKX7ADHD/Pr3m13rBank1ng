@@ -87,11 +87,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+	<meta name="description" content="Transfer your account balance to your other accounts, or to other Premier Banking accounts."
 	<title>Premier Banking | Transfer</title>
     <?php include '../include/imports.inc.php' ?>
 </head>

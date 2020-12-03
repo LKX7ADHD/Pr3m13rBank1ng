@@ -27,6 +27,7 @@ if ($success) {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Apply for a new account under Premier Banking!">
 	<title>Premier Banking</title>
     <?php include '../include/imports.inc.php' ?>
 </head>
