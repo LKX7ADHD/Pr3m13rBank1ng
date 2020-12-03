@@ -16,9 +16,9 @@ $applicationStatus = array('Pending', 'Approved', 'Rejected');
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Premier Banking | Applications</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset="UTF-8">
+	<title>Premier Banking | Applications</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php include "../include/imports.inc.php" ?>
 </head>
 
@@ -26,11 +26,11 @@ $applicationStatus = array('Pending', 'Approved', 'Rejected');
 <?php include '../include/navbar.inc.php' ?>
 
 <main class="container">
-    <section>
-        <h1>Applications</h1>
-        <p class="lead">Review applications you have made</p>
+	<section>
+		<h1>Applications</h1>
+		<p class="lead">Review applications you have made</p>
 
-        <ul class="list-group mt-4">
+		<ul class="list-group mt-4">
             <?php
             if (count($applications) == 0) {
                 echo '<p class="lead">No Applications</p>';
@@ -40,8 +40,8 @@ $applicationStatus = array('Pending', 'Approved', 'Rejected');
                 }
             }
             ?>
-        </ul>
-    </section>
+		</ul>
+	</section>
 </main>
 <?php include "../include/sessionTimeout.inc.php" ?>
 <?php include "../include/footer.inc.php" ?>

@@ -11,7 +11,6 @@ if (!$user || !$user->admin) {
 $transfers = getTransfers();
 ?>
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -23,7 +22,6 @@ $transfers = getTransfers();
 
 <body class="dashboard-body">
 <?php include '../include/navbar.inc.php' ?>
-
 
 <main class="container">
 	<section class="transfers">

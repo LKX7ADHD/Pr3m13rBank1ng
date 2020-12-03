@@ -25,20 +25,20 @@ if ($success) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Premier Banking</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Premier Banking</title>
     <?php include '../include/imports.inc.php' ?>
 </head>
 <body>
 <?php include "../include/navbar.inc.php" ?>
 
 <header class="jumbotron text-center">
-    <h1 class="display-4">Open new Account</h1>
+	<h1 class="display-4">Open new Account</h1>
 </header>
 <main class="container px-4">
-    <section class="row">
-        <div class="col">
+	<section class="row">
+		<div class="col">
             <?php
             if ($success) {
                 echo '<p class="h1">Successfully applied</p>';
@@ -55,8 +55,8 @@ if ($success) {
                 echo '<a class="btn btn-danger btn-lg mt-4 mb-3" href="newAccountApplication.php" role="button">Return to Application</a>';
             }
             ?>
-        </div>
-    </section>
+		</div>
+	</section>
 </main>
 
 <?php include "../include/sessionTimeout.inc.php" ?>

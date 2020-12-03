@@ -11,7 +11,6 @@ if (!$user || !$user->admin) {
 $requests = getAccountApplications(NULL, 0);
 ?>
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -23,7 +22,6 @@ $requests = getAccountApplications(NULL, 0);
 
 <body class="dashboard-body">
 <?php include '../include/navbar.inc.php' ?>
-
 
 <main class="container">
 	<section class="transfers">

@@ -22,8 +22,8 @@ logOut();
 	<h1 class="display-4">Logout</h1>
 </header>
 <main class="container logout px-4">
-    <section class="row">
-        <div class="col">
+	<section class="row">
+		<div class="col">
             <?php
             if ($logOutDueToSessionExpiry) {
                 echo '<p class="h1">Session expired</p>';
@@ -34,8 +34,8 @@ logOut();
                 echo '<a class="btn btn-success btn-lg mt-4" href="/" role="button">Return to Home</a>';
             }
             ?>
-        </div>
-    </section>
+		</div>
+	</section>
 </main>
 
 <?php include "include/sessionTimeout.inc.php" ?>
