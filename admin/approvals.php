@@ -16,7 +16,7 @@ $requests = getAccountApplications(NULL, 0);
 
 <head>
     <meta charset="UTF-8">
-    <title>Premier Banking | Admin</title>
+    <title>Premier Banking | Pending Approvals</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php include "../include/imports.inc.php" ?>
 </head>
