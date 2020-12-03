@@ -40,7 +40,7 @@ if (isset($_POST['code']) && !empty($_POST['code'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+		<meta name="description" content="Verify your email to continue managing your accounts with Premier Banking.">
         <title>Premier Banking | Verify Email</title>
         <?php include 'include/imports.inc.php' ?>
     </head>
@@ -95,4 +95,3 @@ if (isset($_POST['code']) && !empty($_POST['code'])) {
     <?php include "include/sessionTimeout.inc.php" ?>
     </body>
     </html>
-<?php

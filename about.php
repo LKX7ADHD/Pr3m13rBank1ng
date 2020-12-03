@@ -5,6 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Meet the team behind Premier Banking's success.">
 	<title>Premier Banking | About Us</title>
     <?php include 'include/imports.inc.php' ?>
 </head>
@@ -44,12 +45,14 @@
 			<div class="row">
 				<div class="col-lg-4 col-md-5">
 					<div class="img-container">
-						<img src="./assets/img/linkedin-sales-navigator-hrhjn6ZTgrM-unsplash.jpg" alt="A guy conversing with another guy on a laptop">
+						<img src="./assets/img/linkedin-sales-navigator-hrhjn6ZTgrM-unsplash.jpg"
+						     alt="A guy conversing with another guy on a laptop">
 					</div>
 				</div>
 				<div class="col-lg-8 col-md-7">
 					<div class="img-container">
-						<img src="./assets/img/campaign-creators-qCi_MzVODoU-unsplash.jpg" alt="A business office with two girls and two guys seated down discussing">
+						<img src="./assets/img/campaign-creators-qCi_MzVODoU-unsplash.jpg"
+						     alt="A business office with two girls and two guys seated down discussing">
 					</div>
 				</div>
 			</div>

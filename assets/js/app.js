@@ -15,7 +15,7 @@ $(() => {
         .append('<span class="sr-only">(current)</span>')
         .parent().addClass('active')
 
-    $('#interest-rate-calculator-form').on('submit', e => {
+    $('#interest-rate-calculator-form').on('submit', () => {
         const amount = calculate_interest(
             $('#principal').val(),
             $('#rate').val(),
@@ -32,7 +32,7 @@ $(() => {
         const lengthRequirement = pwd => pwd.length >= 8
         const numberRequirement = pwd => ~pwd.search(/\d/)
         const uppercaseRequirement = pwd => ~pwd.search(/[A-Z]/)
-        const specialRequirement = pwd => ~pwd.search(/[!@#\$%\^\&*\)\(+=._-]/)
+        const specialRequirement = pwd => ~pwd.search(/[!@#$%^&*)(+=._-]/)
 
         const requirements = [lengthRequirement, numberRequirement, uppercaseRequirement, specialRequirement]
 
@@ -138,7 +138,7 @@ $(() => {
         }
     })
 
-    $('#transfer-form').on('submit', e => {
+    $('#transfer-form').on('submit', () => {
         let valid = true
         $('#sending-account-invalid-warning, #recipent-account-invalid-warning').addClass('d-none')
 

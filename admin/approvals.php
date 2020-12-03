@@ -15,9 +15,9 @@ $requests = getAccountApplications(NULL, 0);
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Premier Banking | Pending Approvals</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset="UTF-8">
+	<title>Premier Banking | Pending Approvals</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php include "../include/imports.inc.php" ?>
 </head>
 
@@ -26,20 +26,20 @@ $requests = getAccountApplications(NULL, 0);
 
 
 <main class="container">
-    <section class="transfers">
-        <h3>Pending approvals</h3>
+	<section class="transfers">
+		<h3>Pending approvals</h3>
 
-        <div class="table-responsive">
-            <table class="table table-bordered" id="approvals-table">
-                <thead>
-                <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">User</th>
-                    <th scope="col">Account name</th>
-                    <th scope="col"></th>
-                </tr>
-                </thead>
-                <tbody>
+		<div class="table-responsive">
+			<table class="table table-bordered" id="approvals-table">
+				<thead>
+				<tr>
+					<th scope="col">Date</th>
+					<th scope="col">User</th>
+					<th scope="col">Account name</th>
+					<th scope="col"></th>
+				</tr>
+				</thead>
+				<tbody>
 
                 <?php
                 foreach ($requests as $request) {
@@ -57,10 +57,10 @@ $requests = getAccountApplications(NULL, 0);
                     echo '</tr>';
                 }
                 ?>
-                </tbody>
-            </table>
-        </div>
-    </section>
+				</tbody>
+			</table>
+		</div>
+	</section>
 </main>
 
 <?php include "../include/sessionTimeout.inc.php" ?>
