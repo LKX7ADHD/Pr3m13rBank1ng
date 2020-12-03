@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 						<div class="input-group-prepend">
 							<span class="input-group-text">$</span>
 						</div>
-						<input type="number" step=0.01 min=0 class="form-control" id="principal"
+						<input type="number" step=0.01 min=0.01 class="form-control" id="principal"
 						       value="<?php if (!is_null($fields['P'])) echo $fields['P'] ?>"
 						       placeholder="Enter principal amount" name="P" required>
 					</div>
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				<div class="form-group">
 					<label for="rate">Interest rate</label>
 					<div class="input-group">
-						<input type="number" step=0.1 min=0 class="form-control" id="rate"
+						<input type="number" step=0.1 min=0.1 class="form-control" id="rate"
 						       value="<?php if (!is_null($fields['r'])) echo $fields['r'] ?>"
 						       placeholder="Enter interest rate" name="r" required>
 						<div class="input-group-append">
@@ -110,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 				<div class="form-group">
 					<label for="years">Number of years</label>
-					<input type="number" min=0 class="form-control" id="years"
+					<input type="number" min=0.1 step=0.1 class="form-control" id="years"
 					       value="<?php if (!is_null($fields['t'])) echo $fields['t'] ?>"
 					       placeholder="Enter duration in years" name="t" required>
 				</div>
