@@ -56,4 +56,3 @@ $conn->close();
 
 $json['success'] = true;
 echo json_encode($json);
-?>

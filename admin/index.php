@@ -24,7 +24,6 @@ $transfers = getTransfers();
 <body class="dashboard-body">
 <?php include '../include/navbar.inc.php' ?>
 
-
 <main class="container">
     <section class="transfers">
         <h3>Review transfers</h3>

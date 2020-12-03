@@ -7,6 +7,11 @@
                     <div class="single-footer">
                         <span class="footer__title">Premier Banking</span>
                         <p>The Future of Banking. Your Satisfaction is our Priority.</p>
+	                    <ul class="footer__list">
+		                    <li>
+			                    <a href="/about.php">About Us</a>
+		                    </li>
+	                    </ul>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4">
@@ -23,9 +28,6 @@
                     <div class="single-footer">
                         <span class="footer__title">Get Started</span>
                         <ul class="footer__list">
-                            <li>
-                                <a href="/about.php">About</a>
-                            </li>
                             <li>
                                 <a href="/login.php">Login</a>
                             </li>

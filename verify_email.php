@@ -95,4 +95,3 @@ if (isset($_POST['code']) && !empty($_POST['code'])) {
     <?php include "include/sessionTimeout.inc.php" ?>
     </body>
     </html>
-<?php
