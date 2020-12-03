@@ -24,7 +24,6 @@ $requests = getAccountApplications(NULL, 0);
 <body class="dashboard-body">
 <?php include '../include/navbar.inc.php' ?>
 
-
 <main class="container">
     <section class="transfers">
         <h1>Pending approvals</h1>

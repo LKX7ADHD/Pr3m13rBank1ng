@@ -1,31 +1,5 @@
 <?php
 
-//# To Email Address
-//$emailaddress = "leekaixuan2001@gmail.com";
-//# Message Subject
-//$emailsubject = "Here's An Email" . date("Y/m/d H:i:s");
-//# Message Body
-//$body = <<<Email
-//<html lang="en">
-//<head>
-//<title>HTML email</title>
-//</head>
-//<body>
-//<p>This email contains HTML Tags!</p>
-//<table>
-//<tr>
-//<th>Firstname</th>
-//<th>Lastname</th>
-//</tr>
-//<tr>
-//<td>John</td>
-//<td>Doe</td>
-//</tr>
-//</table>
-//</body>
-//</html>
-//Email;
-//
 //# Common Headers
 //$headers = 'From: Jonny <jon@example.com>' . $eol;
 //$headers .= 'Reply-To: Jonny <jon@example.com>' . $eol;
@@ -54,11 +28,6 @@
 //
 //# Finished
 //$msg .= "--" . $mime_boundary . "--" . $eol . $eol;   // finish with two eol's for better security. see Injection.
-//
-//
-//# SEND THE EMAIL
-//mail($emailaddress, $emailsubject, $msg, $headers);
-//
 
 /**
  * Generates and returns a code for purpose of 2fa

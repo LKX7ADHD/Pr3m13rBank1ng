@@ -38,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<!-- Meta Tags -->
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Calculate your compound interest rate, offered freely by Premier Banking.">
     <?php include 'include/imports.inc.php' ?>
 	<title>Premier Banking | Interest Rate Calculator</title>
 </head>
@@ -52,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			<div class="row align-items-center">
 				<div class="col-lg-6">
 					<div class="banner__content mt-5 mb-2">
-						<h1>Interest Rate Calculator</h1>
+						<h1>Compound Interest Rate Calculator</h1>
 						<p>Calculate your interest rate using compound interest rates!</p>
 					</div>
 				</div>
