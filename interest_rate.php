@@ -3,23 +3,31 @@
 require_once 'include/interest_rate_calculator.inc.php';
 require_once 'include/accounts.inc.php';
 
+$errors = array();
 $fields = array("P" => NULL, "n" => NULL, "r" => NULL, "t" => NULL);
 $readyToConvert = true;
-foreach ($fields as $field => $value) {
-    if (!isset($_POST[$field]) || empty($_POST[$field])) {
-        $readyToConvert = false;
-    } else {
-        $fields[$field] = $_POST[$field];
-    }
-}
 
-if ($readyToConvert) {
-    $amount = calculate_interest(
-        $fields['P'],
-        $fields['r'],
-        $fields['n'],
-        $fields['t']
-    );
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    foreach ($fields as $field => $value) {
+        if (!isset($_POST[$field]) || empty($_POST[$field])) {
+            $readyToConvert = false;
+        } else {
+            $fields[$field] = sanitiseInput($_POST[$field]);
+        }
+    }
+
+    if ($readyToConvert) {
+        $amount = calculate_interest(
+            $fields['P'],
+            $fields['r'],
+            $fields['n'],
+            $fields['t']
+        );
+    } else {
+        $errors[] = 'Please ensure all fields are filled up';
+    }
+} else {
+    $readyToConvert = false;
 }
 ?>
 
@@ -31,7 +39,7 @@ if ($readyToConvert) {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php include 'include/imports.inc.php' ?>
-	<title>Premier Banking | Home</title>
+	<title>Premier Banking | Interest Rate Calculator</title>
 </head>
 <body>
 
@@ -59,6 +67,15 @@ if ($readyToConvert) {
 <main class="container">
 	<div class="row mb-5">
 		<section class="col-md-6 col-sm-12 mt-5">
+            <?php
+
+            if (!empty($errors)) {
+                foreach ($errors as $error) {
+                    echo '<div class="alert alert-danger" role="alert">' . $error . '</div>';
+                }
+            }
+
+            ?>
 			<form method="POST" id="interest-rate-calculator-form">
 				<div class="form-group">
 					<label for="principal">Principal amount</label>

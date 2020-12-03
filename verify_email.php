@@ -50,7 +50,7 @@ if (isset($_POST['code']) && !empty($_POST['code'])) {
             <div class="row justify-content-center">
                 <div class="col-lg-7 col-xl-6">
                     <div class="brand text-center mt-5">
-                        <a href="index.php">
+                        <a href="/">
                             Premier Banking
                         </a>
                     </div>
