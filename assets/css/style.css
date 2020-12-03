@@ -836,3 +836,9 @@ body {
 .btn__funding, .btn__benefits, .btn__register {
     line-height: 48px;
 }
+
+.btn-approval-btn {
+    color: var(--secondary-color);
+    background-color: var(--white-light-color);
+    border: var(--secondary-color);
+}
