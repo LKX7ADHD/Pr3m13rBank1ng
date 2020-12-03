@@ -48,10 +48,10 @@ $requests = getAccountApplications(NULL, 0);
                     echo '<td>' . $request['username'] . '</td>';
                     echo '<td>' . $request['accountName'] . '</td>';
 
-                    echo '<td><div class="btn-group" role="group" aria-label="Actions">';
+                    echo '<td><div class="btn-group " role="group" aria-label="Actions">';
 
-                    echo '<button type="button" class="btn btn-primary request-approval-btn" data-approve="true" data-requestNumber="' . $request['accountNumber'] . '">Approve</button>';
-                    echo '<button type="button" class="btn btn-primary request-approval-btn" data-approve="false" data-requestNumber="' . $request['accountNumber'] . '">Reject</button>';
+                    echo '<button type="button" class="btn btn__primary request-approval-btn" data-approve="true" data-requestNumber="' . $request['accountNumber'] . '">Approve</button>';
+                    echo '<button type="button" class="btn btn__primary request-approval-btn" data-approve="false" data-requestNumber="' . $request['accountNumber'] . '">Reject</button>';
 
                     echo '</div></td>';
                     echo '</tr>';
