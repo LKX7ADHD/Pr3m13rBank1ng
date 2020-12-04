@@ -4,9 +4,9 @@
     <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Premier Banking is a website where you can safely bank. You will be presented with different accounts for your needs and an extensive dashboard.">
+    <meta name="description" content="A 404 page">
     <?php include 'include/imports.inc.php' ?>
-    <title>Premier Banking | Home</title>
+    <title>Premier Banking | 404</title>
 </head>
 <body>
 
@@ -18,7 +18,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-xl-5 col-md-3">
-                <img class="error-img" src="./assets/img/undraw_page_not_found_su7k.svg" alt="An Illustration of a woman sitting on top of a 404 text.">
+                <img class="error-img" src="/assets/img/undraw_page_not_found_su7k.svg" alt="An Illustration of a woman sitting on top of a 404 text.">
             </div>
             <div class="col-lg-8 col-xl-7 col-md-9">
                 <div class="hero-content">
