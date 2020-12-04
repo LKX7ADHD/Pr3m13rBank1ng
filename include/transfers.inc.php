@@ -12,7 +12,6 @@ require_once 'accounts.inc.php';
 function performTransfer(Account $sender, Account $receiver, Currency $amount, array &$errors = array()) {
     $transferred = true;
 
-    // Initialise the currency classes for both the sender and receiver.
     $senderCurr = $sender->balance;
     $receiverCurr = $receiver->balance;
 
@@ -22,8 +21,10 @@ function performTransfer(Account $sender, Account $receiver, Currency $amount, a
     $receiverBalance = $receiverCurr->getValue();
     $senderBalance = $senderCurr->getValue();
 
-    // Connecting to the database to update the data.
-    if ($senderBalance >= 0) {
+    if ($receiverBalance > 9999999999999.99) {
+        $transferred = false;
+        $errors[] = 'The recipient account is not available to transfers at the moment. Please try again later.';
+    } elseif ($senderBalance >= 0) {
         $conn = connectToDatabase();
         if ($conn->connect_error) {
             $transferred = false;
@@ -72,36 +73,4 @@ function performTransfer(Account $sender, Account $receiver, Currency $amount, a
     }
 
     return $transferred;
-}
-
-/**
- * Reverse a transfer
- * @param int $transferID
- * @return bool true if reverse was successful, false otherwise
- */
-function reverseTransfer(int $transferID) {
-    // TODO : DOESNT ACTUALLY CREDIT THE TWO ACCOUNTS YET
-    $reversed = true;
-
-    $conn = connectToDatabase();
-    if ($conn->connect_error) {
-        $reversed = false;
-        http_response_code(500);
-        die('Unable to connect to the database');
-    } else {
-
-        $stmt = $conn->prepare('UPDATE Transfers SET reverseTransfer = 1 WHERE TransferID = ?');
-        $stmt->bind_param('i', $transferID);
-
-        if (!$stmt->execute()) {
-            $reversed = false;
-            http_response_code(500);
-            die('Unable to update receiver account balance');
-        }
-        $stmt->close();
-    }
-
-    $conn->close();
-    return $reversed;
-
 }
