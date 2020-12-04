@@ -799,7 +799,7 @@ body {
     }
 
 
-/*    Error Pages */
+    /*    Error Pages */
     .hero__title--error {
         font-size: 48px;
         line-height: 52px;
@@ -857,5 +857,6 @@ body {
 }
 
 .hero__button--error {
-    widows: 220px;
+    widows: 220;
+    /*Sebastian check this code plz thanks*/
 }
