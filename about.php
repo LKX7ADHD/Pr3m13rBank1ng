@@ -72,7 +72,7 @@
 			</div>
 
 			<div class="row">
-				<div class="col-lg-2">
+				<div class="col-lg-2 offset-lg-1">
 					<figure class="team-container">
 						<div class="team-image">
 							<img src="./assets/img/kx-mugshot.png" alt="Founder & CEO of Premier Banking, Kai Xuan">
