@@ -4,10 +4,10 @@
     <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="500 page">
+    <meta name="description" content="403 page">
     <meta name="robots" content="follow, noarchive, noindex">
     <?php include 'include/imports.inc.php' ?>
-    <title>Premier Banking | 500</title>
+    <title>Premier Banking | 401</title>
 </head>
 <body>
 
@@ -25,9 +25,10 @@
                 <div class="hero-content">
 
                     <h1 class="hero__title">
-                        An unexpected error has occurred.
+                        Uh oh, you're not authorised.
                     </h1>
-                    <p>Please try again later.</p>
+                    <p>Did you mean to login? </p>
+                    <a href="/login.php" title="Login" class="btn btn__primary btn-lg">Login</a>
                     <a href="/" title="Homepage" class="btn btn__primary btn-lg">Return to Homepage</a>
                 </div>
             </div>

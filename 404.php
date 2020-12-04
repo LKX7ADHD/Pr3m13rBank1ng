@@ -28,11 +28,7 @@
 						Uh oh, that page couldn't be found.
 					</h1>
 					<p>Lost? Don't worry, we'll get you there!</p>
-					<div class="hero__button">
-						<a href="index.php" title="Homepage" class="btn">
-							Return to Homepage
-						</a>
-					</div>
+                    <a href="/" title="Homepage" class="btn btn__primary btn-lg">Return to Homepage</a>
 				</div>
 			</div>
 		</div>
