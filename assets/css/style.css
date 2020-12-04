@@ -797,6 +797,14 @@ body {
     input.form-control {
         height: 50px;
     }
+
+
+/*    Error Pages */
+    .hero__title--error {
+        font-size: 48px;
+        line-height: 52px;
+
+    }
 }
 
 /* Misc. */
@@ -845,5 +853,9 @@ body {
 
 
 .error-img {
-    object-fit: contain;
+    object-fit: contain !important;
+}
+
+.hero__button--error {
+    widows: 220px;
 }

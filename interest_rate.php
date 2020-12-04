@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $fields['t']
         );
     } else {
-        $errors[] = 'Please ensure all fields are filled up';
+        $errors[] = 'Please ensure all fields are filled up.';
     }
 } else {
     $readyToConvert = false;
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content="Calculate your compound interest rate, offered freely by Premier Banking.">
     <?php include 'include/imports.inc.php' ?>
-	<title>Premier Banking | Interest Rate Calculator</title>
+	<title>Premier Banking | Compound Interest Rate Calculator</title>
 </head>
 <body>
 
