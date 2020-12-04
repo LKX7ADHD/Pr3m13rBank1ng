@@ -4,10 +4,10 @@
     <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="500 page">
+    <meta name="description" content="403 page">
     <meta name="robots" content="follow, noarchive, noindex">
     <?php include 'include/imports.inc.php' ?>
-    <title>Premier Banking | 500</title>
+    <title>Premier Banking | 403</title>
 </head>
 <body>
 
@@ -25,9 +25,9 @@
                 <div class="hero-content">
 
                     <h1 class="hero__title">
-                        An unexpected error has occurred. Please try again later.
+                        Uh oh, you're trying to access a forbidden file.
                     </h1>
-                    <p>Don't worry, our admins are working hard to solve it!</p>
+                    <p>Lost? Don't worry, we'll get you there!</p>
                     <div class="hero__button">
                         <a href="index.php" title="Homepage" class="btn">
                             Return to Homepage

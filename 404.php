@@ -27,7 +27,7 @@
 					<h1 class="hero__title">
 						Uh oh, that page couldn't be found.
 					</h1>
-					<p>Don't worry, We will get you there!</p>
+					<p>Lost? Don't worry, we'll get you there!</p>
 					<div class="hero__button">
 						<a href="index.php" title="Homepage" class="btn">
 							Return to Homepage
