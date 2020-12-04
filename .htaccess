@@ -1,1 +1,3 @@
+# ErrorDocument 200 200.php (Check if 200.php is present)
 ErrorDocument 404 404.php
+ErrorDocument 500 500.php
