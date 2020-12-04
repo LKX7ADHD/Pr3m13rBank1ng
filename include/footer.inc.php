@@ -2,7 +2,7 @@
 
     <div class="container">
         <div class="footer__top">
-            <div class="row justify-content-center">
+            <div class="row justify-content-center mb-5">
                 <div class="col-sm-12 col-md-4">
                     <div class="single-footer">
                         <span class="footer__title">Premier Banking</span>
