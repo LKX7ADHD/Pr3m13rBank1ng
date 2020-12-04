@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<div class="hero__content">
 		<div class="container">
 			<div class="row align-items-center">
-				<div class="col-lg-6">
+				<div class="col-lg-10">
 					<div class="banner__content mt-5 mb-2">
 						<h1>Compound Interest Rate Calculator</h1>
 						<p>Calculate your interest rate using compound interest rates!</p>
