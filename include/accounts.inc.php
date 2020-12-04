@@ -505,11 +505,11 @@ function isAccountNumberValid(string $accountNumber) {
 }
 
 /**
- * Retrieves transfer history, optionally filtering for one or more accounts
- * @param Account[] $accounts
+ * Retrieves transfer history, optionally filtering by user
+ * @param User|null $user the user to filter for, leave NULL for all users
  * @return array transfers
  */
-function getTransfers(array $accounts = NULL) {
+function getTransfers(User $user = NULL) {
     $conn = connectToDatabase();
     $transfers = array();
 
@@ -517,8 +517,8 @@ function getTransfers(array $accounts = NULL) {
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     } else {
-        if (empty($accounts)) {
-            $stmt = $conn->prepare('SELECT T.transferTimestamp, T.transferValue, SA.AccountNumber AS Sender, RA.AccountNumber AS Receiver FROM Transfers T, Accounts SA, Accounts RA WHERE T.ReceiverID = RA.AccountID AND T.SenderID = SA.AccountID');
+        if (is_null($user)) {
+            $stmt = $conn->prepare('SELECT T.transferTimestamp, T.transferValue, SA.AccountNumber AS Sender, RA.AccountNumber AS Receiver FROM Transfers T, Accounts SA, Accounts RA WHERE T.ReceiverID = RA.AccountID AND T.SenderID = SA.AccountID ORDER BY T.transferTimestamp DESC');
 
             if (!$stmt->execute()) {
                 http_response_code(500);
@@ -532,21 +532,19 @@ function getTransfers(array $accounts = NULL) {
                 array_push($transfers, ...$resultArray);
             }
         } else {
-            foreach ($accounts as $acc) {
-                $stmt = $conn->prepare('SELECT T.transferTimestamp, T.transferValue, SA.accountNumber AS Sender, RA.accountNumber AS Receiver, RA.accountNumber = ? AS deposit FROM Transfers T JOIN Accounts SA JOIN Accounts RA ON T.ReceiverID = RA.AccountID AND T.SenderID = SA.AccountID WHERE RA.accountNumber = ? OR SA.accountNumber = ?');
-                $stmt->bind_param("sss", $acc->accountNumber, $acc->accountNumber, $acc->accountNumber);
+            $stmt = $conn->prepare('SELECT T.transferTimestamp, T.transferValue, SA.accountNumber AS Sender, RA.accountNumber AS Receiver, RA.UserID = U.UserID AS deposit FROM Transfers T JOIN Accounts SA JOIN Accounts RA JOIN Users U ON T.ReceiverID = RA.AccountID AND T.SenderID = SA.AccountID WHERE U.username = ? AND (RA.UserID = U.UserID OR SA.UserID = U.UserID) ORDER BY T.transferTimestamp DESC');
+            $stmt->bind_param("s", $user->username);
 
-                if (!$stmt->execute()) {
-                    http_response_code(500);
-                    die('An unexpected error has occurred. Please try again later.');
-                }
-                $result = $stmt->get_result();
-                $stmt->close();
-                $resultArray = $result->fetch_all(MYSQLI_ASSOC);
+            if (!$stmt->execute()) {
+                http_response_code(500);
+                die('An unexpected error has occurred. Please try again later.');
+            }
+            $result = $stmt->get_result();
+            $stmt->close();
+            $resultArray = $result->fetch_all(MYSQLI_ASSOC);
 
-                if (!empty($resultArray)) {
-                    array_push($transfers, ...$resultArray);
-                }
+            if (!empty($resultArray)) {
+                array_push($transfers, ...$resultArray);
             }
         }
     }
@@ -569,16 +567,16 @@ function getAccountApplications(User $user = NULL, int $status = NULL) {
         die('An unexpected error has occurred. Please try again later.');
     } else {
         if (!is_null($user) && !is_null($status)) {
-            $stmt = $conn->prepare('SELECT U.username, A.accountName, A.status, A.accountNumber, A.requestTimestamp FROM AccountRequests A, Users U WHERE A.UserID = U.UserID AND U.username = ? AND status = ?');
+            $stmt = $conn->prepare('SELECT U.username, A.accountName, A.status, A.accountNumber, A.requestTimestamp FROM AccountRequests A, Users U WHERE A.UserID = U.UserID AND U.username = ? AND status = ? ORDER BY A.requestTimestamp DESC');
             $stmt->bind_param("si", $user->username, $status);
         } else if (!is_null($user)) {
-            $stmt = $conn->prepare('SELECT U.username, A.accountName, A.status, A.accountNumber, A.requestTimestamp FROM AccountRequests A, Users U WHERE A.UserID = U.UserID AND U.username = ?');
+            $stmt = $conn->prepare('SELECT U.username, A.accountName, A.status, A.accountNumber, A.requestTimestamp FROM AccountRequests A, Users U WHERE A.UserID = U.UserID AND U.username = ? ORDER BY A.requestTimestamp DESC');
             $stmt->bind_param("s", $user->username);
         } else if (!is_null($status)) {
-            $stmt = $conn->prepare('SELECT U.username, A.accountName, A.status, A.accountNumber, A.requestTimestamp FROM AccountRequests A, Users U WHERE A.UserID = U.UserID AND status = ?');
+            $stmt = $conn->prepare('SELECT U.username, A.accountName, A.status, A.accountNumber, A.requestTimestamp FROM AccountRequests A, Users U WHERE A.UserID = U.UserID AND status = ? ORDER BY A.requestTimestamp DESC');
             $stmt->bind_param("i", $status);
         } else {
-            $stmt = $conn->prepare('SELECT U.username, A.accountName, A.status, A.accountNumber, A.requestTimestamp FROM AccountRequests A, Users U WHERE A.UserID = U.UserID');
+            $stmt = $conn->prepare('SELECT U.username, A.accountName, A.status, A.accountNumber, A.requestTimestamp FROM AccountRequests A, Users U WHERE A.UserID = U.UserID ORDER BY A.requestTimestamp DESC');
         }
 
         if (!$stmt->execute()) {

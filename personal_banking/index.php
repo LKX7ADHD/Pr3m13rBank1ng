@@ -8,7 +8,7 @@ if (!$user) {
 }
 
 $accounts = getAccounts($user);
-$transfers = getTransfers($accounts);
+$transfers = getTransfers($user);
 
 ?>
 <!DOCTYPE html>

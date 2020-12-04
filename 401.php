@@ -4,7 +4,7 @@
     <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="403 page">
+    <meta name="description" content="401 page">
     <meta name="robots" content="follow, noarchive, noindex">
     <?php include 'include/imports.inc.php' ?>
     <title>Premier Banking | 401</title>
