@@ -21,10 +21,13 @@ function performTransfer(Account $sender, Account $receiver, Currency $amount, a
     $receiverBalance = $receiverCurr->getValue();
     $senderBalance = $senderCurr->getValue();
 
-    if ($receiverBalance > 9999999999999.99) {
+    if ($senderBalance < 0) {
+        $transferred = false;
+        $errors[] = 'Not enough balance!';
+    } elseif ($receiverBalance > 9999999999999.99) {
         $transferred = false;
         $errors[] = 'The recipient account is not available to transfers at the moment. Please try again later.';
-    } elseif ($senderBalance >= 0) {
+    } else {
         $conn = connectToDatabase();
         if ($conn->connect_error) {
             $transferred = false;
@@ -67,9 +70,6 @@ function performTransfer(Account $sender, Account $receiver, Currency $amount, a
             $stmt->close();
         }
         $conn->close();
-    } else {
-        $transferred = false;
-        $errors[] = 'Not enough balance!';
     }
 
     return $transferred;
