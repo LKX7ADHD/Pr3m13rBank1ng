@@ -177,6 +177,15 @@ function verify_code(User $user, string $code) {
                 die('An unexpected error has occurred. Please try again later.');
             }
             $stmt->close();
+
+            $stmt = $conn->prepare('DELETE FROM EmailVerification WHERE UserID = (SELECT UserID from Users WHERE username = ?)');
+            $stmt->bind_param('s', $user->username);
+            if (!$stmt->execute()) {
+                http_response_code(500);
+                die('An unexpected error has occurred. Please try again later.');
+            }
+
+            $stmt->close();
             $conn->close();
             return true;
         }
