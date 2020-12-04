@@ -26,7 +26,7 @@ function performTransfer(Account $sender, Account $receiver, Currency $amount, a
         $errors[] = 'Not enough balance!';
     } elseif ($receiverBalance > 9999999999999.99) {
         $transferred = false;
-        $errors[] = 'The recipient account is not available to transfers at the moment. Please try again later.';
+        $errors[] = 'The recipient account is not available for transfers at the moment. Please try again later.';
     } else {
         $conn = connectToDatabase();
         if ($conn->connect_error) {
