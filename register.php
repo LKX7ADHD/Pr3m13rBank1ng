@@ -160,28 +160,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         ?>
 
                         <div class="form-group">
-                            <label for="username" class="sr-only">Username</label>
+                            <label for="username" class="text-muted">Username</label>
                             <input class="form-control" type="text" id="username" name="username" aria-label="Username"
                                    placeholder="Enter username" autocomplete="username"
                                    value="<?php if (isset($formInput['username'])) echo $formInput['username'] ?>" required/>
                         </div>
 
                         <div class="form-group">
-                            <label for="fname" class="sr-only">First Name</label>
+                            <label for="fname" class="text-muted">First Name</label>
                             <input class="form-control" type="text" id="fname" name="fname" maxlength="45"
                                    aria-label="First Name" placeholder="Enter first name" autocomplete="given-name"
                                    value="<?php if (isset($formInput['fname'])) echo $formInput['fname'] ?>"/>
                         </div>
 
                         <div class="form-group">
-                            <label for="lname" class="sr-only">Last Name</label>
+                            <label for="lname" class="text-muted">Last Name</label>
                             <input class="form-control" type="text" id="lname" name="lname" maxlength="45"
                                    aria-label="Last Name" placeholder="Enter last name" autocomplete="family-name"
                                    value="<?php if (isset($formInput['lname'])) echo $formInput['lname'] ?>" required/>
                         </div>
 
                         <div class="form-group">
-                            <label for="email" class="sr-only">Email</label>
+                            <label for="email" class="text-muted">Email</label>
                             <input class="form-control" type="email" id="email" name="email" aria-label="Email"
                                    placeholder="Enter email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                                    autocomplete="email"
@@ -189,7 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
 
                         <div class="form-group">
-                            <label for="pwd_new" class="sr-only">Password</label>
+                            <label for="pwd_new" class="text-muted">Password</label>
                             <input class="form-control" type="password" id="pwd_new" name="pwd" aria-label="Password"
                                    placeholder="Enter password" autocomplete="new-password" required/>
                         </div>
@@ -205,7 +205,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
 
                         <div class="form-group">
-                            <label for="pwd_confirm" class="sr-only">Confirm Password</label>
+                            <label for="pwd_confirm" class="text-muted">Confirm Password</label>
                             <input class="form-control" type="password" id="pwd_confirm"
                                    aria-label="Confirmation of Password" name="pwd_confirm"
                                    placeholder="Enter password again" autocomplete="new-password" required/>

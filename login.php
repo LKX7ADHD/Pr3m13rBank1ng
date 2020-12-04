@@ -103,12 +103,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                         ?>
 						<div class="form-group">
-							<label for="email" class="sr-only">Email</label>
+							<label for="email" class="text-muted">Email</label>
 							<input type="email" class="form-control" id="email" placeholder="Enter your Email"
 							       name="email" aria-label="Email" autocomplete="email" required>
 						</div>
 						<div class="form-group">
-							<label for="pwd" class="sr-only">Password</label>
+							<label for="pwd" class="text-muted">Password</label>
 							<input type="password" class="form-control" placeholder="Enter Your Password" name="pwd"
 							       aria-label="Password" id="pwd" autocomplete="current-password" required>
 						</div>
