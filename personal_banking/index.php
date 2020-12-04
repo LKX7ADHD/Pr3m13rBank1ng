@@ -8,7 +8,9 @@ if (!$user) {
 }
 
 $accounts = getAccounts($user);
-$transfers = getTransfers($user);
+$transfers = getTransfers($accounts);
+
+usort($transfers, function($a, $b) { return strtotime($b['transferTimestamp']) - strtotime($a['transferTimestamp']); })
 
 ?>
 <!DOCTYPE html>

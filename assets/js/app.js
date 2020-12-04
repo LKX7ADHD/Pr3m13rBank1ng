@@ -127,11 +127,11 @@ $(() => {
         }
 
         let accumulator = 0;
-        for (let i = 0; i < 8; i++) {
-            accumulator += (parseInt(value[i]) * (17 ** i)) % 17
+        for (let i = 0; i < 9; i++) {
+            accumulator += (parseInt(value[i]) * (i % 2 ? 1 : 2)) % 10
         }
 
-        if (value.slice(-2) !== (accumulator % 17).toString().padStart(2, '0')) {
+        if (value.slice(-1) !== (accumulator % 10).toString()) {
             e.target.setCustomValidity("Invalid account number")
         } else {
             e.target.setCustomValidity("")

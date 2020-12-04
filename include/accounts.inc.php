@@ -474,16 +474,16 @@ function createAccountApplication(User $user, string $accountName) {
  */
 function generateAccountNumber() {
     try {
-        $accountNumber = (string)random_int(10000000, 99999999);
+        $accountNumber = (string)random_int(100000000, 999999999);
     } catch (Exception $e) {
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     }
     $accumulator = 0;
-    for ($i = 0; $i < 8; $i++) {
-        $accumulator += ((int)$accountNumber[$i] * (17 ** $i)) % 17;
+    for ($i = 0; $i < 9; $i++) {
+        $accumulator += ((int)$accountNumber[$i] * ($i % 2 ? 1 : 2)) % 10;
     }
-    return $accountNumber . sprintf('%02d', $accumulator % 17);
+    return $accountNumber . ($accumulator % 10);
 }
 
 /**
@@ -497,19 +497,19 @@ function isAccountNumberValid(string $accountNumber) {
     }
 
     $accumulator = 0;
-    for ($i = 0; $i < 8; $i++) {
-        $accumulator += ((int)$accountNumber[$i] * (17 ** $i)) % 17;
+    for ($i = 0; $i < 9; $i++) {
+        $accumulator += ((int)$accountNumber[$i] * ($i % 2 ? 1 : 2)) % 10;
     }
 
-    return substr($accountNumber, -2) === sprintf('%02d', $accumulator % 17);
+    return $accountNumber[-1] === (string)($accumulator % 10);
 }
 
 /**
- * Retrieves transfer history, optionally filtering by user
- * @param User|null $user the user to filter for, leave NULL for all users
+ * Retrieves transfer history, optionally filtering for one or more accounts
+ * @param Account[] $accounts
  * @return array transfers
  */
-function getTransfers(User $user = NULL) {
+function getTransfers(array $accounts = NULL) {
     $conn = connectToDatabase();
     $transfers = array();
 
@@ -517,7 +517,7 @@ function getTransfers(User $user = NULL) {
         http_response_code(500);
         die('An unexpected error has occurred. Please try again later.');
     } else {
-        if (is_null($user)) {
+        if (empty($accounts)) {
             $stmt = $conn->prepare('SELECT T.transferTimestamp, T.transferValue, SA.AccountNumber AS Sender, RA.AccountNumber AS Receiver FROM Transfers T, Accounts SA, Accounts RA WHERE T.ReceiverID = RA.AccountID AND T.SenderID = SA.AccountID ORDER BY T.transferTimestamp DESC');
 
             if (!$stmt->execute()) {
@@ -532,19 +532,21 @@ function getTransfers(User $user = NULL) {
                 array_push($transfers, ...$resultArray);
             }
         } else {
-            $stmt = $conn->prepare('SELECT T.transferTimestamp, T.transferValue, SA.accountNumber AS Sender, RA.accountNumber AS Receiver, RA.UserID = U.UserID AS deposit FROM Transfers T JOIN Accounts SA JOIN Accounts RA JOIN Users U ON T.ReceiverID = RA.AccountID AND T.SenderID = SA.AccountID WHERE U.username = ? AND (RA.UserID = U.UserID OR SA.UserID = U.UserID) ORDER BY T.transferTimestamp DESC');
-            $stmt->bind_param("s", $user->username);
+            foreach ($accounts as $acc) {
+                $stmt = $conn->prepare('SELECT T.transferTimestamp, T.transferValue, SA.accountNumber AS Sender, RA.accountNumber AS Receiver, RA.accountNumber = ? AS deposit FROM Transfers T JOIN Accounts SA JOIN Accounts RA ON T.ReceiverID = RA.AccountID AND T.SenderID = SA.AccountID WHERE RA.accountNumber = ? OR SA.accountNumber = ?');
+                $stmt->bind_param("sss", $acc->accountNumber, $acc->accountNumber, $acc->accountNumber);
 
-            if (!$stmt->execute()) {
-                http_response_code(500);
-                die('An unexpected error has occurred. Please try again later.');
-            }
-            $result = $stmt->get_result();
-            $stmt->close();
-            $resultArray = $result->fetch_all(MYSQLI_ASSOC);
+                if (!$stmt->execute()) {
+                    http_response_code(500);
+                    die('An unexpected error has occurred. Please try again later.');
+                }
+                $result = $stmt->get_result();
+                $stmt->close();
+                $resultArray = $result->fetch_all(MYSQLI_ASSOC);
 
-            if (!empty($resultArray)) {
-                array_push($transfers, ...$resultArray);
+                if (!empty($resultArray)) {
+                    array_push($transfers, ...$resultArray);
+                }
             }
         }
     }

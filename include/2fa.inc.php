@@ -90,8 +90,7 @@ function verify_email(User $user) {
         }
         
         .header-image {
-            width: 20%;
-            padding: 5% 0;
+            width: 50%;
             margin: 0 auto;
             display: block;
         }
