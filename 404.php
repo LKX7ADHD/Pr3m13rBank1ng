@@ -18,7 +18,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-xl-5 col-md-3">
-                <img src="./assets/img/undraw_page_not_found_su7k.svg" alt="An Illustration of a woman sitting on top of a 404 text.">
+                <img class="error-img" src="./assets/img/undraw_page_not_found_su7k.svg" alt="An Illustration of a woman sitting on top of a 404 text.">
             </div>
             <div class="col-lg-8 col-xl-7 col-md-9">
                 <div class="hero-content">
@@ -28,8 +28,8 @@
                     </h1>
                     <p>But don't worry. We will get you there!</p>
                     <div class="hero__button">
-                        <a href="register.php" title="Register Page" class="btn">
-                            Get Started
+                        <a href="index.php" title="Homepage" class="btn">
+                            Return to Homepage
                         </a>
                     </div>
                 </div>

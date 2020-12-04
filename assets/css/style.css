@@ -842,3 +842,8 @@ body {
     background-color: var(--white-light-color);
     border: var(--secondary-color);
 }
+
+
+.error-img {
+    object-fit: contain;
+}
